@@ -20,6 +20,9 @@
             'copper-glow': '#ED7C2A',
             'copper-soft': '#F4DBC7',
             'copper-deep': '#8C3008',
+            teal:          '#4FB8C9',
+            'teal-deep':   '#1F4D5A',
+            navy:          '#1A2940',
             cream:         '#F5EDE3',
             'cream-warm':  '#F7E8D5',
             charcoal:      '#1A1410',
@@ -43,10 +46,11 @@
   <div id="age-gate" class="fixed inset-0 z-[100] flex items-center justify-center bg-charcoal/85 backdrop-blur-sm">
     <div class="relative w-[92%] max-w-md bg-cream rounded-3xl shadow-2xl p-8 sm:p-10">
       <div class="flex flex-col items-center text-center mb-6">
-        <div class="hex-mark mb-4">
-          <svg viewBox="0 0 48 48" class="w-12 h-12">
-            <polygon points="24,3 43,13.5 43,34.5 24,45 5,34.5 5,13.5" fill="none" stroke="currentColor" stroke-width="2.5"/>
-            <text x="24" y="30" text-anchor="middle" font-family="Inter" font-weight="700" font-size="16" fill="currentColor">P</text>
+        <div class="mb-4">
+          <svg viewBox="0 0 48 48" class="w-14 h-14">
+            <polygon points="24,3 43,13.5 43,34.5 24,45 5,34.5 5,13.5" fill="none" stroke="#4FB8C9" stroke-width="2.5"/>
+            <polygon points="24,9 37.5,16.75 37.5,31.25 24,39 10.5,31.25 10.5,16.75" fill="#1F4D5A"/>
+            <text x="24" y="30.5" text-anchor="middle" font-family="Inter,sans-serif" font-weight="800" font-size="17" fill="white">P</text>
           </svg>
         </div>
         <h2 class="font-serif text-2xl text-ink mb-2">Research Use Verification</h2>
@@ -77,15 +81,14 @@
     <div class="max-w-[1400px] mx-auto px-6 lg:px-10 h-20 flex items-center justify-between gap-6">
 
       <a href="#" class="flex items-center gap-3 shrink-0">
-        <div class="hex-mark text-copper">
-          <svg viewBox="0 0 48 48" class="w-9 h-9">
-            <polygon points="24,3 43,13.5 43,34.5 24,45 5,34.5 5,13.5" fill="none" stroke="currentColor" stroke-width="2.5"/>
-            <text x="24" y="31" text-anchor="middle" font-family="Inter" font-weight="700" font-size="18" fill="currentColor">P</text>
-          </svg>
-        </div>
+        <svg viewBox="0 0 48 48" class="w-10 h-10 shrink-0">
+          <polygon points="24,3 43,13.5 43,34.5 24,45 5,34.5 5,13.5" fill="none" stroke="#4FB8C9" stroke-width="2.5"/>
+          <polygon points="24,9 37.5,16.75 37.5,31.25 24,39 10.5,31.25 10.5,16.75" fill="#1F4D5A"/>
+          <text x="24" y="30.5" text-anchor="middle" font-family="Inter,sans-serif" font-weight="800" font-size="17" fill="white">P</text>
+        </svg>
         <div class="leading-tight">
-          <div class="font-serif text-lg text-ink">PepGuide</div>
-          <div class="text-[9px] tracking-[0.18em] text-ink/50 font-medium">NAVIGATE PEPTIDES · UNLOCK KNOWLEDGE</div>
+          <div class="text-lg font-bold tracking-tight"><span class="text-navy">Pep</span><span class="text-teal">Guide</span></div>
+          <div class="text-[9px] tracking-[0.18em] text-ink/50 font-semibold">NAVIGATE PEPTIDES · UNLOCK KNOWLEDGE</div>
         </div>
       </a>
 
@@ -480,12 +483,14 @@
       <div class="grid lg:grid-cols-5 gap-10 mb-16">
         <div class="lg:col-span-2">
           <a href="#" class="flex items-center gap-3 mb-5">
-            <div class="hex-mark text-copper">
-              <svg viewBox="0 0 48 48" class="w-9 h-9"><polygon points="24,3 43,13.5 43,34.5 24,45 5,34.5 5,13.5" fill="none" stroke="currentColor" stroke-width="2.5"/><text x="24" y="31" text-anchor="middle" font-family="Inter" font-weight="700" font-size="18" fill="currentColor">P</text></svg>
-            </div>
+            <svg viewBox="0 0 48 48" class="w-10 h-10 shrink-0">
+              <polygon points="24,3 43,13.5 43,34.5 24,45 5,34.5 5,13.5" fill="none" stroke="#4FB8C9" stroke-width="2.5"/>
+              <polygon points="24,9 37.5,16.75 37.5,31.25 24,39 10.5,31.25 10.5,16.75" fill="#1F4D5A"/>
+              <text x="24" y="30.5" text-anchor="middle" font-family="Inter,sans-serif" font-weight="800" font-size="17" fill="white">P</text>
+            </svg>
             <div>
-              <div class="font-serif text-xl text-cream">PepGuide</div>
-              <div class="text-[9px] tracking-[0.18em] text-cream/40 font-medium">NAVIGATE PEPTIDES · UNLOCK KNOWLEDGE</div>
+              <div class="text-xl font-bold tracking-tight"><span class="text-cream">Pep</span><span class="text-teal">Guide</span></div>
+              <div class="text-[9px] tracking-[0.18em] text-cream/40 font-semibold">NAVIGATE PEPTIDES · UNLOCK KNOWLEDGE</div>
             </div>
           </a>
           <p class="text-sm leading-relaxed max-w-sm">An evidence-based platform for serious peptide research. Third-party tested compounds, mechanism-anchored protocols, and a curated reference library.</p>
