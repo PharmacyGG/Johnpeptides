@@ -1,0 +1,507 @@
+/* ============================================
+   PEPGUIDE — Design Tokens
+   ============================================ */
+:root {
+  --copper:        #C2410C;
+  --copper-glow:   #ED7C2A;
+  --copper-warm:   #E89150;
+  --copper-soft:   #F4DBC7;
+  --copper-deep:   #8C3008;
+
+  --charcoal:      #1A1410;
+  --charcoal-2:    #221A14;
+  --charcoal-3:    #2D2620;
+
+  --cream:         #F5EDE3;
+  --cream-warm:    #F7E8D5;
+  --cream-deep:    #EDDFCE;
+
+  --ink:           #1F1A16;
+  --ink-2:         #3A322B;
+
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans:  'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Tailwind color extension via @apply equivalents */
+.bg-charcoal     { background-color: var(--charcoal); }
+.bg-charcoal-2   { background-color: var(--charcoal-2); }
+.bg-cream        { background-color: var(--cream); }
+.bg-cream-warm   { background-color: var(--cream-warm); }
+.bg-copper       { background-color: var(--copper); }
+.bg-copper-glow  { background-color: var(--copper-glow); }
+.text-copper     { color: var(--copper); }
+.text-copper-glow{ color: var(--copper-glow); }
+.text-cream      { color: var(--cream); }
+.text-ink        { color: var(--ink); }
+.border-copper   { border-color: var(--copper); }
+
+.font-serif { font-family: var(--font-serif); font-weight: 500; }
+.font-sans  { font-family: var(--font-sans); }
+
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-sans); color: var(--ink); }
+
+/* Hex logo mark */
+.hex-mark { display: inline-flex; }
+
+/* ============================================
+   NAVIGATION
+   ============================================ */
+.pill-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.1rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--charcoal-2), var(--charcoal));
+  color: var(--copper-glow);
+  font-size: 0.82rem;
+  font-weight: 600;
+  border: 1px solid var(--copper);
+  box-shadow: 0 0 24px -8px var(--copper);
+  transition: all 0.25s ease;
+}
+.pill-cta:hover {
+  box-shadow: 0 0 32px -4px var(--copper);
+  transform: translateY(-1px);
+}
+.hex-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background: var(--copper);
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+/* ============================================
+   HERO
+   ============================================ */
+.hero-section {
+  background: var(--charcoal);
+  color: var(--cream);
+  min-height: 92vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.hero-bg {
+  background:
+    radial-gradient(ellipse 80% 60% at 75% 50%, rgba(237, 124, 42, 0.18), transparent 70%),
+    radial-gradient(ellipse 100% 80% at 50% 100%, rgba(140, 48, 8, 0.25), transparent 60%),
+    linear-gradient(180deg, #0F0A07 0%, #1A1410 50%, #0F0A07 100%);
+  pointer-events: none;
+}
+.hero-glow {
+  background:
+    radial-gradient(circle 40% at 80% 50%, rgba(237, 124, 42, 0.12), transparent 70%);
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+.hero-headline {
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  text-shadow: 0 2px 30px rgba(0,0,0,0.5);
+}
+.hero-headline .italic {
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* Hero vial: real image swap */
+.vial-placeholder {
+  background-image: url('../img/hero-vial.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: drop-shadow(0 30px 60px rgba(237, 124, 42, 0.15));
+}
+.vial-placeholder .vial-mock { display: none; }
+
+/* ============================================
+   CTAs
+   ============================================ */
+.cta-primary {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.95rem 1.75rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--copper), var(--copper-deep));
+  color: white;
+  font-weight: 500;
+  font-size: 0.95rem;
+  box-shadow: 0 10px 30px -10px var(--copper), inset 0 1px 0 rgba(255,255,255,0.15);
+  transition: all 0.25s ease;
+}
+.cta-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 36px -8px var(--copper), inset 0 1px 0 rgba(255,255,255,0.2);
+}
+.cta-ghost {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.95rem 1.75rem;
+  border-radius: 999px;
+  border: 1px solid rgba(245, 237, 227, 0.25);
+  color: var(--cream);
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: all 0.25s ease;
+  backdrop-filter: blur(8px);
+}
+.cta-ghost:hover {
+  border-color: var(--copper);
+  background: rgba(237, 124, 42, 0.08);
+}
+.cta-solid {
+  display: inline-flex;
+  padding: 0.7rem 1.5rem;
+  border-radius: 999px;
+  background: var(--copper);
+  color: white;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+.cta-solid:hover { background: var(--copper-glow); transform: translateY(-1px); }
+
+/* ============================================
+   PROCESS TIMELINE
+   ============================================ */
+.process-list { position: relative; }
+.process-list::before {
+  content: '';
+  position: absolute;
+  left: 11px;
+  top: 12px;
+  bottom: 12px;
+  width: 1.5px;
+  background: linear-gradient(180deg, var(--copper-soft) 0%, var(--cream-deep) 100%);
+}
+.process-step {
+  position: relative;
+  padding-left: 3rem;
+  opacity: 0.35;
+  transition: opacity 0.5s ease;
+}
+.process-step.active { opacity: 1; }
+
+.process-marker {
+  position: absolute;
+  left: 0;
+  top: 6px;
+  width: 24px;
+  height: 24px;
+  border-radius: 999px;
+  border: 2px solid var(--copper-soft);
+  background: var(--cream);
+  transition: all 0.4s ease;
+}
+.process-step.active .process-marker {
+  border-color: var(--copper);
+  background: var(--copper);
+  box-shadow: 0 0 0 6px rgba(194, 65, 12, 0.12);
+}
+.process-step.active .process-marker::after {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border-radius: 999px;
+  background: var(--cream);
+}
+
+.process-title {
+  font-family: var(--font-serif);
+  font-size: 1.85rem;
+  line-height: 1.15;
+  color: var(--ink);
+  margin-bottom: 0.85rem;
+  font-weight: 500;
+}
+.process-title .italic { font-style: italic; font-weight: 400; }
+.process-body {
+  color: var(--ink-2);
+  opacity: 0.75;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  max-width: 30rem;
+}
+.process-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.process-chips span {
+  font-size: 0.72rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  background: var(--copper-soft);
+  color: var(--copper);
+  font-weight: 500;
+}
+
+/* ============================================
+   TWO-CARD PROMO
+   ============================================ */
+.promo-card {
+  position: relative;
+  border-radius: 28px;
+  padding: 3rem 2.5rem;
+  min-height: 280px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.promo-card-cream { background: white; box-shadow: 0 1px 3px rgba(31, 26, 22, 0.06); }
+.promo-card-dark  { background: linear-gradient(135deg, var(--charcoal-2), var(--charcoal)); }
+
+.hex-bg-watermark {
+  position: absolute;
+  right: -40px;
+  bottom: -40px;
+  width: 280px;
+  height: 280px;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='50,5 90,27.5 90,72.5 50,95 10,72.5 10,27.5' fill='none' stroke='%23F4DBC7' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat center/contain;
+  opacity: 0.5;
+  pointer-events: none;
+}
+.hex-bg-watermark-dark {
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='50,5 90,27.5 90,72.5 50,95 10,72.5 10,27.5' fill='none' stroke='%238C3008' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat center/contain;
+  opacity: 0.4;
+}
+
+/* ============================================
+   CATEGORY CARDS (mood images)
+   ============================================ */
+.category-card {
+  position: relative;
+  height: 240px;
+  border-radius: 24px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.75rem;
+  color: var(--cream);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  background-size: cover;
+  background-position: center;
+}
+.category-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 30%, rgba(15, 10, 7, 0.85) 100%);
+  z-index: 1;
+}
+.category-card > * { position: relative; z-index: 2; }
+.category-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 24px 60px -20px rgba(237, 124, 42, 0.4);
+}
+.category-label {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  line-height: 1.2;
+  margin-bottom: 0.4rem;
+  font-weight: 500;
+}
+.category-count {
+  font-size: 0.78rem;
+  color: var(--copper-glow);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+
+/* Atmospheric mood images per category */
+.mood-gh           { background: #1A1410 url('../img/mood-gh.png') center/cover; }
+.mood-glp          { background: #1A1410 url('../img/mood-glp.png') center/cover; }
+.mood-recovery     { background: #1A1410 url('../img/mood-recovery.png') center/cover; }
+.mood-cognitive    { background: #1A1410 url('../img/mood-cognitive.png') center/cover; }
+.mood-longevity    { background: #1A1410 url('../img/mood-longevity.png') center/cover; }
+.mood-mitochondrial{ background: #1A1410 url('../img/mood-mitochondrial.png') center/cover; }
+
+/* ============================================
+   COMPOUND CARDS
+   ============================================ */
+.filter-pill {
+  padding: 0.55rem 1.25rem;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink);
+  opacity: 0.55;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+.filter-pill:hover { opacity: 1; }
+.filter-pill-active {
+  background: var(--copper);
+  color: white;
+  opacity: 1;
+}
+
+.compound-card {
+  position: relative;
+  background: linear-gradient(180deg, #221A14 0%, #0F0A07 100%);
+  border-radius: 22px;
+  padding: 1.5rem 1.25rem 1.25rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 340px;
+  border: 1px solid rgba(237, 124, 42, 0.12);
+}
+.compound-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 24px 60px -20px rgba(237, 124, 42, 0.45);
+  border-color: rgba(237, 124, 42, 0.35);
+}
+.compound-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: rgba(245, 237, 227, 0.92);
+  color: var(--ink);
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  font-weight: 600;
+  padding: 0.3rem 0.6rem;
+  border-radius: 999px;
+  z-index: 2;
+  backdrop-filter: blur(8px);
+}
+.compound-badge-blend {
+  background: var(--copper);
+  color: white;
+}
+.compound-stock {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: rgba(237, 124, 42, 0.18);
+  color: var(--copper-glow);
+  font-size: 0.65rem;
+  font-weight: 500;
+  padding: 0.3rem 0.6rem;
+  border-radius: 999px;
+  z-index: 2;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(237, 124, 42, 0.25);
+}
+.compound-img {
+  flex: 1;
+  background: url('../img/hero-vial.png') no-repeat 72% center;
+  background-size: 260% auto;
+  margin: 0.5rem 0 1rem;
+  min-height: 180px;
+  border-radius: 14px;
+  overflow: hidden;
+}
+.compound-info { text-align: left; }
+.compound-name {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  color: var(--cream);
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+.compound-tag {
+  display: inline-block;
+  font-size: 0.72rem;
+  padding: 0.3rem 0.7rem;
+  background: rgba(237, 124, 42, 0.15);
+  color: var(--copper-glow);
+  border-radius: 999px;
+  margin-bottom: 0.85rem;
+  font-weight: 500;
+  border: 1px solid rgba(237, 124, 42, 0.2);
+}
+.compound-learn {
+  font-size: 0.82rem;
+  color: var(--copper-glow);
+  font-weight: 500;
+}
+
+/* ============================================
+   QUALITY CARDS
+   ============================================ */
+.quality-card {
+  background: white;
+  padding: 2rem 1.75rem;
+  border-radius: 20px;
+  border: 1px solid rgba(31, 26, 22, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.quality-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 40px -16px rgba(194, 65, 12, 0.2);
+}
+.quality-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  background: var(--copper-soft);
+  color: var(--copper);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+}
+.quality-title {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  color: var(--ink);
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+.quality-body {
+  font-size: 0.88rem;
+  color: var(--ink-2);
+  opacity: 0.7;
+  line-height: 1.55;
+}
+
+/* ============================================
+   MONTHLY BRIEFING
+   ============================================ */
+.briefing-card {
+  position: relative;
+  background: linear-gradient(135deg, var(--charcoal-2), var(--charcoal));
+  border-radius: 32px;
+  padding: 3rem 2.5rem;
+  overflow: hidden;
+  border: 1px solid rgba(237, 124, 42, 0.15);
+}
+.briefing-glow {
+  position: absolute;
+  right: -10%;
+  top: -30%;
+  width: 70%;
+  height: 200%;
+  background: radial-gradient(ellipse, rgba(237, 124, 42, 0.35), transparent 60%);
+  filter: blur(40px);
+  pointer-events: none;
+}
+
+/* ============================================
+   AGE-GATE FADE
+   ============================================ */
+#age-gate { transition: opacity 0.4s ease, visibility 0.4s; }
+#age-gate.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+#enter-site.enabled {
+  background: var(--copper) !important;
+  cursor: pointer !important;
+  color: white !important;
+}
+#enter-site.enabled:hover { background: var(--copper-glow) !important; }
+
+/* ============================================
+   RESPONSIVE TWEAKS
+   ============================================ */
+@media (max-width: 1023px) {
+  .hero-section { min-height: auto; padding-top: 7rem; }
+  .process-title { font-size: 1.5rem; }
+}

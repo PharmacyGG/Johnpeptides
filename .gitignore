@@ -1,0 +1,5 @@
+.claude/
+*.jpg
+!assets/img/*.jpg
+.DS_Store
+Thumbs.db

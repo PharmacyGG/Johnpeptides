@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="PepGuide — Evidence-based peptide research. Third-party tested research compounds, protocols, and educational guides." />
+  <title>PepGuide — Evidence-Based Peptide Research</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body class="bg-cream text-ink font-sans antialiased">
+
+  <!-- ============ AGE-GATE / RESEARCH USE MODAL ============ -->
+  <div id="age-gate" class="fixed inset-0 z-[100] flex items-center justify-center bg-charcoal/85 backdrop-blur-sm">
+    <div class="relative w-[92%] max-w-md bg-cream rounded-3xl shadow-2xl p-8 sm:p-10">
+      <div class="flex flex-col items-center text-center mb-6">
+        <div class="hex-mark mb-4">
+          <svg viewBox="0 0 48 48" class="w-12 h-12">
+            <polygon points="24,3 43,13.5 43,34.5 24,45 5,34.5 5,13.5" fill="none" stroke="currentColor" stroke-width="2.5"/>
+            <text x="24" y="30" text-anchor="middle" font-family="Inter" font-weight="700" font-size="16" fill="currentColor">P</text>
+          </svg>
+        </div>
+        <h2 class="font-serif text-2xl text-ink mb-2">Research Use Verification</h2>
+        <p class="text-sm text-ink/70 leading-relaxed">By entering this site, you confirm you are <strong>21 years or older</strong> and that any compounds acquired will be used <strong>exclusively for laboratory research</strong>.</p>
+      </div>
+
+      <ul class="text-xs text-ink/60 space-y-1.5 mb-6 leading-relaxed">
+        <li>• Not for human or veterinary consumption</li>
+        <li>• Not for diagnostic, therapeutic, or clinical use</li>
+        <li>• Handler accepts full responsibility for compliance with applicable law</li>
+      </ul>
+
+      <label class="flex items-start gap-3 text-xs text-ink/70 mb-6 cursor-pointer select-none">
+        <input type="checkbox" id="age-confirm" class="mt-0.5 w-4 h-4 accent-copper" />
+        <span>I confirm I am a qualified researcher or institutional professional and accept the <a href="#" class="text-copper underline">Research Use Disclaimer</a>.</span>
+      </label>
+
+      <button id="enter-site" disabled class="w-full py-3.5 rounded-full bg-copper/40 text-white font-medium transition-all duration-200 cursor-not-allowed">
+        Enter Site
+      </button>
+
+      <p class="text-[10px] text-ink/40 text-center mt-3">You can review our full disclaimer at any time in the footer.</p>
+    </div>
+  </div>
+
+  <!-- ============ TOP NAV ============ -->
+  <nav class="fixed top-0 inset-x-0 z-50 bg-cream/85 backdrop-blur-md border-b border-ink/5">
+    <div class="max-w-[1400px] mx-auto px-6 lg:px-10 h-20 flex items-center justify-between gap-6">
+
+      <a href="#" class="flex items-center gap-3 shrink-0">
+        <div class="hex-mark text-copper">
+          <svg viewBox="0 0 48 48" class="w-9 h-9">
+            <polygon points="24,3 43,13.5 43,34.5 24,45 5,34.5 5,13.5" fill="none" stroke="currentColor" stroke-width="2.5"/>
+            <text x="24" y="31" text-anchor="middle" font-family="Inter" font-weight="700" font-size="18" fill="currentColor">P</text>
+          </svg>
+        </div>
+        <div class="leading-tight">
+          <div class="font-serif text-lg text-ink">PepGuide</div>
+          <div class="text-[9px] tracking-[0.18em] text-ink/50 font-medium">NAVIGATE PEPTIDES · UNLOCK KNOWLEDGE</div>
+        </div>
+      </a>
+
+      <div class="hidden lg:flex items-center bg-white/70 rounded-full px-4 py-2 w-[340px] border border-ink/10">
+        <svg class="w-4 h-4 text-ink/40 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" placeholder="Search compounds…" class="bg-transparent flex-1 text-sm placeholder:text-ink/40 focus:outline-none" />
+      </div>
+
+      <ul class="hidden md:flex items-center gap-7 text-sm font-medium text-ink/70">
+        <li><a href="#" class="text-copper">Home</a></li>
+        <li><a href="#compounds" class="hover:text-ink transition">Compounds</a></li>
+        <li><a href="#research" class="hover:text-ink transition">Research</a></li>
+        <li><a href="#quality" class="hover:text-ink transition">Quality</a></li>
+        <li><a href="#about" class="hover:text-ink transition">About</a></li>
+      </ul>
+
+      <div class="flex items-center gap-3 shrink-0">
+        <button class="pill-cta hidden sm:flex">
+          <span class="hex-dot"></span>
+          Research Club
+        </button>
+        <button class="w-10 h-10 rounded-full hover:bg-ink/5 flex items-center justify-center transition">
+          <svg class="w-5 h-5 text-ink" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+        </button>
+        <button class="hidden md:flex items-center gap-2 px-3 py-2 rounded-full border border-ink/10 text-sm hover:bg-ink/5 transition">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-7 8-7s8 3 8 7"/></svg>
+          Account
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ============ HERO ============ -->
+  <section class="relative hero-section overflow-hidden pt-32 pb-20 lg:pt-40 lg:pb-32">
+    <div class="hero-bg absolute inset-0"></div>
+    <div class="hero-glow absolute inset-0"></div>
+
+    <div class="relative max-w-[1400px] mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-12 items-center">
+
+      <div class="relative z-10">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-copper/15 border border-copper/30 mb-8">
+          <span class="w-1.5 h-1.5 rounded-full bg-copper animate-pulse"></span>
+          <span class="text-[11px] tracking-[0.22em] font-semibold text-copper">RESEARCH USE ONLY</span>
+        </div>
+
+        <h1 class="font-serif text-5xl sm:text-6xl lg:text-7xl text-cream leading-[1.05] mb-6 hero-headline">
+          Evidence-Based<br />
+          <span class="italic text-copper">Peptide Research</span><br />
+          Starts Here
+        </h1>
+
+        <p class="text-base lg:text-lg text-cream/70 max-w-md leading-relaxed mb-10">
+          Research compounds, protocol resources, educational guides, and scientific insights — all in one investor-grade platform built for serious researchers.
+        </p>
+
+        <div class="flex flex-wrap gap-4">
+          <a href="#compounds" class="cta-primary">
+            Explore Compounds
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#research" class="cta-ghost">Research Library</a>
+        </div>
+      </div>
+
+      <div class="relative h-[420px] lg:h-[560px]">
+        <div id="hero-vial" class="vial-placeholder absolute inset-0 flex items-center justify-center">
+          <!-- Hero vial render swaps in here -->
+          <div class="vial-mock">
+            <div class="vial-cap"></div>
+            <div class="vial-ring"></div>
+            <div class="vial-body">
+              <div class="vial-label">
+                <div class="vial-label-brand">
+                  <svg viewBox="0 0 48 48" class="w-4 h-4 inline-block text-copper align-middle"><polygon points="24,3 43,13.5 43,34.5 24,45 5,34.5 5,13.5" fill="none" stroke="currentColor" stroke-width="3"/></svg>
+                  <span class="ml-1">PEPGUIDE</span>
+                </div>
+                <div class="vial-label-compound">GHK-Cu</div>
+                <div class="vial-label-stripe">100 MG</div>
+                <div class="vial-label-foot">Research Use Only · Not For Human Consumption</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats bar -->
+    <div class="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-10 mt-16 lg:mt-24">
+      <div class="grid grid-cols-3 gap-8 lg:gap-16 max-w-xl">
+        <div>
+          <div class="text-[10px] tracking-[0.22em] text-cream/50 font-semibold mb-1">COMPOUNDS</div>
+          <div class="font-serif text-3xl lg:text-4xl text-cream count-up" data-target="50">0+</div>
+        </div>
+        <div>
+          <div class="text-[10px] tracking-[0.22em] text-cream/50 font-semibold mb-1">PURITY TESTED</div>
+          <div class="font-serif text-3xl lg:text-4xl text-cream">≥99%</div>
+        </div>
+        <div>
+          <div class="text-[10px] tracking-[0.22em] text-cream/50 font-semibold mb-1">REFERENCES</div>
+          <div class="font-serif text-3xl lg:text-4xl text-cream count-up" data-target="200">0+</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ OUR PROCESS (scroll-driven timeline) ============ -->
+  <section id="process" class="relative bg-cream py-24 lg:py-36">
+    <div class="max-w-[1400px] mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-12 items-start">
+
+      <div class="lg:sticky lg:top-32 self-start">
+        <div class="text-[11px] tracking-[0.22em] text-copper font-semibold mb-4">OUR PROCESS</div>
+        <h2 class="font-serif text-4xl lg:text-5xl text-ink mb-3">Made for <span class="italic text-copper">Trust</span></h2>
+        <p class="text-ink/60 max-w-sm leading-relaxed">Scroll to see how every batch is sourced, certified, tested, and verified before it ships.</p>
+      </div>
+
+      <ol class="process-list space-y-12 lg:space-y-16">
+        <li class="process-step active" data-step="1">
+          <div class="process-marker"></div>
+          <div class="process-content">
+            <h3 class="process-title">Sourced in the <span class="italic text-copper">USA</span></h3>
+            <p class="process-body">Raw peptide synthesis at FDA-registered US facilities — full lot-level supply chain transparency.</p>
+            <div class="process-chips"><span>FDA registered</span><span>US sourced</span></div>
+          </div>
+        </li>
+        <li class="process-step" data-step="2">
+          <div class="process-marker"></div>
+          <div class="process-content">
+            <h3 class="process-title"><span class="italic text-copper">ISO-7</span> Certified Lab</h3>
+            <p class="process-body">Cleanroom synthesis under ISO 14644-1 Class 7 environmental controls — particulate, microbial, and contamination thresholds enforced per batch.</p>
+            <div class="process-chips"><span>Cleanroom</span><span>Particulate controlled</span></div>
+          </div>
+        </li>
+        <li class="process-step" data-step="3">
+          <div class="process-marker"></div>
+          <div class="process-content">
+            <h3 class="process-title"><span class="italic text-copper">cGMP</span>-Certified Facility</h3>
+            <p class="process-body">Production follows current Good Manufacturing Practices — the rigor expected of precision pharmaceutical manufacturing.</p>
+            <div class="process-chips"><span>ISO 13485</span><span>Validated processes</span><span>Full lot traceability</span></div>
+          </div>
+        </li>
+        <li class="process-step" data-step="4">
+          <div class="process-marker"></div>
+          <div class="process-content">
+            <h3 class="process-title">Tested &amp; <span class="italic text-copper">Verified</span></h3>
+            <p class="process-body">Every batch independently assayed for purity, identity, potency, heavy metals, endotoxins, and net content. COA accessible via QR on every vial.</p>
+            <div class="process-chips"><span>Purity</span><span>Endotoxin</span><span>Heavy metals</span><span>Net content</span></div>
+          </div>
+        </li>
+        <li class="process-step" data-step="5">
+          <div class="process-marker"></div>
+          <div class="process-content">
+            <h3 class="process-title">Sealed &amp; <span class="italic text-copper">Shipped</span></h3>
+            <p class="process-body">Crimped, foil-sealed, cold-pack shipped same-day before 3 PM ET. Tracking and tamper-evident packaging on every order.</p>
+            <div class="process-chips"><span>Same-day dispatch</span><span>Tamper-evident</span></div>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ TWO-CARD PROMO ============ -->
+  <section class="bg-cream pb-24 lg:pb-32">
+    <div class="max-w-[1400px] mx-auto px-6 lg:px-10 grid md:grid-cols-2 gap-6">
+
+      <div class="promo-card promo-card-cream">
+        <div class="hex-bg-watermark"></div>
+        <h3 class="font-serif text-3xl lg:text-4xl text-ink mb-4">Free <span class="italic">2-Day</span> Shipping.</h3>
+        <p class="text-ink/60 mb-8 max-w-xs">Same-day dispatch before 3 PM ET on every order, nationwide.</p>
+        <button class="cta-solid">Shop Now</button>
+      </div>
+
+      <div class="promo-card promo-card-dark">
+        <div class="hex-bg-watermark hex-bg-watermark-dark"></div>
+        <h3 class="font-serif text-3xl lg:text-4xl text-cream mb-4">Manufactured, Tested<br />&amp; Shipped in the <span class="italic text-copper">USA</span>.</h3>
+        <p class="text-cream/60 mb-8 max-w-xs">cGMP-certified facility. Every batch independently verified.</p>
+        <button class="cta-solid">Shop Now</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ RESEARCH CATEGORIES ============ -->
+  <section id="research" class="bg-charcoal py-24 lg:py-32">
+    <div class="max-w-[1400px] mx-auto px-6 lg:px-10">
+      <div class="flex items-end justify-between mb-12">
+        <div>
+          <div class="text-[11px] tracking-[0.22em] text-copper font-semibold mb-3">EXPLORE</div>
+          <h2 class="font-serif text-4xl lg:text-5xl text-cream mb-3">Research <span class="italic text-copper">Categories</span></h2>
+          <p class="text-cream/50 max-w-md">Curated mechanism-driven compound families.</p>
+        </div>
+        <a href="#" class="text-copper text-sm font-medium hover:underline whitespace-nowrap">View all →</a>
+      </div>
+
+      <div class="grid grid-cols-2 lg:grid-cols-3 gap-5">
+        <a href="#" class="category-card mood-gh">
+          <div class="category-label">Growth Hormone Secretagogues</div>
+          <div class="category-count">7 compounds</div>
+        </a>
+        <a href="#" class="category-card mood-glp">
+          <div class="category-label">GLP-1 Research</div>
+          <div class="category-count">4 compounds</div>
+        </a>
+        <a href="#" class="category-card mood-recovery">
+          <div class="category-label">Recovery &amp; Healing</div>
+          <div class="category-count">9 compounds</div>
+        </a>
+        <a href="#" class="category-card mood-cognitive">
+          <div class="category-label">Cognitive Research</div>
+          <div class="category-count">6 compounds</div>
+        </a>
+        <a href="#" class="category-card mood-longevity">
+          <div class="category-label">Longevity</div>
+          <div class="category-count">5 compounds</div>
+        </a>
+        <a href="#" class="category-card mood-mitochondrial">
+          <div class="category-label">Mitochondrial Research</div>
+          <div class="category-count">4 compounds</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FEATURED COMPOUNDS CAROUSEL ============ -->
+  <section id="compounds" class="bg-cream py-24 lg:py-32">
+    <div class="max-w-[1400px] mx-auto px-6 lg:px-10">
+
+      <div class="flex items-end justify-between mb-12">
+        <div>
+          <div class="text-[11px] tracking-[0.22em] text-copper font-semibold mb-3">CATALOG</div>
+          <h2 class="font-serif text-4xl lg:text-5xl text-ink mb-3">Featured <span class="italic text-copper">Compounds</span></h2>
+          <p class="text-ink/60 max-w-md">Premium research-grade peptides, third-party verified.</p>
+        </div>
+        <a href="#" class="text-copper text-sm font-medium hover:underline whitespace-nowrap">Shop all →</a>
+      </div>
+
+      <div class="flex gap-2 mb-8 text-sm">
+        <button class="filter-pill filter-pill-active">All Compounds</button>
+        <button class="filter-pill">By Category</button>
+        <button class="filter-pill">A–Z</button>
+        <button class="filter-pill">Best Sellers</button>
+      </div>
+
+      <div class="compound-grid grid grid-cols-2 lg:grid-cols-4 gap-5">
+        <a href="#" class="compound-card">
+          <div class="compound-badge">PEPTIDE</div>
+          <div class="compound-stock">In stock</div>
+          <div class="compound-img"></div>
+          <div class="compound-info">
+            <div class="compound-name">GHK-Cu</div>
+            <div class="compound-tag">100 mg · $70</div>
+            <div class="compound-learn">Learn more →</div>
+          </div>
+        </a>
+        <a href="#" class="compound-card">
+          <div class="compound-badge">PEPTIDE</div>
+          <div class="compound-stock">In stock</div>
+          <div class="compound-img"></div>
+          <div class="compound-info">
+            <div class="compound-name">BPC-157</div>
+            <div class="compound-tag">10 mg · $55</div>
+            <div class="compound-learn">Learn more →</div>
+          </div>
+        </a>
+        <a href="#" class="compound-card">
+          <div class="compound-badge compound-badge-blend">BLEND</div>
+          <div class="compound-stock">In stock</div>
+          <div class="compound-img"></div>
+          <div class="compound-info">
+            <div class="compound-name">BPC-157 + TB-500</div>
+            <div class="compound-tag">10/10 mg · $115</div>
+            <div class="compound-learn">Learn more →</div>
+          </div>
+        </a>
+        <a href="#" class="compound-card">
+          <div class="compound-badge compound-badge-blend">BLEND</div>
+          <div class="compound-stock">In stock</div>
+          <div class="compound-img"></div>
+          <div class="compound-info">
+            <div class="compound-name">CJC-1295 + Ipamorelin</div>
+            <div class="compound-tag">5/5 mg · $85</div>
+            <div class="compound-learn">Learn more →</div>
+          </div>
+        </a>
+        <a href="#" class="compound-card">
+          <div class="compound-badge">PEPTIDE</div>
+          <div class="compound-stock">In stock</div>
+          <div class="compound-img"></div>
+          <div class="compound-info">
+            <div class="compound-name">Tesamorelin</div>
+            <div class="compound-tag">10 mg · $130</div>
+            <div class="compound-learn">Learn more →</div>
+          </div>
+        </a>
+        <a href="#" class="compound-card">
+          <div class="compound-badge">PEPTIDE</div>
+          <div class="compound-stock">In stock</div>
+          <div class="compound-img"></div>
+          <div class="compound-info">
+            <div class="compound-name">NAD+</div>
+            <div class="compound-tag">500 mg · $65</div>
+            <div class="compound-learn">Learn more →</div>
+          </div>
+        </a>
+        <a href="#" class="compound-card">
+          <div class="compound-badge">PEPTIDE</div>
+          <div class="compound-stock">In stock</div>
+          <div class="compound-img"></div>
+          <div class="compound-info">
+            <div class="compound-name">Epithalon</div>
+            <div class="compound-tag">50 mg · $125</div>
+            <div class="compound-learn">Learn more →</div>
+          </div>
+        </a>
+        <a href="#" class="compound-card">
+          <div class="compound-badge compound-badge-blend">BLEND</div>
+          <div class="compound-stock">In stock</div>
+          <div class="compound-img"></div>
+          <div class="compound-info">
+            <div class="compound-name">GLOW</div>
+            <div class="compound-tag">GHK-Cu+BPC+TB · $150</div>
+            <div class="compound-learn">Learn more →</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ QUALITY STANDARDS ============ -->
+  <section id="quality" class="bg-cream-warm py-24 lg:py-32">
+    <div class="max-w-[1400px] mx-auto px-6 lg:px-10">
+
+      <div class="text-center mb-16">
+        <div class="text-[11px] tracking-[0.22em] text-copper font-semibold mb-4">QUALITY STANDARDS</div>
+        <h2 class="font-serif text-4xl lg:text-5xl text-ink mb-3">Independently <span class="italic text-copper">verified.</span><br />Transparently <span class="italic text-copper">documented.</span></h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="quality-card">
+          <div class="quality-icon">
+            <svg fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24" class="w-6 h-6"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          </div>
+          <h3 class="quality-title">Third-Party Tested</h3>
+          <p class="quality-body">Independent laboratory verification on every batch.</p>
+        </div>
+        <div class="quality-card">
+          <div class="quality-icon">
+            <svg fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24" class="w-6 h-6"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          </div>
+          <h3 class="quality-title">Certificates of Analysis</h3>
+          <p class="quality-body">Full COA access for purity, identity, and potency on every lot.</p>
+        </div>
+        <div class="quality-card">
+          <div class="quality-icon">
+            <svg fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24" class="w-6 h-6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          </div>
+          <h3 class="quality-title">Research Transparency</h3>
+          <p class="quality-body">Mechanism, references, and protocol context on every compound.</p>
+        </div>
+        <div class="quality-card">
+          <div class="quality-icon">
+            <svg fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24" class="w-6 h-6"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+          </div>
+          <h3 class="quality-title">Educational First</h3>
+          <p class="quality-body">An indexable knowledge platform — not just a catalog.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MONTHLY BRIEFING ============ -->
+  <section class="bg-cream pb-24 lg:pb-32">
+    <div class="max-w-[1400px] mx-auto px-6 lg:px-10">
+      <div class="briefing-card">
+        <div class="briefing-glow"></div>
+        <div class="relative z-10 grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          <div>
+            <div class="inline-block text-[11px] tracking-[0.22em] text-copper font-semibold bg-copper/15 px-3 py-1.5 rounded-full mb-4">MONTHLY BRIEFING</div>
+            <h3 class="font-serif text-3xl lg:text-4xl text-cream mb-3">Stay current with <span class="italic text-copper">peptide research</span></h3>
+            <p class="text-cream/60 max-w-md">New protocols, compound updates, and quality reports — delivered monthly.</p>
+          </div>
+          <form class="flex flex-col sm:flex-row gap-3">
+            <input type="email" placeholder="researcher@lab.edu" class="flex-1 px-5 py-4 bg-cream/10 border border-cream/15 rounded-full text-cream placeholder:text-cream/40 focus:outline-none focus:border-copper transition" />
+            <button type="submit" class="px-7 py-4 bg-copper hover:bg-copper-glow text-white font-medium rounded-full transition whitespace-nowrap">Subscribe</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer id="about" class="bg-charcoal text-cream/60 pt-20 pb-10">
+    <div class="max-w-[1400px] mx-auto px-6 lg:px-10">
+      <div class="grid lg:grid-cols-5 gap-10 mb-16">
+        <div class="lg:col-span-2">
+          <a href="#" class="flex items-center gap-3 mb-5">
+            <div class="hex-mark text-copper">
+              <svg viewBox="0 0 48 48" class="w-9 h-9"><polygon points="24,3 43,13.5 43,34.5 24,45 5,34.5 5,13.5" fill="none" stroke="currentColor" stroke-width="2.5"/><text x="24" y="31" text-anchor="middle" font-family="Inter" font-weight="700" font-size="18" fill="currentColor">P</text></svg>
+            </div>
+            <div>
+              <div class="font-serif text-xl text-cream">PepGuide</div>
+              <div class="text-[9px] tracking-[0.18em] text-cream/40 font-medium">NAVIGATE PEPTIDES · UNLOCK KNOWLEDGE</div>
+            </div>
+          </a>
+          <p class="text-sm leading-relaxed max-w-sm">An evidence-based platform for serious peptide research. Third-party tested compounds, mechanism-anchored protocols, and a curated reference library.</p>
+        </div>
+
+        <div>
+          <div class="text-cream font-medium mb-4 text-sm">Compounds</div>
+          <ul class="space-y-2 text-sm">
+            <li><a href="#" class="hover:text-cream transition">Growth Hormone</a></li>
+            <li><a href="#" class="hover:text-cream transition">GLP-1 Research</a></li>
+            <li><a href="#" class="hover:text-cream transition">Recovery</a></li>
+            <li><a href="#" class="hover:text-cream transition">Longevity</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="text-cream font-medium mb-4 text-sm">Knowledge</div>
+          <ul class="space-y-2 text-sm">
+            <li><a href="#" class="hover:text-cream transition">Research Library</a></li>
+            <li><a href="#" class="hover:text-cream transition">Protocols</a></li>
+            <li><a href="#" class="hover:text-cream transition">Conditions</a></li>
+            <li><a href="#" class="hover:text-cream transition">Monthly Briefing</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="text-cream font-medium mb-4 text-sm">Company</div>
+          <ul class="space-y-2 text-sm">
+            <li><a href="#" class="hover:text-cream transition">About</a></li>
+            <li><a href="#" class="hover:text-cream transition">Quality</a></li>
+            <li><a href="#" class="hover:text-cream transition">Contact</a></li>
+            <li><a href="#" class="hover:text-cream transition">Research Use Disclaimer</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-cream/10 pt-8 flex flex-col md:flex-row justify-between items-start gap-4 text-xs text-cream/40">
+        <div>© 2026 PepGuide. All compounds sold for laboratory research use only. Not for human or veterinary consumption.</div>
+        <div class="flex gap-5">
+          <a href="#" class="hover:text-cream transition">Privacy</a>
+          <a href="#" class="hover:text-cream transition">Terms</a>
+          <a href="#" class="hover:text-cream transition">Disclaimer</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
