@@ -16,19 +16,18 @@
       theme: {
         extend: {
           colors: {
-            copper:        '#C2410C',
-            'copper-glow': '#ED7C2A',
-            'copper-soft': '#F4DBC7',
-            'copper-deep': '#8C3008',
-            teal:          '#4FB8C9',
-            'teal-deep':   '#1F4D5A',
-            navy:          '#1A2940',
-            cream:         '#F5EDE3',
-            'cream-warm':  '#F7E8D5',
-            charcoal:      '#1A1410',
-            'charcoal-2':  '#221A14',
-            ink:           '#1F1A16',
-            'ink-2':       '#3A322B',
+            teal:         '#4FB8C9',
+            'teal-glow':  '#6FD4E5',
+            'teal-soft':  '#D4ECF1',
+            'teal-deep':  '#1F4D5A',
+            navy:         '#1A2940',
+            'navy-2':     '#2A3958',
+            cream:        '#F5EDE3',
+            'cream-warm': '#F7E8D5',
+            charcoal:     '#0F1B23',
+            'charcoal-2': '#162834',
+            ink:          '#1F1A16',
+            'ink-2':      '#3A322B',
           },
           fontFamily: {
             serif: ['"Playfair Display"', 'Georgia', 'serif'],
@@ -64,8 +63,8 @@
       </ul>
 
       <label class="flex items-start gap-3 text-xs text-ink/70 mb-6 cursor-pointer select-none">
-        <input type="checkbox" id="age-confirm" class="mt-0.5 w-4 h-4 accent-copper" />
-        <span>I confirm I am a qualified researcher or institutional professional and accept the <a href="#" class="text-copper underline">Research Use Disclaimer</a>.</span>
+        <input type="checkbox" id="age-confirm" class="mt-0.5 w-4 h-4 accent-teal" />
+        <span>I confirm I am a qualified researcher or institutional professional and accept the <a href="#" class="text-teal underline">Research Use Disclaimer</a>.</span>
       </label>
 
       <button id="enter-site" type="button" class="gate-btn" aria-disabled="true">
@@ -98,7 +97,7 @@
       </div>
 
       <ul class="hidden md:flex items-center gap-7 text-sm font-medium text-ink/70">
-        <li><a href="#" class="text-copper">Home</a></li>
+        <li><a href="#" class="text-teal">Home</a></li>
         <li><a href="#compounds" class="hover:text-ink transition">Compounds</a></li>
         <li><a href="#research" class="hover:text-ink transition">Research</a></li>
         <li><a href="#quality" class="hover:text-ink transition">Quality</a></li>
@@ -129,14 +128,14 @@
     <div class="relative max-w-[1400px] mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-12 items-center">
 
       <div class="relative z-10">
-        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-copper/15 border border-copper/30 mb-8">
-          <span class="w-1.5 h-1.5 rounded-full bg-copper animate-pulse"></span>
-          <span class="text-[11px] tracking-[0.22em] font-semibold text-copper">RESEARCH USE ONLY</span>
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal/15 border border-teal/30 mb-8">
+          <span class="w-1.5 h-1.5 rounded-full bg-teal animate-pulse"></span>
+          <span class="text-[11px] tracking-[0.22em] font-semibold text-teal">RESEARCH USE ONLY</span>
         </div>
 
         <h1 class="font-serif text-5xl sm:text-6xl lg:text-7xl text-cream leading-[1.05] mb-6 hero-headline">
           Evidence-Based<br />
-          <span class="italic text-copper">Peptide Research</span><br />
+          <span class="italic text-teal">Peptide Research</span><br />
           Starts Here
         </h1>
 
@@ -154,23 +153,10 @@
       </div>
 
       <div class="relative h-[420px] lg:h-[560px]">
-        <div id="hero-vial" class="vial-placeholder absolute inset-0 flex items-center justify-center">
-          <!-- Hero vial render swaps in here -->
-          <div class="vial-mock">
-            <div class="vial-cap"></div>
-            <div class="vial-ring"></div>
-            <div class="vial-body">
-              <div class="vial-label">
-                <div class="vial-label-brand">
-                  <svg viewBox="0 0 48 48" class="w-4 h-4 inline-block text-copper align-middle"><polygon points="24,3 43,13.5 43,34.5 24,45 5,34.5 5,13.5" fill="none" stroke="currentColor" stroke-width="3"/></svg>
-                  <span class="ml-1">PEPGUIDE</span>
-                </div>
-                <div class="vial-label-compound">GHK-Cu</div>
-                <div class="vial-label-stripe">100 MG</div>
-                <div class="vial-label-foot">Research Use Only · Not For Human Consumption</div>
-              </div>
-            </div>
-          </div>
+        <div id="hero-vial" class="absolute inset-0 flex items-center justify-center">
+          <video class="hero-video" autoplay muted loop playsinline poster="assets/img/hero-vial-teal.png">
+            <source src="assets/img/hero-vial.mp4" type="video/mp4" />
+          </video>
         </div>
       </div>
     </div>
@@ -199,8 +185,8 @@
     <div class="max-w-[1400px] mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-12 items-start">
 
       <div class="lg:sticky lg:top-32 self-start">
-        <div class="text-[11px] tracking-[0.22em] text-copper font-semibold mb-4">OUR PROCESS</div>
-        <h2 class="font-serif text-4xl lg:text-5xl text-ink mb-3">Made for <span class="italic text-copper">Trust</span></h2>
+        <div class="text-[11px] tracking-[0.22em] text-teal font-semibold mb-4">OUR PROCESS</div>
+        <h2 class="font-serif text-4xl lg:text-5xl text-ink mb-3">Made for <span class="italic text-teal">Trust</span></h2>
         <p class="text-ink/60 max-w-sm leading-relaxed">Scroll to see how every batch is sourced, certified, tested, and verified before it ships.</p>
       </div>
 
@@ -208,7 +194,7 @@
         <li class="process-step active" data-step="1">
           <div class="process-marker"></div>
           <div class="process-content">
-            <h3 class="process-title">Sourced in the <span class="italic text-copper">USA</span></h3>
+            <h3 class="process-title">Sourced in the <span class="italic text-teal">USA</span></h3>
             <p class="process-body">Raw peptide synthesis at FDA-registered US facilities — full lot-level supply chain transparency.</p>
             <div class="process-chips"><span>FDA registered</span><span>US sourced</span></div>
           </div>
@@ -216,7 +202,7 @@
         <li class="process-step" data-step="2">
           <div class="process-marker"></div>
           <div class="process-content">
-            <h3 class="process-title"><span class="italic text-copper">ISO-7</span> Certified Lab</h3>
+            <h3 class="process-title"><span class="italic text-teal">ISO-7</span> Certified Lab</h3>
             <p class="process-body">Cleanroom synthesis under ISO 14644-1 Class 7 environmental controls — particulate, microbial, and contamination thresholds enforced per batch.</p>
             <div class="process-chips"><span>Cleanroom</span><span>Particulate controlled</span></div>
           </div>
@@ -224,7 +210,7 @@
         <li class="process-step" data-step="3">
           <div class="process-marker"></div>
           <div class="process-content">
-            <h3 class="process-title"><span class="italic text-copper">cGMP</span>-Certified Facility</h3>
+            <h3 class="process-title"><span class="italic text-teal">cGMP</span>-Certified Facility</h3>
             <p class="process-body">Production follows current Good Manufacturing Practices — the rigor expected of precision pharmaceutical manufacturing.</p>
             <div class="process-chips"><span>ISO 13485</span><span>Validated processes</span><span>Full lot traceability</span></div>
           </div>
@@ -232,7 +218,7 @@
         <li class="process-step" data-step="4">
           <div class="process-marker"></div>
           <div class="process-content">
-            <h3 class="process-title">Tested &amp; <span class="italic text-copper">Verified</span></h3>
+            <h3 class="process-title">Tested &amp; <span class="italic text-teal">Verified</span></h3>
             <p class="process-body">Every batch independently assayed for purity, identity, potency, heavy metals, endotoxins, and net content. COA accessible via QR on every vial.</p>
             <div class="process-chips"><span>Purity</span><span>Endotoxin</span><span>Heavy metals</span><span>Net content</span></div>
           </div>
@@ -240,7 +226,7 @@
         <li class="process-step" data-step="5">
           <div class="process-marker"></div>
           <div class="process-content">
-            <h3 class="process-title">Sealed &amp; <span class="italic text-copper">Shipped</span></h3>
+            <h3 class="process-title">Sealed &amp; <span class="italic text-teal">Shipped</span></h3>
             <p class="process-body">Crimped, foil-sealed, cold-pack shipped same-day before 3 PM ET. Tracking and tamper-evident packaging on every order.</p>
             <div class="process-chips"><span>Same-day dispatch</span><span>Tamper-evident</span></div>
           </div>
@@ -262,7 +248,7 @@
 
       <div class="promo-card promo-card-dark">
         <div class="hex-bg-watermark hex-bg-watermark-dark"></div>
-        <h3 class="font-serif text-3xl lg:text-4xl text-cream mb-4">Manufactured, Tested<br />&amp; Shipped in the <span class="italic text-copper">USA</span>.</h3>
+        <h3 class="font-serif text-3xl lg:text-4xl text-cream mb-4">Manufactured, Tested<br />&amp; Shipped in the <span class="italic text-teal">USA</span>.</h3>
         <p class="text-cream/60 mb-8 max-w-xs">cGMP-certified facility. Every batch independently verified.</p>
         <button class="cta-solid">Shop Now</button>
       </div>
@@ -274,37 +260,61 @@
     <div class="max-w-[1400px] mx-auto px-6 lg:px-10">
       <div class="flex items-end justify-between mb-12">
         <div>
-          <div class="text-[11px] tracking-[0.22em] text-copper font-semibold mb-3">EXPLORE</div>
-          <h2 class="font-serif text-4xl lg:text-5xl text-cream mb-3">Research <span class="italic text-copper">Categories</span></h2>
+          <div class="text-[11px] tracking-[0.22em] text-teal font-semibold mb-3">EXPLORE</div>
+          <h2 class="font-serif text-4xl lg:text-5xl text-cream mb-3">Research <span class="italic text-teal">Categories</span></h2>
           <p class="text-cream/50 max-w-md">Curated mechanism-driven compound families.</p>
         </div>
-        <a href="#" class="text-copper text-sm font-medium hover:underline whitespace-nowrap">View all →</a>
+        <a href="#" class="text-teal text-sm font-medium hover:underline whitespace-nowrap">View all →</a>
       </div>
 
-      <div class="grid grid-cols-2 lg:grid-cols-3 gap-5">
-        <a href="#" class="category-card mood-gh">
-          <div class="category-label">Growth Hormone Secretagogues</div>
-          <div class="category-count">7 compounds</div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <a href="#" class="cat-card">
+          <div class="cat-vial" style="background-image:url('assets/img/vial-cjc-ipamorelin.png');"></div>
+          <div class="cat-meta">
+            <div class="cat-eyebrow">Growth Hormone Secretagogues</div>
+            <div class="cat-name">CJC-1295 + Ipamorelin</div>
+            <div class="cat-foot">7 compounds in family <span>→</span></div>
+          </div>
         </a>
-        <a href="#" class="category-card mood-glp">
-          <div class="category-label">GLP-1 Research</div>
-          <div class="category-count">4 compounds</div>
+        <a href="#" class="cat-card">
+          <div class="cat-vial" style="background-image:url('assets/img/vial-semaglutide.png');"></div>
+          <div class="cat-meta">
+            <div class="cat-eyebrow">GLP-1 Research</div>
+            <div class="cat-name">Semaglutide</div>
+            <div class="cat-foot">4 compounds in family <span>→</span></div>
+          </div>
         </a>
-        <a href="#" class="category-card mood-recovery">
-          <div class="category-label">Recovery &amp; Healing</div>
-          <div class="category-count">9 compounds</div>
+        <a href="#" class="cat-card">
+          <div class="cat-vial" style="background-image:url('assets/img/vial-bpc-tb500.png');"></div>
+          <div class="cat-meta">
+            <div class="cat-eyebrow">Recovery &amp; Healing</div>
+            <div class="cat-name">BPC-157 + TB-500</div>
+            <div class="cat-foot">9 compounds in family <span>→</span></div>
+          </div>
         </a>
-        <a href="#" class="category-card mood-cognitive">
-          <div class="category-label">Cognitive Research</div>
-          <div class="category-count">6 compounds</div>
+        <a href="#" class="cat-card">
+          <div class="cat-vial" style="background-image:url('assets/img/vial-semax.png');"></div>
+          <div class="cat-meta">
+            <div class="cat-eyebrow">Cognitive Research</div>
+            <div class="cat-name">Semax</div>
+            <div class="cat-foot">6 compounds in family <span>→</span></div>
+          </div>
         </a>
-        <a href="#" class="category-card mood-longevity">
-          <div class="category-label">Longevity</div>
-          <div class="category-count">5 compounds</div>
+        <a href="#" class="cat-card">
+          <div class="cat-vial" style="background-image:url('assets/img/vial-epithalon.png');"></div>
+          <div class="cat-meta">
+            <div class="cat-eyebrow">Longevity</div>
+            <div class="cat-name">Epithalon</div>
+            <div class="cat-foot">5 compounds in family <span>→</span></div>
+          </div>
         </a>
-        <a href="#" class="category-card mood-mitochondrial">
-          <div class="category-label">Mitochondrial Research</div>
-          <div class="category-count">4 compounds</div>
+        <a href="#" class="cat-card">
+          <div class="cat-vial" style="background-image:url('assets/img/vial-mots-c.png');"></div>
+          <div class="cat-meta">
+            <div class="cat-eyebrow">Mitochondrial Research</div>
+            <div class="cat-name">MOTS-c</div>
+            <div class="cat-foot">4 compounds in family <span>→</span></div>
+          </div>
         </a>
       </div>
     </div>
@@ -316,11 +326,11 @@
 
       <div class="flex items-end justify-between mb-12">
         <div>
-          <div class="text-[11px] tracking-[0.22em] text-copper font-semibold mb-3">CATALOG</div>
-          <h2 class="font-serif text-4xl lg:text-5xl text-ink mb-3">Featured <span class="italic text-copper">Compounds</span></h2>
+          <div class="text-[11px] tracking-[0.22em] text-teal font-semibold mb-3">CATALOG</div>
+          <h2 class="font-serif text-4xl lg:text-5xl text-ink mb-3">Featured <span class="italic text-teal">Compounds</span></h2>
           <p class="text-ink/60 max-w-md">Premium research-grade peptides, third-party verified.</p>
         </div>
-        <a href="#" class="text-copper text-sm font-medium hover:underline whitespace-nowrap">Shop all →</a>
+        <a href="#" class="text-teal text-sm font-medium hover:underline whitespace-nowrap">Shop all →</a>
       </div>
 
       <div class="flex gap-2 mb-8 text-sm">
@@ -420,8 +430,8 @@
     <div class="max-w-[1400px] mx-auto px-6 lg:px-10">
 
       <div class="text-center mb-16">
-        <div class="text-[11px] tracking-[0.22em] text-copper font-semibold mb-4">QUALITY STANDARDS</div>
-        <h2 class="font-serif text-4xl lg:text-5xl text-ink mb-3">Independently <span class="italic text-copper">verified.</span><br />Transparently <span class="italic text-copper">documented.</span></h2>
+        <div class="text-[11px] tracking-[0.22em] text-teal font-semibold mb-4">QUALITY STANDARDS</div>
+        <h2 class="font-serif text-4xl lg:text-5xl text-ink mb-3">Independently <span class="italic text-teal">verified.</span><br />Transparently <span class="italic text-teal">documented.</span></h2>
       </div>
 
       <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -464,13 +474,13 @@
         <div class="briefing-glow"></div>
         <div class="relative z-10 grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           <div>
-            <div class="inline-block text-[11px] tracking-[0.22em] text-copper font-semibold bg-copper/15 px-3 py-1.5 rounded-full mb-4">MONTHLY BRIEFING</div>
-            <h3 class="font-serif text-3xl lg:text-4xl text-cream mb-3">Stay current with <span class="italic text-copper">peptide research</span></h3>
+            <div class="inline-block text-[11px] tracking-[0.22em] text-teal font-semibold bg-teal/15 px-3 py-1.5 rounded-full mb-4">MONTHLY BRIEFING</div>
+            <h3 class="font-serif text-3xl lg:text-4xl text-cream mb-3">Stay current with <span class="italic text-teal">peptide research</span></h3>
             <p class="text-cream/60 max-w-md">New protocols, compound updates, and quality reports — delivered monthly.</p>
           </div>
           <form class="flex flex-col sm:flex-row gap-3">
-            <input type="email" placeholder="researcher@lab.edu" class="flex-1 px-5 py-4 bg-cream/10 border border-cream/15 rounded-full text-cream placeholder:text-cream/40 focus:outline-none focus:border-copper transition" />
-            <button type="submit" class="px-7 py-4 bg-copper hover:bg-copper-glow text-white font-medium rounded-full transition whitespace-nowrap">Subscribe</button>
+            <input type="email" placeholder="researcher@lab.edu" class="flex-1 px-5 py-4 bg-cream/10 border border-cream/15 rounded-full text-cream placeholder:text-cream/40 focus:outline-none focus:border-teal transition" />
+            <button type="submit" class="px-7 py-4 bg-teal hover:bg-teal-glow text-white font-medium rounded-full transition whitespace-nowrap">Subscribe</button>
           </form>
         </div>
       </div>
