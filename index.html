@@ -120,15 +120,17 @@
     </div>
   </nav>
 
-  <!-- ============ HERO ============ -->
-  <section class="relative hero-section overflow-hidden pt-32 pb-20 lg:pt-40 lg:pb-32">
-    <div class="hero-bg absolute inset-0"></div>
-    <div class="hero-glow absolute inset-0"></div>
+  <!-- ============ HERO (full-screen, text left, video right) ============ -->
+  <section class="hero-section">
+    <div class="hero-bg"></div>
 
-    <div class="relative max-w-[1400px] mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-12 items-center">
+    <video class="hero-video" autoplay muted loop playsinline poster="assets/img/hero-vial-bpc157.png">
+      <source src="assets/img/hero-sequence.mp4" type="video/mp4" />
+    </video>
 
-      <div class="relative z-10">
-        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal/15 border border-teal/30 mb-8">
+    <div class="hero-content max-w-[1400px] mx-auto px-6 lg:px-10">
+      <div class="hero-text">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal/15 border border-teal/30 mb-8 w-fit">
           <span class="w-1.5 h-1.5 rounded-full bg-teal animate-pulse"></span>
           <span class="text-[11px] tracking-[0.22em] font-semibold text-teal">RESEARCH USE ONLY</span>
         </div>
@@ -143,38 +145,27 @@
           Research compounds, protocol resources, educational guides, and scientific insights — all in one investor-grade platform built for serious researchers.
         </p>
 
-        <div class="flex flex-wrap gap-4">
+        <div class="flex flex-wrap gap-4 mb-16">
           <a href="#compounds" class="cta-primary">
             Explore Compounds
             <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
           </a>
           <a href="#research" class="cta-ghost">Research Library</a>
         </div>
-      </div>
 
-      <div class="relative h-[500px] lg:h-[700px]">
-        <div id="hero-vial" class="absolute inset-0 flex items-center justify-center">
-          <video class="hero-video" autoplay muted loop playsinline poster="assets/img/hero-vial-bpc157.png">
-            <source src="assets/img/hero-vial-bpc157.mp4" type="video/mp4" />
-          </video>
-        </div>
-      </div>
-    </div>
-
-    <!-- Stats bar -->
-    <div class="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-10 mt-16 lg:mt-24">
-      <div class="grid grid-cols-3 gap-8 lg:gap-16 max-w-xl">
-        <div>
-          <div class="text-[10px] tracking-[0.22em] text-cream/50 font-semibold mb-1">COMPOUNDS</div>
-          <div class="font-serif text-3xl lg:text-4xl text-cream count-up" data-target="50">0+</div>
-        </div>
-        <div>
-          <div class="text-[10px] tracking-[0.22em] text-cream/50 font-semibold mb-1">PURITY TESTED</div>
-          <div class="font-serif text-3xl lg:text-4xl text-cream">≥99%</div>
-        </div>
-        <div>
-          <div class="text-[10px] tracking-[0.22em] text-cream/50 font-semibold mb-1">REFERENCES</div>
-          <div class="font-serif text-3xl lg:text-4xl text-cream count-up" data-target="200">0+</div>
+        <div class="grid grid-cols-3 gap-8 lg:gap-12 max-w-md">
+          <div>
+            <div class="text-[10px] tracking-[0.22em] text-cream/50 font-semibold mb-1">COMPOUNDS</div>
+            <div class="font-serif text-3xl lg:text-4xl text-cream count-up" data-target="50">0+</div>
+          </div>
+          <div>
+            <div class="text-[10px] tracking-[0.22em] text-cream/50 font-semibold mb-1">PURITY TESTED</div>
+            <div class="font-serif text-3xl lg:text-4xl text-cream">≥99%</div>
+          </div>
+          <div>
+            <div class="text-[10px] tracking-[0.22em] text-cream/50 font-semibold mb-1">REFERENCES</div>
+            <div class="font-serif text-3xl lg:text-4xl text-cream count-up" data-target="200">0+</div>
+          </div>
         </div>
       </div>
     </div>

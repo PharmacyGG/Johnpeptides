@@ -78,28 +78,55 @@ body { font-family: var(--font-sans); color: var(--ink); }
 }
 
 /* ============================================
-   HERO
+   HERO — full-screen, text left, video right
    ============================================ */
 .hero-section {
-  background: var(--charcoal);
+  position: relative;
+  height: 100vh;
+  min-height: 720px;
+  background: #050B10;
   color: var(--cream);
-  min-height: 92vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  overflow: hidden;
 }
 .hero-bg {
+  position: absolute;
+  inset: 0;
   background:
-    radial-gradient(ellipse 80% 60% at 75% 50%, rgba(111, 212, 229, 0.18), transparent 70%),
-    radial-gradient(ellipse 100% 80% at 50% 100%, rgba(31, 77, 90, 0.25), transparent 60%),
-    linear-gradient(180deg, #0F0A07 0%, #1A1410 50%, #0F0A07 100%);
+    radial-gradient(ellipse 70% 80% at 80% 50%, rgba(31, 77, 90, 0.4), transparent 70%),
+    linear-gradient(135deg, #050B10 0%, #0A1620 50%, #050B10 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Square video pinned to the right edge, height = viewport height.
+   Soft fade on its left so it blends into the dark hero bg with no rectangle. */
+.hero-video {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  height: 100vh;
+  min-height: 720px;
+  width: 100vh;             /* 1:1 video — keep aspect by matching width to height */
+  min-width: 720px;
+  object-fit: cover;
+  z-index: 1;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.4) 12%, #000 30%, #000 100%);
+          mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.4) 12%, #000 30%, #000 100%);
   pointer-events: none;
 }
-.hero-glow {
-  background:
-    radial-gradient(circle 40% at 80% 50%, rgba(111, 212, 229, 0.12), transparent 70%);
-  mix-blend-mode: screen;
-  pointer-events: none;
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  min-height: 720px;
+  display: flex;
+  align-items: center;
+}
+.hero-text {
+  width: 100%;
+  max-width: 620px;
 }
 .hero-headline {
   font-weight: 500;
@@ -111,26 +138,21 @@ body { font-family: var(--font-sans); color: var(--ink); }
   font-weight: 400;
 }
 
-/* Hero vial: real image swap */
-.vial-placeholder {
-  background-image: url('../img/hero-vial-bpc157.png');
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-  filter: drop-shadow(0 30px 60px rgba(111, 212, 229, 0.25));
-}
-.vial-placeholder .vial-mock { display: none; }
+/* Fallback placeholder (no longer used as background but keeps the JS hook happy) */
+.vial-placeholder { display: none; }
 
-/* Hero video — soft-masked to blend into hero bg, scaled past container */
-.hero-video {
-  position: absolute;
-  inset: -8%;
-  width: 116%;
-  height: 116%;
-  object-fit: contain;
-  filter: drop-shadow(0 40px 80px rgba(111, 212, 229, 0.35));
-  -webkit-mask-image: radial-gradient(ellipse 72% 78% at 50% 50%, #000 50%, rgba(0,0,0,0.7) 70%, transparent 95%);
-          mask-image: radial-gradient(ellipse 72% 78% at 50% 50%, #000 50%, rgba(0,0,0,0.7) 70%, transparent 95%);
+/* Mobile: video collapses to a backdrop, text overlays full width */
+@media (max-width: 1023px) {
+  .hero-video {
+    width: 100vw;
+    min-width: 0;
+    height: 100vh;
+    right: 0;
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.5) 30%, #000 60%);
+            mask-image: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.5) 30%, #000 60%);
+    opacity: 0.45;
+  }
+  .hero-text { max-width: 100%; }
 }
 
 /* ============================================
