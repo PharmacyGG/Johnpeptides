@@ -11,6 +11,30 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            copper:        '#C2410C',
+            'copper-glow': '#ED7C2A',
+            'copper-soft': '#F4DBC7',
+            'copper-deep': '#8C3008',
+            cream:         '#F5EDE3',
+            'cream-warm':  '#F7E8D5',
+            charcoal:      '#1A1410',
+            'charcoal-2':  '#221A14',
+            ink:           '#1F1A16',
+            'ink-2':       '#3A322B',
+          },
+          fontFamily: {
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+            sans:  ['Inter', 'system-ui', 'sans-serif'],
+          },
+        }
+      }
+    };
+  </script>
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body class="bg-cream text-ink font-sans antialiased">
