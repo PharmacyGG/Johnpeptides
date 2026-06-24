@@ -336,7 +336,6 @@ body { font-family: var(--font-sans); color: var(--ink); }
 .vial-part {
   position: absolute;
   left: 50%;
-  mix-blend-mode: darken;
   will-change: transform, opacity;
   pointer-events: none;
   user-select: none;
