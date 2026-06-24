@@ -3,3 +3,8 @@
 !assets/img/*.jpg
 .DS_Store
 Thumbs.db
+
+# Local working files that don't belong in the website repo
+*.prproj
+Adobe Premiere Pro Auto-Save/
+Sequence*.mp4
