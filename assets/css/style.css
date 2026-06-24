@@ -337,8 +337,7 @@ body { font-family: var(--font-sans); color: var(--ink); }
   position: absolute;
   left: 50%;
   mix-blend-mode: darken;
-  will-change: transform;
-  transition: transform 0.5s cubic-bezier(.22, 1, .36, 1);
+  will-change: transform, opacity;
   pointer-events: none;
   user-select: none;
 }
@@ -365,6 +364,21 @@ body { font-family: var(--font-sans); color: var(--ink); }
   bottom: 490px;
   margin-left: -90px;
   z-index: 4;
+}
+
+/* Final assembled vial — driven directly by JS scroll progress (no CSS transition) */
+.vial-assembled {
+  position: absolute;
+  left: 50%;
+  bottom: -20px;
+  max-width: none;
+  width: 380px;
+  height: auto;
+  transform: translate(-50%, 0) scale(0.96);
+  opacity: 0;
+  z-index: 6;
+  pointer-events: none;
+  will-change: opacity, transform;
 }
 
 /* --- Test badges (fade in at final step) --- */

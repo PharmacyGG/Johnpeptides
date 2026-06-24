@@ -123,15 +123,15 @@
     // Larger negative number = higher (more exploded).
     const STATES = [
       // step 0: fully exploded
-      { cap: -200, ring: -130, stopper: -60,  body: 0 },
-      // step 1: starting to come together
-      { cap: -160, ring: -100, stopper: -45,  body: 0 },
+      { cap: -260, ring: -180, stopper: -90,  body: 0 },
+      // step 1
+      { cap: -200, ring: -140, stopper: -70,  body: 0 },
       // step 2
-      { cap: -120, ring: -70,  stopper: -30,  body: 0 },
-      // step 3
-      { cap: -60,  ring: -35,  stopper: -15,  body: 0 },
-      // step 4: assembled + badges
-      { cap: 0,    ring: 0,    stopper: 0,    body: 0 },
+      { cap: -140, ring: -100, stopper: -50,  body: 0 },
+      // step 3: parts close together (cross-fade starts at 75%)
+      { cap: -70,  ring: -50,  stopper: -25,  body: 0 },
+      // step 4: tightly converged just before assembled vial takes over
+      { cap: -20,  ring: -15,  stopper: -8,   body: 0 },
     ];
 
     const lerp = (a, b, t) => a + (b - a) * t;
@@ -157,8 +157,23 @@
         s.classList.toggle('completed', idx < activeIdx);
       });
 
-      // Show badges in the last quarter
-      assembly.classList.toggle('show-badges', progress > 0.82);
+      // Cross-fade: parts → assembled vial across the last quarter of scroll
+      // 0.65 → start fading; 0.85 → fully swapped
+      const xfade = Math.max(0, Math.min(1, (progress - 0.65) / 0.20));
+      const assembledEl = assembly.querySelector('.vial-assembled');
+      if (assembledEl) {
+        assembledEl.style.opacity = String(xfade);
+        assembledEl.style.transform = `translate(-50%, 0) scale(${0.96 + 0.04 * xfade})`;
+      }
+      // Fade parts OUT as assembled fades in
+      [partCap, partRing, partStopper, partBody].forEach(p => {
+        p.style.opacity = String(1 - xfade);
+      });
+      // Keep CSS class in sync for any non-opacity styling
+      assembly.classList.toggle('show-assembled', xfade > 0.5);
+
+      // Test badges fade in shortly after the assembled vial appears
+      assembly.classList.toggle('show-badges', progress > 0.85);
     }
 
     ScrollTrigger.create({
