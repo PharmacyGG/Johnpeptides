@@ -9,7 +9,13 @@ Usage:  python scripts/make-transparent.py
 from pathlib import Path
 from PIL import Image
 
-PARTS = ["part-cap.png", "part-ring.png", "part-stopper.png", "part-body.png"]
+PARTS = [
+    "part-cap.png",
+    "part-ring.png",
+    "part-stopper.png",
+    "part-body.png",
+    "vial-assembled-cream.png",
+]
 IMG_DIR = Path(__file__).resolve().parent.parent / "assets" / "img"
 
 # Cream target color

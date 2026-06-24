@@ -169,10 +169,18 @@
       [partCap, partRing, partStopper, partBody].forEach(p => {
         p.style.opacity = String(1 - xfade);
       });
-      // Keep CSS class in sync for any non-opacity styling
       assembly.classList.toggle('show-assembled', xfade > 0.5);
 
-      // Test badges fade in shortly after the assembled vial appears
+      // Test badges: stagger-fade in after the assembled vial appears (0.85 → 1.0)
+      const badgeProgress = Math.max(0, Math.min(1, (progress - 0.85) / 0.10));
+      const badges = assembly.querySelectorAll('.test-badge');
+      badges.forEach((b, idx) => {
+        // Stagger each badge by 0.12 of the badgeProgress window
+        const start = idx * 0.12;
+        const local = Math.max(0, Math.min(1, (badgeProgress - start) / (1 - start)));
+        b.style.opacity = String(local);
+        b.style.transform = `translateY(${8 * (1 - local)}px)`;
+      });
       assembly.classList.toggle('show-badges', progress > 0.85);
     }
 
