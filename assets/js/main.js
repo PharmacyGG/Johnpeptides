@@ -109,17 +109,68 @@
     });
   });
 
-  // Process timeline: activate steps as user scrolls past them
-  const steps = document.querySelectorAll('.process-step');
-  steps.forEach((step) => {
+  // Process — pinned scroll-driven vial assembly
+  const processSection = document.querySelector('.process-section');
+  const steps          = document.querySelectorAll('.process-step');
+  const assembly       = document.getElementById('vial-assembly');
+  const partCap        = document.querySelector('.part-cap');
+  const partRing       = document.querySelector('.part-ring');
+  const partStopper    = document.querySelector('.part-stopper');
+  const partBody       = document.querySelector('.part-body');
+
+  if (processSection && assembly && partCap && partRing && partStopper && partBody) {
+    // EXPLODED → ASSEMBLED y-offsets in px. Body stays put; parts above lift up.
+    // Larger negative number = higher (more exploded).
+    const STATES = [
+      // step 0: fully exploded
+      { cap: -200, ring: -130, stopper: -60,  body: 0 },
+      // step 1: starting to come together
+      { cap: -160, ring: -100, stopper: -45,  body: 0 },
+      // step 2
+      { cap: -120, ring: -70,  stopper: -30,  body: 0 },
+      // step 3
+      { cap: -60,  ring: -35,  stopper: -15,  body: 0 },
+      // step 4: assembled + badges
+      { cap: 0,    ring: 0,    stopper: 0,    body: 0 },
+    ];
+
+    const lerp = (a, b, t) => a + (b - a) * t;
+
+    function applyState(progress) {
+      // progress is 0..1 across whole pinned section. Map to step index 0..4 with fractional interpolation.
+      const scaled = Math.max(0, Math.min(1, progress)) * (STATES.length - 1);
+      const i = Math.min(STATES.length - 2, Math.floor(scaled));
+      const t = scaled - i;
+      const a = STATES[i], b = STATES[i + 1];
+      const cap     = lerp(a.cap,     b.cap,     t);
+      const ring    = lerp(a.ring,    b.ring,    t);
+      const stopper = lerp(a.stopper, b.stopper, t);
+
+      partCap.style.transform     = `translateY(${cap}px)`;
+      partRing.style.transform    = `translateY(${ring}px)`;
+      partStopper.style.transform = `translateY(${stopper}px)`;
+
+      // Active step = nearest integer
+      const activeIdx = Math.round(scaled);
+      steps.forEach((s, idx) => {
+        s.classList.toggle('active', idx === activeIdx);
+        s.classList.toggle('completed', idx < activeIdx);
+      });
+
+      // Show badges in the last quarter
+      assembly.classList.toggle('show-badges', progress > 0.82);
+    }
+
     ScrollTrigger.create({
-      trigger: step,
-      start: 'top 70%',
-      end: 'bottom 30%',
-      onEnter:     () => { steps.forEach(s => s.classList.remove('active')); step.classList.add('active'); },
-      onEnterBack: () => { steps.forEach(s => s.classList.remove('active')); step.classList.add('active'); },
+      trigger: processSection,
+      start: 'top top',
+      end: 'bottom bottom',
+      onUpdate: (self) => applyState(self.progress),
     });
-  });
+
+    // Initial state
+    applyState(0);
+  }
 
   // Generic section fade-in for cards
   const fadeTargets = document.querySelectorAll(

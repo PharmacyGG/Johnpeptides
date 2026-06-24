@@ -180,58 +180,77 @@
     </div>
   </section>
 
-  <!-- ============ OUR PROCESS (scroll-driven timeline) ============ -->
-  <section id="process" class="relative bg-cream py-24 lg:py-36">
-    <div class="max-w-[1400px] mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-12 items-start">
+  <!-- ============ OUR PROCESS (pinned scroll-driven assembly) ============ -->
+  <section id="process" class="process-section">
+    <div class="process-pin">
+      <div class="process-grid max-w-[1400px] mx-auto px-6 lg:px-10">
 
-      <div class="lg:sticky lg:top-32 self-start">
-        <div class="text-[11px] tracking-[0.22em] text-teal font-semibold mb-4">OUR PROCESS</div>
-        <h2 class="font-serif text-4xl lg:text-5xl text-ink mb-3">Made for <span class="italic text-teal">Trust</span></h2>
-        <p class="text-ink/60 max-w-sm leading-relaxed">Scroll to see how every batch is sourced, certified, tested, and verified before it ships.</p>
+        <div class="process-left">
+          <div class="text-[11px] tracking-[0.22em] text-teal font-semibold mb-4">OUR PROCESS</div>
+          <h2 class="font-serif text-4xl lg:text-5xl text-ink mb-10">Made for <span class="italic text-teal">Trust</span></h2>
+
+          <ol class="process-list">
+            <li class="process-step active" data-step="0">
+              <div class="process-marker"></div>
+              <div class="process-content">
+                <div class="process-label">Made for trust</div>
+                <h3 class="process-title">Made for <span class="italic text-teal">trust</span></h3>
+                <p class="process-body">Scroll to see how every batch is sourced, certified, and verified before it ships.</p>
+              </div>
+            </li>
+            <li class="process-step" data-step="1">
+              <div class="process-marker"></div>
+              <div class="process-content">
+                <div class="process-label">Sourced in the USA</div>
+                <h3 class="process-title">Sourced in the <span class="italic text-teal">USA</span></h3>
+                <p class="process-body">Raw peptide synthesis at FDA-registered US facilities — full lot-level supply chain transparency.</p>
+                <div class="process-chips"><span>FDA registered</span><span>US sourced</span></div>
+              </div>
+            </li>
+            <li class="process-step" data-step="2">
+              <div class="process-marker"></div>
+              <div class="process-content">
+                <div class="process-label">ISO-7 certified lab</div>
+                <h3 class="process-title">Synthesized in an <span class="italic text-teal">ISO-7</span> certified laboratory</h3>
+                <p class="process-body">ISO-7 caps airborne particles at ≤ 352,000 per m³ with HEPA-filtered air in a tightly controlled, particle-monitored environment built to keep contaminants out.</p>
+              </div>
+            </li>
+            <li class="process-step" data-step="3">
+              <div class="process-marker"></div>
+              <div class="process-content">
+                <div class="process-label">cGMP-certified facility</div>
+                <h3 class="process-title"><span class="italic text-teal">cGMP</span>-certified facility</h3>
+                <p class="process-body">Production follows current Good Manufacturing Practices — the rigor expected of precision pharmaceutical manufacturing.</p>
+                <div class="process-chips"><span>ISO 13485</span><span>Validated processes</span><span>Full lot traceability</span></div>
+              </div>
+            </li>
+            <li class="process-step" data-step="4">
+              <div class="process-marker"></div>
+              <div class="process-content">
+                <div class="process-label">Tested &amp; verified</div>
+                <h3 class="process-title">Tested &amp; <span class="italic text-teal">verified</span></h3>
+                <p class="process-body">Every lot is third-party tested for identity, purity, potency, heavy metals, and endotoxins — with full Certificates of Analysis.</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+
+        <div class="process-right">
+          <div class="vial-assembly" id="vial-assembly">
+            <img class="vial-part part-cap"     src="assets/img/part-cap.png"     alt="" />
+            <img class="vial-part part-ring"    src="assets/img/part-ring.png"    alt="" />
+            <img class="vial-part part-stopper" src="assets/img/part-stopper.png" alt="" />
+            <img class="vial-part part-body"    src="assets/img/part-body.png"    alt="" />
+
+            <div class="test-badge badge-identity">+ Identity Tested</div>
+            <div class="test-badge badge-purity">+ Purity Tested</div>
+            <div class="test-badge badge-heavy">+ Heavy Metal Tested</div>
+            <div class="test-badge badge-net">+ Net Content Tested</div>
+            <div class="test-badge badge-endotoxin">+ Endotoxin Tested</div>
+          </div>
+        </div>
+
       </div>
-
-      <ol class="process-list space-y-12 lg:space-y-16">
-        <li class="process-step active" data-step="1">
-          <div class="process-marker"></div>
-          <div class="process-content">
-            <h3 class="process-title">Sourced in the <span class="italic text-teal">USA</span></h3>
-            <p class="process-body">Raw peptide synthesis at FDA-registered US facilities — full lot-level supply chain transparency.</p>
-            <div class="process-chips"><span>FDA registered</span><span>US sourced</span></div>
-          </div>
-        </li>
-        <li class="process-step" data-step="2">
-          <div class="process-marker"></div>
-          <div class="process-content">
-            <h3 class="process-title"><span class="italic text-teal">ISO-7</span> Certified Lab</h3>
-            <p class="process-body">Cleanroom synthesis under ISO 14644-1 Class 7 environmental controls — particulate, microbial, and contamination thresholds enforced per batch.</p>
-            <div class="process-chips"><span>Cleanroom</span><span>Particulate controlled</span></div>
-          </div>
-        </li>
-        <li class="process-step" data-step="3">
-          <div class="process-marker"></div>
-          <div class="process-content">
-            <h3 class="process-title"><span class="italic text-teal">cGMP</span>-Certified Facility</h3>
-            <p class="process-body">Production follows current Good Manufacturing Practices — the rigor expected of precision pharmaceutical manufacturing.</p>
-            <div class="process-chips"><span>ISO 13485</span><span>Validated processes</span><span>Full lot traceability</span></div>
-          </div>
-        </li>
-        <li class="process-step" data-step="4">
-          <div class="process-marker"></div>
-          <div class="process-content">
-            <h3 class="process-title">Tested &amp; <span class="italic text-teal">Verified</span></h3>
-            <p class="process-body">Every batch independently assayed for purity, identity, potency, heavy metals, endotoxins, and net content. COA accessible via QR on every vial.</p>
-            <div class="process-chips"><span>Purity</span><span>Endotoxin</span><span>Heavy metals</span><span>Net content</span></div>
-          </div>
-        </li>
-        <li class="process-step" data-step="5">
-          <div class="process-marker"></div>
-          <div class="process-content">
-            <h3 class="process-title">Sealed &amp; <span class="italic text-teal">Shipped</span></h3>
-            <p class="process-body">Crimped, foil-sealed, cold-pack shipped same-day before 3 PM ET. Tracking and tamper-evident packaging on every order.</p>
-            <div class="process-chips"><span>Same-day dispatch</span><span>Tamper-evident</span></div>
-          </div>
-        </li>
-      </ol>
     </div>
   </section>
 
