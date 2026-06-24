@@ -487,16 +487,40 @@ body { font-family: var(--font-sans); color: var(--ink); }
 }
 
 /* ============================================
-   AGE-GATE FADE
+   AGE-GATE
    ============================================ */
-#age-gate { transition: opacity 0.4s ease, visibility 0.4s; }
-#age-gate.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
-#enter-site.enabled {
-  background: var(--copper) !important;
-  cursor: pointer !important;
-  color: white !important;
+#age-gate {
+  background: rgba(15, 10, 7, 0.85);
+  backdrop-filter: blur(6px);
+  transition: opacity 0.4s ease, visibility 0.4s;
 }
-#enter-site.enabled:hover { background: var(--copper-glow) !important; }
+#age-gate.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+
+.gate-btn {
+  width: 100%;
+  padding: 0.95rem 1.5rem;
+  border-radius: 999px;
+  background: var(--copper);
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  opacity: 0.45;
+  filter: saturate(0.7);
+  pointer-events: none;
+  border: none;
+}
+.gate-btn.enabled {
+  opacity: 1;
+  filter: saturate(1);
+  pointer-events: auto;
+  box-shadow: 0 10px 30px -10px var(--copper);
+}
+.gate-btn.enabled:hover {
+  background: var(--copper-glow);
+  transform: translateY(-1px);
+}
 
 /* ============================================
    RESPONSIVE TWEAKS

@@ -10,28 +10,50 @@
   const confirmBox = document.getElementById('age-confirm');
   const enterBtn = document.getElementById('enter-site');
 
+  const acceptGate = () => {
+    localStorage.setItem('pepguide-verified', '1');
+    if (gate) gate.classList.add('hidden');
+  };
+
   if (gate && confirmBox && enterBtn) {
-    // Persist acceptance per browser
     if (localStorage.getItem('pepguide-verified') === '1') {
       gate.classList.add('hidden');
     }
 
-    confirmBox.addEventListener('change', () => {
+    const syncBtn = () => {
       if (confirmBox.checked) {
-        enterBtn.disabled = false;
         enterBtn.classList.add('enabled');
-        enterBtn.classList.remove('cursor-not-allowed');
+        enterBtn.setAttribute('aria-disabled', 'false');
       } else {
-        enterBtn.disabled = true;
         enterBtn.classList.remove('enabled');
-        enterBtn.classList.add('cursor-not-allowed');
+        enterBtn.setAttribute('aria-disabled', 'true');
       }
+    };
+
+    confirmBox.addEventListener('change', syncBtn);
+    confirmBox.addEventListener('input', syncBtn);
+    // Allow clicking the label/text to toggle too
+    confirmBox.closest('label')?.addEventListener('click', () => setTimeout(syncBtn, 0));
+
+    enterBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (!confirmBox.checked) {
+        // Nudge: shake the checkbox label to draw the eye
+        const lbl = confirmBox.closest('label');
+        if (lbl) {
+          lbl.style.transition = 'transform 0.3s';
+          lbl.style.transform = 'translateX(6px)';
+          setTimeout(() => { lbl.style.transform = 'translateX(-4px)'; }, 100);
+          setTimeout(() => { lbl.style.transform = ''; }, 220);
+        }
+        return;
+      }
+      acceptGate();
     });
 
-    enterBtn.addEventListener('click', () => {
-      if (!confirmBox.checked) return;
-      localStorage.setItem('pepguide-verified', '1');
-      gate.classList.add('hidden');
+    // ESC closes if user has confirmed (escape hatch)
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && confirmBox.checked) acceptGate();
     });
   }
 
