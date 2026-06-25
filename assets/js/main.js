@@ -195,6 +195,15 @@
     applyState(0);
   }
 
+  // Recompute ScrollTrigger positions after fonts + the hero video settle.
+  // Without this, the trigger can latch onto layout heights from before the
+  // hero/process images finish loading, which makes the section's start
+  // position wrong and the cross-fade fires immediately.
+  const refreshAll = () => ScrollTrigger.refresh();
+  window.addEventListener('load', refreshAll);
+  setTimeout(refreshAll, 600);
+  setTimeout(refreshAll, 1500);
+
   // Generic section fade-in for cards
   const fadeTargets = document.querySelectorAll(
     '.category-card, .compound-card, .quality-card, .promo-card'
