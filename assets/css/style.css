@@ -427,18 +427,41 @@ body { font-family: var(--font-sans); color: var(--ink); }
 .badge-net        { bottom: 22%; left: -30px; }
 .badge-endotoxin  { bottom: 22%; right: -30px; }
 
-/* --- Mobile: collapse to vertical stack --- */
+/* --- Mobile: collapse to vertical stack, skip the scroll-driven animation --- */
 @media (max-width: 1023px) {
   .process-section { height: auto; }
-  .process-pin { position: relative; height: auto; padding: 5rem 0; }
-  .process-grid { grid-template-columns: 1fr; gap: 3rem; }
-  .process-right { height: 480px; }
-  .vial-assembly { width: 260px; }
-  .part-body { width: 260px; margin-left: -130px; }
-  .part-stopper { width: 120px; margin-left: -60px; bottom: 300px; }
-  .part-ring { width: 130px; margin-left: -65px; bottom: 350px; }
-  .part-cap { width: 140px; margin-left: -70px; bottom: 390px; }
-  .test-badge { font-size: 0.65rem; padding: 0.3rem 0.6rem; }
+  .process-pin {
+    position: relative;
+    height: auto;
+    padding: 4rem 0;
+    overflow: visible;       /* no pin clipping needed here */
+  }
+  .process-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .process-right {
+    height: 360px;
+    margin-top: 1rem;
+  }
+  .vial-assembly {
+    width: 220px;
+    height: 360px;
+    max-height: none;
+  }
+
+  /* Hide the exploded parts on mobile — they'd overflow into the text column */
+  .vial-part { display: none !important; }
+
+  /* Skip the floating test badges on mobile (they hang outside the vial frame) */
+  .test-badge { display: none !important; }
+
+  /* Just show the finished assembled vial, full opacity, no animation */
+  .vial-assembled {
+    display: block !important;
+    opacity: 1 !important;
+    transform: translate(-50%, 0) scale(1) !important;
+    width: 220px;
+    bottom: 0;
+    left: 50%;
+  }
 }
 
 /* ============================================
