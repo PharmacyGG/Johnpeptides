@@ -39,5 +39,8 @@
   ],
   "redirects": [
     { "source": "/index.html", "destination": "/", "permanent": true }
+  ],
+  "rewrites": [
+    { "source": "/products/:slug", "destination": "/product.html" }
   ]
 }

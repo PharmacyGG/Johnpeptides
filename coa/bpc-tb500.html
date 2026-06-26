@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0F1B2D" />
+  <title>Certificate of Analysis — BPC-157 / TB-500 (10mg) — PepGuide</title>
+  <meta name="robots" content="noindex" />
+  <link rel="icon" type="image/png" href="/assets/img/logo.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --orange:#FF7A1A; --blue:#6FB6E6; --blue-deep:#3E7AAD; --navy:#0F1B2D;
+      --offwhite:#F2F4F7; --offwhite-2:#E6E9EE;
+      --ink:#0F1B2D; --ink-2:#3A4763;
+      --pass:#16a34a;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin:0; padding:0; }
+    body {
+      font-family: 'Poppins', system-ui, sans-serif;
+      background: var(--offwhite);
+      color: var(--ink);
+      padding: 2rem 1rem 4rem;
+      line-height: 1.5;
+    }
+    .toolbar {
+      max-width: 880px; margin: 0 auto 1.25rem;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.9rem;
+    }
+    .toolbar a { color: var(--ink-2); text-decoration: none; display:inline-flex; align-items:center; gap:6px; }
+    .toolbar a:hover { color: var(--orange); }
+    .toolbar button {
+      background: var(--navy); color: white; border: none;
+      padding: 0.6rem 1.25rem; border-radius: 999px; font-weight: 600;
+      font-size: 0.85rem; cursor: pointer; display:inline-flex; align-items:center; gap:6px;
+      font-family: inherit;
+    }
+    .toolbar button:hover { background: var(--orange); }
+
+    .coa {
+      max-width: 880px; margin: 0 auto;
+      background: white;
+      border: 1px solid rgba(15,27,45,0.08);
+      border-radius: 18px;
+      box-shadow: 0 24px 60px -20px rgba(15,27,45,0.12);
+      overflow: hidden;
+    }
+    .coa-header {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      padding: 2rem 2.5rem 1.75rem;
+      border-bottom: 1px solid rgba(15,27,45,0.06);
+    }
+    .coa-brand { display: flex; align-items: center; gap: 0.875rem; }
+    .coa-brand img { width: 56px; height: auto; }
+    .coa-brand-text { line-height: 1.15; }
+    .coa-brand-name { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.015em; }
+    .coa-brand-name .nav { color: var(--navy); }
+    .coa-brand-name .blu { color: var(--blue); }
+    .coa-brand-sub { font-size: 0.65rem; letter-spacing: 0.16em; color: var(--ink-2); opacity: 0.55; font-weight:500; }
+    .coa-title-block { text-align: right; }
+    .coa-eyebrow { font-size: 0.65rem; letter-spacing: 0.2em; color: var(--orange); font-weight: 700; margin-bottom: 0.25rem; }
+    .coa-h1 { font-size: 1.35rem; font-weight: 600; letter-spacing: -0.01em; margin: 0; }
+
+    .coa-product {
+      padding: 1.5rem 2.5rem;
+      background: linear-gradient(180deg, var(--offwhite) 0%, white 100%);
+      border-bottom: 1px solid rgba(15,27,45,0.06);
+    }
+    .coa-product-name {
+      font-size: 1.6rem; font-weight: 600; margin: 0 0 0.25rem;
+    }
+    .coa-product-meta { font-size: 0.85rem; color: var(--ink-2); opacity: 0.7; }
+
+    .coa-meta-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 0; padding: 0;
+      border-bottom: 1px solid rgba(15,27,45,0.06);
+    }
+    .coa-meta-cell {
+      padding: 1rem 1.5rem;
+      border-right: 1px solid rgba(15,27,45,0.06);
+      font-size: 0.85rem;
+    }
+    .coa-meta-cell:last-child { border-right: none; }
+    .coa-meta-label { font-size: 0.65rem; letter-spacing: 0.14em; color: var(--ink-2); opacity: 0.55; font-weight: 600; text-transform: uppercase; margin-bottom: 0.25rem; }
+    .coa-meta-value { font-weight: 600; color: var(--ink); }
+    .coa-meta-value.mono { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; }
+
+    .coa-section { padding: 1.75rem 2.5rem; }
+    .coa-section-title {
+      font-size: 0.75rem; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--orange); font-weight: 700; margin: 0 0 1rem;
+    }
+
+    table.coa-results {
+      width: 100%; border-collapse: collapse; font-size: 0.875rem;
+    }
+    table.coa-results th, table.coa-results td {
+      text-align: left; padding: 0.7rem 0.75rem;
+      border-bottom: 1px solid rgba(15,27,45,0.05);
+    }
+    table.coa-results th {
+      font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--ink-2); opacity: 0.55; font-weight: 600;
+    }
+    table.coa-results td.result { font-family: 'JetBrains Mono', monospace; font-weight: 500; }
+    .pass-pill {
+      display: inline-flex; align-items: center; gap: 4px;
+      background: rgba(22, 163, 74, 0.1); color: var(--pass);
+      font-size: 0.7rem; font-weight: 700;
+      padding: 2px 8px; border-radius: 999px;
+      letter-spacing: 0.05em;
+    }
+
+    .coa-signoff {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 2rem; padding: 1.75rem 2.5rem 2rem;
+      border-top: 1px solid rgba(15,27,45,0.06);
+    }
+    .coa-sig-block { font-size: 0.8rem; }
+    .coa-sig-label { font-size: 0.65rem; letter-spacing: 0.14em; color: var(--ink-2); opacity: 0.55; font-weight: 600; text-transform: uppercase; margin-bottom: 0.5rem; }
+    .coa-sig-signature {
+      font-family: 'Brush Script MT', cursive;
+      font-size: 1.5rem; color: var(--navy);
+      border-bottom: 1px solid rgba(15,27,45,0.15);
+      padding-bottom: 0.25rem; margin-bottom: 0.35rem;
+    }
+    .coa-sig-name { font-weight: 600; }
+    .coa-sig-role { color: var(--ink-2); opacity: 0.7; font-size: 0.75rem; }
+
+    .coa-footer {
+      background: var(--offwhite);
+      padding: 1.25rem 2.5rem;
+      font-size: 0.7rem; color: var(--ink-2); opacity: 0.7;
+      text-align: center; line-height: 1.55;
+      border-top: 1px solid rgba(15,27,45,0.06);
+    }
+    .coa-footer strong { color: var(--ink); opacity: 1; }
+
+    @media print {
+      body { background: white; padding: 0; }
+      .toolbar { display: none; }
+      .coa { box-shadow: none; border: none; border-radius: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="toolbar">
+    <a href="/products/bpc-tb500">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7"/></svg>
+      Back to product
+    </a>
+    <button onclick="window.print()">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9V2h12v7M6 18h12v4H6zM6 14H4a2 2 0 01-2-2V9a2 2 0 012-2h16a2 2 0 012 2v3a2 2 0 01-2 2h-2"/></svg>
+      Download / Print PDF
+    </button>
+  </div>
+
+  <article class="coa">
+    <header class="coa-header">
+      <div class="coa-brand">
+        <img src="/assets/img/logo.png" alt="PepGuide" />
+        <div class="coa-brand-text">
+          <div class="coa-brand-name"><span class="nav">Pep</span><span class="blu">Guide</span></div>
+          <div class="coa-brand-sub">NAVIGATE PEPTIDES · UNLOCK KNOWLEDGE</div>
+        </div>
+      </div>
+      <div class="coa-title-block">
+        <div class="coa-eyebrow">CERTIFICATE OF ANALYSIS</div>
+        <h1 class="coa-h1">Quality Control Report</h1>
+      </div>
+    </header>
+
+    <section class="coa-product">
+      <div class="coa-product-name">BPC-157 / TB-500 Blend</div>
+      <div class="coa-product-meta">10 mg lyophilized · Research Use Only · Not for human or veterinary consumption</div>
+    </section>
+
+    <div class="coa-meta-grid">
+      <div class="coa-meta-cell">
+        <div class="coa-meta-label">SKU</div>
+        <div class="coa-meta-value mono">PG-BPCTB-10</div>
+      </div>
+      <div class="coa-meta-cell">
+        <div class="coa-meta-label">Lot No.</div>
+        <div class="coa-meta-value mono">L-2026-0419</div>
+      </div>
+      <div class="coa-meta-cell">
+        <div class="coa-meta-label">Test Date</div>
+        <div class="coa-meta-value">2026-04-19</div>
+      </div>
+      <div class="coa-meta-cell">
+        <div class="coa-meta-label">Expiry</div>
+        <div class="coa-meta-value">2028-04-19</div>
+      </div>
+    </div>
+
+    <section class="coa-section">
+      <h2 class="coa-section-title">Test Results</h2>
+      <table class="coa-results">
+        <thead>
+          <tr>
+            <th>Test</th>
+            <th>Method</th>
+            <th>Specification</th>
+            <th>Result</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Appearance</td>
+            <td>Visual</td>
+            <td>White lyophilized powder</td>
+            <td class="result">White cake</td>
+            <td><span class="pass-pill">PASS</span></td>
+          </tr>
+          <tr>
+            <td>Identity — BPC-157</td>
+            <td>LC-MS</td>
+            <td>1419.5 Da ± 0.5</td>
+            <td class="result">1419.4 Da</td>
+            <td><span class="pass-pill">PASS</span></td>
+          </tr>
+          <tr>
+            <td>Identity — TB-500 (Tβ4)</td>
+            <td>LC-MS</td>
+            <td>4961.5 Da ± 1.0</td>
+            <td class="result">4961.7 Da</td>
+            <td><span class="pass-pill">PASS</span></td>
+          </tr>
+          <tr>
+            <td>Purity (HPLC)</td>
+            <td>RP-HPLC, 220 nm</td>
+            <td>≥ 99.0 %</td>
+            <td class="result">99.58 %</td>
+            <td><span class="pass-pill">PASS</span></td>
+          </tr>
+          <tr>
+            <td>Net Peptide Content</td>
+            <td>UV / AAA</td>
+            <td>≥ 80 %</td>
+            <td class="result">84.2 %</td>
+            <td><span class="pass-pill">PASS</span></td>
+          </tr>
+          <tr>
+            <td>Water Content</td>
+            <td>Karl Fischer</td>
+            <td>≤ 8 %</td>
+            <td class="result">2.4 %</td>
+            <td><span class="pass-pill">PASS</span></td>
+          </tr>
+          <tr>
+            <td>Acetate Content</td>
+            <td>IC</td>
+            <td>≤ 15 %</td>
+            <td class="result">6.1 %</td>
+            <td><span class="pass-pill">PASS</span></td>
+          </tr>
+          <tr>
+            <td>Endotoxin</td>
+            <td>LAL, kinetic chromogenic</td>
+            <td>&lt; 5 EU / mg</td>
+            <td class="result">&lt; 0.5 EU / mg</td>
+            <td><span class="pass-pill">PASS</span></td>
+          </tr>
+          <tr>
+            <td>Bioburden</td>
+            <td>USP &lt;61&gt;</td>
+            <td>&lt; 10 CFU / g</td>
+            <td class="result">&lt; 1 CFU / g</td>
+            <td><span class="pass-pill">PASS</span></td>
+          </tr>
+          <tr>
+            <td>Heavy Metals (As, Cd, Pb, Hg)</td>
+            <td>ICP-MS</td>
+            <td>Within USP &lt;232&gt; limits</td>
+            <td class="result">Within limits</td>
+            <td><span class="pass-pill">PASS</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="coa-section" style="padding-top:0">
+      <h2 class="coa-section-title">Storage &amp; Handling</h2>
+      <p style="font-size:0.85rem; color:var(--ink-2); margin:0;">
+        Store lyophilized at −20°C, protected from light. After reconstitution with bacteriostatic
+        water (0.9% benzyl alcohol), store at 2–8°C and use within 30 days. Do not freeze the
+        reconstituted solution.
+      </p>
+    </section>
+
+    <div class="coa-signoff">
+      <div class="coa-sig-block">
+        <div class="coa-sig-label">Released by</div>
+        <div class="coa-sig-signature">Dr. M. Reyes</div>
+        <div class="coa-sig-name">Dr. Marisol Reyes, Ph.D.</div>
+        <div class="coa-sig-role">QC Lead — PepGuide Laboratory</div>
+      </div>
+      <div class="coa-sig-block">
+        <div class="coa-sig-label">Independent verification</div>
+        <div class="coa-sig-signature">J. Patel</div>
+        <div class="coa-sig-name">Janus Analytical Services</div>
+        <div class="coa-sig-role">Third-party testing partner — Report #JA-26041901</div>
+      </div>
+    </div>
+
+    <footer class="coa-footer">
+      <strong>RESEARCH USE ONLY.</strong> This product is intended exclusively for laboratory research and is not for human, veterinary, diagnostic, therapeutic, or clinical use. Handler accepts full responsibility for compliance with all applicable laws and regulations.
+      <br><br>
+      PepGuide · pepguidance.com · COA Document v1
+    </footer>
+  </article>
+
+</body>
+</html>

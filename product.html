@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0F1B2D" />
+  <!-- title / description / og tags are populated by product-page.js -->
+  <title>PepGuide</title>
+  <link rel="canonical" href="" />
+  <link rel="icon" type="image/png" href="/assets/img/logo.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            orange:'#FF7A1A','orange-glow':'#FF9E55','orange-soft':'#FFE0CC','orange-deep':'#CC5C0F',
+            blue:'#6FB6E6','blue-soft':'#D8E9F6','blue-deep':'#3E7AAD',
+            navy:'#0F1B2D','navy-2':'#1A2940','navy-3':'#243759',
+            offwhite:'#F2F4F7','offwhite-2':'#E6E9EE',
+            ink:'#0F1B2D','ink-2':'#3A4763',
+            teal:'#FF7A1A','teal-glow':'#FF9E55','teal-soft':'#FFE0CC','teal-deep':'#CC5C0F',
+            cream:'#F2F4F7','cream-warm':'#F2F4F7',
+            charcoal:'#0F1B2D','charcoal-2':'#1A2940',
+          },
+          fontFamily: {
+            serif: ['Poppins','system-ui','sans-serif'],
+            sans:  ['Poppins','system-ui','sans-serif'],
+          },
+        }
+      }
+    };
+  </script>
+  <link rel="stylesheet" href="assets/css/style.css?v=20260626" />
+
+  <!-- JSON-LD Product schema populated by product-page.js -->
+  <script id="ld-product" type="application/ld+json"></script>
+
+  <script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body class="bg-offwhite text-ink font-sans antialiased">
+
+  <!-- Minimal top bar (no full nav on PDPs to keep focus on the product) -->
+  <header class="border-b border-ink/5 bg-offwhite/85 backdrop-blur-md sticky top-0 z-50">
+    <div class="max-w-[1200px] mx-auto px-6 lg:px-10 h-16 flex items-center justify-between gap-6">
+      <a href="/" class="flex items-center gap-3 shrink-0">
+        <img src="assets/img/logo.png" alt="PepGuide" class="w-10 h-auto" />
+        <div class="text-lg font-semibold tracking-tight"><span class="text-navy">Pep</span><span class="text-blue">Guide</span></div>
+      </a>
+      <a href="/" class="text-sm text-ink/60 hover:text-orange flex items-center gap-1.5">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7"/></svg>
+        All compounds
+      </a>
+      <button class="relative w-10 h-10 rounded-full hover:bg-ink/5 flex items-center justify-center transition" data-cart-open aria-label="Open cart">
+        <svg class="w-5 h-5 text-ink" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+        <span class="cart-badge" data-cart-badge style="display:none">0</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Cart drawer (same as homepage so cart works here too) -->
+  <div id="cart-drawer" class="cart-drawer" aria-hidden="true">
+    <div class="cart-panel">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-xl font-semibold tracking-tight"><span class="text-navy">Your</span> <span class="text-blue">cart</span></h2>
+        <button id="cart-close" class="w-10 h-10 rounded-full hover:bg-ink/5 flex items-center justify-center" aria-label="Close cart">
+          <svg class="w-6 h-6 text-ink" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 6l12 12M6 18L18 6"/></svg>
+        </button>
+      </div>
+      <div id="cart-items" class="cart-items"></div>
+      <div id="cart-empty" class="cart-empty">
+        <p class="text-ink/60">Your cart is empty.</p>
+        <p class="text-ink/40 text-sm mt-2">Add this compound to get started.</p>
+      </div>
+      <div class="cart-footer">
+        <div class="flex items-center justify-between mb-4 text-sm">
+          <span class="text-ink/60">Subtotal</span>
+          <span id="cart-subtotal" class="text-ink font-semibold text-base">$0.00</span>
+        </div>
+        <p class="text-[11px] text-ink/45 mb-4 leading-relaxed">
+          Shipping &amp; taxes calculated at checkout. By checking out you agree these compounds will be used <strong>exclusively for laboratory research</strong>.
+        </p>
+        <div id="paypal-button-container"></div>
+        <div id="paypal-notice" class="text-[11px] text-ink/55 mt-2"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PDP body — populated by product-page.js -->
+  <main id="pdp-root" class="max-w-[1200px] mx-auto px-6 lg:px-10 py-10 lg:py-16">
+    <div id="pdp-loading" class="text-center text-ink/40 py-24">Loading…</div>
+    <div id="pdp-not-found" class="hidden text-center py-24">
+      <h1 class="font-serif text-3xl font-semibold mb-3">Compound not found</h1>
+      <p class="text-ink/60 mb-6">We couldn't find that product. It may have been discontinued.</p>
+      <a href="/" class="cta-primary">Back to all compounds</a>
+    </div>
+
+    <article id="pdp" class="hidden">
+      <!-- Breadcrumb -->
+      <nav class="text-sm text-ink/55 mb-6">
+        <a href="/" class="hover:text-orange">Home</a>
+        <span class="mx-2">/</span>
+        <a href="/#compounds" class="hover:text-orange">Compounds</a>
+        <span class="mx-2">/</span>
+        <span id="pdp-breadcrumb-name" class="text-ink">—</span>
+      </nav>
+
+      <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-start mb-16">
+        <!-- LEFT: vial -->
+        <div class="pdp-image-wrap">
+          <img id="pdp-image" src="" alt="" class="w-full max-w-[480px] mx-auto" />
+        </div>
+
+        <!-- RIGHT: title, price, add-to-cart -->
+        <div>
+          <div id="pdp-category" class="text-[11px] tracking-[0.22em] text-orange font-semibold mb-3">—</div>
+          <h1 id="pdp-name" class="font-serif text-4xl lg:text-5xl font-semibold text-ink mb-3">—</h1>
+          <p id="pdp-description" class="text-ink/70 leading-relaxed mb-6 text-base lg:text-lg">—</p>
+
+          <div class="flex items-center gap-3 mb-8">
+            <div id="pdp-price" class="text-3xl font-semibold text-ink">—</div>
+            <div id="pdp-dosage" class="text-sm text-ink/60 bg-orange-soft/60 px-3 py-1 rounded-full">—</div>
+          </div>
+
+          <button id="pdp-add" class="cta-primary w-full lg:w-auto justify-center" data-add-to-cart="">
+            Add to cart
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </button>
+
+          <a id="pdp-coa" href="" class="inline-flex items-center gap-2 mt-4 text-sm text-blue-deep hover:text-orange font-medium">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            Download Certificate of Analysis
+          </a>
+
+          <ul class="grid grid-cols-2 gap-3 mt-8 text-xs">
+            <li class="bg-white border border-ink/5 rounded-xl px-3 py-2.5"><span class="block text-ink/45 mb-0.5">Free 2-day shipping</span><span class="font-semibold text-ink">USPS Priority</span></li>
+            <li class="bg-white border border-ink/5 rounded-xl px-3 py-2.5"><span class="block text-ink/45 mb-0.5">Same-day dispatch</span><span class="font-semibold text-ink">Order before 3 PM ET</span></li>
+            <li class="bg-white border border-ink/5 rounded-xl px-3 py-2.5"><span class="block text-ink/45 mb-0.5">Third-party tested</span><span class="font-semibold text-ink">≥99% purity</span></li>
+            <li class="bg-white border border-ink/5 rounded-xl px-3 py-2.5"><span class="block text-ink/45 mb-0.5">Made &amp; shipped</span><span class="font-semibold text-ink">In the USA</span></li>
+          </ul>
+
+          <p class="text-[11px] text-ink/45 mt-6 leading-relaxed">
+            <strong>Research Use Only.</strong> Not for human or veterinary consumption.
+            Not for diagnostic, therapeutic, or clinical use. Handler accepts full responsibility for compliance with applicable law.
+          </p>
+        </div>
+      </div>
+
+      <!-- Detail grid: mechanism / half-life / dose range / storage / reconstitution / references -->
+      <section class="grid lg:grid-cols-3 gap-6 lg:gap-8 mb-16">
+        <div class="pdp-block lg:col-span-2">
+          <h2 class="pdp-block-title">Mechanism &amp; research context</h2>
+          <p id="pdp-mechanism" class="pdp-block-body">—</p>
+        </div>
+        <div class="pdp-block">
+          <h2 class="pdp-block-title">References</h2>
+          <ul id="pdp-references" class="pdp-block-body space-y-2"></ul>
+        </div>
+
+        <div class="pdp-block">
+          <h2 class="pdp-block-title">Half-life</h2>
+          <p id="pdp-halflife" class="pdp-block-body">—</p>
+        </div>
+        <div class="pdp-block">
+          <h2 class="pdp-block-title">Research dose range</h2>
+          <p id="pdp-dose-range" class="pdp-block-body">—</p>
+        </div>
+        <div class="pdp-block">
+          <h2 class="pdp-block-title">Reconstitution</h2>
+          <p id="pdp-reconstitution" class="pdp-block-body">—</p>
+        </div>
+
+        <div class="pdp-block lg:col-span-3">
+          <h2 class="pdp-block-title">Storage</h2>
+          <p id="pdp-storage" class="pdp-block-body">—</p>
+        </div>
+      </section>
+
+      <!-- Related products -->
+      <section class="mb-16">
+        <h2 class="font-serif text-2xl lg:text-3xl font-semibold text-ink mb-6">Related compounds</h2>
+        <div id="pdp-related" class="grid grid-cols-2 lg:grid-cols-3 gap-5"></div>
+      </section>
+    </article>
+  </main>
+
+  <!-- Slim footer -->
+  <footer class="bg-charcoal text-cream/60 py-10">
+    <div class="max-w-[1200px] mx-auto px-6 lg:px-10 flex flex-col md:flex-row justify-between items-start gap-4 text-xs">
+      <div>© 2026 PepGuide. All compounds sold for laboratory research use only. Not for human or veterinary consumption.</div>
+      <div class="flex gap-5">
+        <a href="/privacy.html" class="hover:text-cream transition">Privacy</a>
+        <a href="/terms.html" class="hover:text-cream transition">Terms</a>
+        <a href="/terms.html" class="hover:text-cream transition">Research Use Disclaimer</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/products.js?v=20260626"></script>
+  <script src="assets/js/cart.js?v=20260626"></script>
+  <script src="assets/js/product-page.js?v=20260626"></script>
+</body>
+</html>

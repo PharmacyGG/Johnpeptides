@@ -625,6 +625,9 @@ body { font-family: var(--font-sans); color: var(--ink); background: var(--offwh
   flex-direction: column;
   min-height: 340px;
   border: 1px solid rgba(111, 212, 229, 0.12);
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
 }
 .compound-card:hover {
   transform: translateY(-4px);
@@ -758,6 +761,51 @@ body { font-family: var(--font-sans); color: var(--ink); background: var(--offwh
   filter: blur(40px);
   pointer-events: none;
 }
+
+/* ============================================
+   PRODUCT DETAIL PAGE (PDP)
+   ============================================ */
+.pdp-image-wrap {
+  position: relative;
+  background: linear-gradient(180deg, #0F1B2D 0%, #1A2940 100%);
+  border-radius: 28px;
+  padding: 3rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 480px;
+}
+.pdp-image-wrap::after {
+  content: '';
+  position: absolute;
+  inset: auto 10% 8% 10%;
+  height: 30%;
+  background: radial-gradient(ellipse, rgba(111, 182, 230, 0.25), transparent 70%);
+  filter: blur(20px);
+  pointer-events: none;
+}
+.pdp-image-wrap img { position: relative; z-index: 1; }
+
+.pdp-block {
+  background: white;
+  border: 1px solid rgba(15, 27, 45, 0.06);
+  border-radius: 20px;
+  padding: 1.5rem 1.5rem 1.5rem;
+}
+.pdp-block-title {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--orange);
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+.pdp-block-body {
+  color: var(--ink-2);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+.pdp-block-body a { word-break: break-word; }
 
 /* ============================================
    CART (drawer + buttons + badge)

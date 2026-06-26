@@ -1,11 +1,16 @@
 /* =================================================================
    PepGuide product catalog (single source of truth)
    ----------------------------------------------------------------
-   The cart looks items up by `id`. When you set up PayPal:
-     - Server-side prices come from `priceCents` here at checkout time
-     - No PayPal dashboard product setup required (we build line items
-       inline in /api/paypal-create-order)
+   IMPORTANT: keep prices in sync with api/_catalog.js
    priceCents is in cents — i.e. $149 → 14900.
+
+   Each product also carries the data used by /products/<id> PDPs:
+   description, mechanism, halfLife, doseRange, storage,
+   reconstitution, references[], relatedIds[]
+
+   ALL copy is research-context only. No therapeutic claims, no
+   dosing instructions for humans — purely the published research
+   context that qualified researchers expect to see.
    ================================================================= */
 window.PEPGUIDE_PRODUCTS = [
   {
@@ -16,6 +21,17 @@ window.PEPGUIDE_PRODUCTS = [
     priceCents: 14900,
     image: 'assets/img/vial-bpc-tb500.png',
     badge: 'BLEND',
+    description: 'A blend of two of the most widely-studied recovery-research peptides: BPC-157 (a 15-amino-acid sequence derived from gastric juice) and TB-500 (a synthetic active fragment of Thymosin β-4).',
+    mechanism: 'BPC-157 has been studied for its effects on angiogenesis, gut-mucosal integrity, and tendon-to-bone healing in animal models. TB-500 has been studied for actin sequestration, fibroblast migration, and wound-healing endpoints. The two are frequently paired in tissue-repair research protocols.',
+    halfLife: 'BPC-157: ~30 min (oral/SC in published rodent research). TB-500: ~2–3 hr (SC).',
+    doseRange: 'Research literature: BPC-157 commonly 1–10 μg/kg; TB-500 commonly 0.05–0.2 mg/kg, weight-adjusted.',
+    storage: 'Store lyophilized at -20°C. After reconstitution, refrigerate at 2–8°C and use within 30 days. Protect from light.',
+    reconstitution: 'Typical: 2 mL bacteriostatic water (0.9% benzyl alcohol).',
+    references: [
+      { title: 'Sikiric et al. — BPC-157 mechanism review',                      url: 'https://pubmed.ncbi.nlm.nih.gov/?term=BPC-157+review' },
+      { title: 'Goldstein et al. — Thymosin β-4 in tissue repair',               url: 'https://pubmed.ncbi.nlm.nih.gov/?term=thymosin+beta+4+tissue+repair' },
+    ],
+    relatedIds: ['tb-500', 'tesamorelin', 'ghk-cu'],
   },
   {
     id: 'tb-500',
@@ -25,6 +41,17 @@ window.PEPGUIDE_PRODUCTS = [
     priceCents: 16900,
     image: 'assets/img/vial-tb500.png',
     badge: 'PEPTIDE',
+    description: 'Synthetic active fragment of Thymosin β-4 (Tβ4), a naturally-occurring 43-amino-acid actin-binding peptide present in most tissues.',
+    mechanism: 'Studied for actin sequestration, angiogenesis, cardiac and muscle-tissue repair, and corneal-wound healing models. Tβ4 has been characterized as one of the most abundant intracellular proteins involved in regenerative signaling.',
+    halfLife: '~2–3 hours subcutaneous in published research.',
+    doseRange: 'Research literature: 0.05–0.2 mg/kg, often dosed 2–3× weekly in chronic protocols.',
+    storage: 'Store lyophilized at -20°C. After reconstitution, refrigerate at 2–8°C and use within 30 days.',
+    reconstitution: 'Typical: 2 mL bacteriostatic water.',
+    references: [
+      { title: 'Goldstein et al. — Tβ4 actin sequestration',                      url: 'https://pubmed.ncbi.nlm.nih.gov/?term=thymosin+beta+4+actin' },
+      { title: 'Crockford et al. — Tβ4 in cardiac & dermal repair',               url: 'https://pubmed.ncbi.nlm.nih.gov/?term=TB-500+cardiac+repair' },
+    ],
+    relatedIds: ['bpc-tb500', 'ghk-cu', 'tesamorelin'],
   },
   {
     id: 'tesamorelin',
@@ -34,6 +61,17 @@ window.PEPGUIDE_PRODUCTS = [
     priceCents: 9900,
     image: 'assets/img/vial-tesamorelin.png',
     badge: 'PEPTIDE',
+    description: 'Stabilized synthetic analog of growth hormone-releasing hormone (GHRH 1-44) with an N-terminal modification that extends plasma stability.',
+    mechanism: 'Studied for endogenous GH and IGF-1 axis stimulation. FDA-approved for HIV-associated lipodystrophy research; broader GH-axis research applications continue.',
+    halfLife: '~25–40 minutes in published clinical research.',
+    doseRange: 'Research literature: 1–2 mg daily SC in studied protocols.',
+    storage: 'Store lyophilized at 2–8°C. After reconstitution, refrigerate at 2–8°C and use within 14 days.',
+    reconstitution: 'Typical: 1.5 mL bacteriostatic water.',
+    references: [
+      { title: 'Falutz et al. — Tesamorelin in HIV lipodystrophy',                 url: 'https://pubmed.ncbi.nlm.nih.gov/?term=tesamorelin+falutz' },
+      { title: 'Stanley et al. — Tesamorelin and visceral adiposity',              url: 'https://pubmed.ncbi.nlm.nih.gov/?term=tesamorelin+visceral' },
+    ],
+    relatedIds: ['sermorelin', 'nad', 'ghk-cu'],
   },
   {
     id: 'sermorelin',
@@ -43,6 +81,17 @@ window.PEPGUIDE_PRODUCTS = [
     priceCents: 8900,
     image: 'assets/img/vial-sermorelin.png',
     badge: 'PEPTIDE',
+    description: 'Synthetic analog of the first 29 amino acids of growth hormone-releasing hormone (GHRH 1-29) — the minimum biologically-active fragment.',
+    mechanism: 'Binds GHRH receptor on anterior pituitary somatotrophs to stimulate pulsatile endogenous GH release. Studied as a research tool for GH-axis investigation.',
+    halfLife: '~10–20 minutes — much shorter than Tesamorelin due to lack of N-terminal stabilization.',
+    doseRange: 'Research literature: 100–500 μg in studied protocols.',
+    storage: 'Store lyophilized at 2–8°C. After reconstitution, refrigerate and use within 14 days.',
+    reconstitution: 'Typical: 1.5 mL bacteriostatic water.',
+    references: [
+      { title: 'Walker — Sermorelin in pediatric GH-axis research',                url: 'https://pubmed.ncbi.nlm.nih.gov/?term=sermorelin+walker' },
+      { title: 'Khorram et al. — GHRH-29 effects on body composition',             url: 'https://pubmed.ncbi.nlm.nih.gov/?term=GHRH+1-29+body+composition' },
+    ],
+    relatedIds: ['tesamorelin', 'nad', 'ghk-cu'],
   },
   {
     id: 'selank',
@@ -52,6 +101,17 @@ window.PEPGUIDE_PRODUCTS = [
     priceCents: 8900,
     image: 'assets/img/vial-selank.png',
     badge: 'PEPTIDE',
+    description: 'Synthetic heptapeptide developed in Russia as a stable analog of tuftsin (a natural immunomodulating tetrapeptide).',
+    mechanism: 'Studied for anxiolytic, immunomodulating, and BDNF-modulating effects in research models. Originally characterized in Russian neuroscience literature.',
+    halfLife: 'Very short (~5 min IV); intranasal administration extends apparent CNS exposure in published research.',
+    doseRange: 'Research literature: 250–750 μg intranasal in studied protocols.',
+    storage: 'Store lyophilized at -20°C. After reconstitution, refrigerate at 2–8°C and use within 30 days.',
+    reconstitution: 'Typical: 2 mL bacteriostatic water.',
+    references: [
+      { title: 'Kozlovskaya et al. — Selank anxiolytic profile',                   url: 'https://pubmed.ncbi.nlm.nih.gov/?term=selank+anxiolytic' },
+      { title: 'Inozemtseva et al. — Selank and BDNF expression',                  url: 'https://pubmed.ncbi.nlm.nih.gov/?term=selank+BDNF' },
+    ],
+    relatedIds: ['semax', 'nad'],
   },
   {
     id: 'semax',
@@ -61,6 +121,17 @@ window.PEPGUIDE_PRODUCTS = [
     priceCents: 9900,
     image: 'assets/img/vial-semax.png',
     badge: 'PEPTIDE',
+    description: 'Synthetic heptapeptide based on a fragment of adrenocorticotropic hormone (ACTH 4-10) with a C-terminal Pro-Gly-Pro extension for stability.',
+    mechanism: 'Studied for nootropic and neuroprotective endpoints, BDNF/NGF expression, and dopaminergic modulation in research models. Used in Russian clinical research for ischemic stroke.',
+    halfLife: 'Short (~15 min IV in published research); intranasal extends apparent CNS exposure.',
+    doseRange: 'Research literature: 0.5–3 mg intranasal in studied protocols.',
+    storage: 'Store lyophilized at -20°C. After reconstitution, refrigerate and use within 30 days.',
+    reconstitution: 'Typical: 2.5 mL bacteriostatic water.',
+    references: [
+      { title: 'Asmarin et al. — Semax in neuroprotection',                        url: 'https://pubmed.ncbi.nlm.nih.gov/?term=semax+neuroprotection' },
+      { title: 'Dolotov et al. — Semax and BDNF/NGF expression',                   url: 'https://pubmed.ncbi.nlm.nih.gov/?term=semax+BDNF' },
+    ],
+    relatedIds: ['selank', 'nad'],
   },
   {
     id: 'ghk-cu',
@@ -70,6 +141,17 @@ window.PEPGUIDE_PRODUCTS = [
     priceCents: 11900,
     image: 'assets/img/vial-ghk-cu.png',
     badge: 'PEPTIDE',
+    description: 'Naturally-occurring copper-binding tripeptide (Gly-His-Lys) complexed with copper(II). Pickart-characterized in 1973.',
+    mechanism: 'Studied for fibroblast activity, ECM remodeling, glycosaminoglycan synthesis, hair-follicle research, and skin-regeneration models. Acts as a copper carrier with established affinity for multiple signaling pathways.',
+    halfLife: 'Plasma half-life is short (minutes); tissue-level effects persist longer in research models.',
+    doseRange: 'Topical and SC routes both characterized; SC research protocols typically 1–2 mg.',
+    storage: 'Store lyophilized at -20°C. After reconstitution, refrigerate at 2–8°C and use within 30 days.',
+    reconstitution: 'Typical: 5 mL bacteriostatic water.',
+    references: [
+      { title: 'Pickart — GHK-Cu and skin regeneration (review)',                  url: 'https://pubmed.ncbi.nlm.nih.gov/?term=GHK-Cu+pickart' },
+      { title: 'Pickart & Margolina — GHK in tissue remodeling',                   url: 'https://pubmed.ncbi.nlm.nih.gov/?term=GHK+tissue+remodeling' },
+    ],
+    relatedIds: ['bpc-tb500', 'tb-500', 'melanotan-1'],
   },
   {
     id: 'melanotan-1',
@@ -79,6 +161,17 @@ window.PEPGUIDE_PRODUCTS = [
     priceCents: 6900,
     image: 'assets/img/vial-melanotan.png',
     badge: 'PEPTIDE',
+    description: 'Synthetic linear analog of α-melanocyte-stimulating hormone (α-MSH), with substitutions that extend stability vs. native α-MSH.',
+    mechanism: 'Selective agonist of melanocortin receptor 1 (MC1R). Studied for melanogenesis, photoprotection, and pigmentation research models.',
+    halfLife: '~1 hour in published research (longer than endogenous α-MSH).',
+    doseRange: 'Research literature: 0.025–0.05 mg/kg in studied protocols.',
+    storage: 'Store lyophilized at -20°C. After reconstitution, refrigerate at 2–8°C and use within 30 days.',
+    reconstitution: 'Typical: 2 mL bacteriostatic water.',
+    references: [
+      { title: 'Dorr et al. — Afamelanotide / Melanotan-I human studies',          url: 'https://pubmed.ncbi.nlm.nih.gov/?term=afamelanotide' },
+      { title: 'Hadley & Dorr — Melanocortin agonist pharmacology',                url: 'https://pubmed.ncbi.nlm.nih.gov/?term=melanocortin+agonist' },
+    ],
+    relatedIds: ['ghk-cu', 'nad'],
   },
   {
     id: 'nad',
@@ -88,24 +181,57 @@ window.PEPGUIDE_PRODUCTS = [
     priceCents: 9900,
     image: 'assets/img/vial-nad.png',
     badge: 'PEPTIDE',
+    description: 'Nicotinamide adenine dinucleotide — a critical coenzyme present in every living cell, central to energy metabolism and sirtuin-mediated signaling.',
+    mechanism: 'Studied for mitochondrial function, sirtuin (SIRT1-7) activation, DNA-repair (PARP) cofactor supply, and aging research. Cellular NAD+ pools decline with age in published research.',
+    halfLife: 'Plasma half-life is very short; intracellular pool dynamics are the relevant endpoint.',
+    doseRange: 'Research protocols vary widely; SC and IV routes both characterized.',
+    storage: 'Store lyophilized at -20°C. After reconstitution, refrigerate at 2–8°C and use within 14 days. Particularly sensitive to light.',
+    reconstitution: 'Typical: 10–15 mL bacteriostatic water for the 750 mg vial.',
+    references: [
+      { title: 'Imai & Guarente — NAD+ and sirtuins in aging',                     url: 'https://pubmed.ncbi.nlm.nih.gov/?term=NAD+sirtuin+aging' },
+      { title: 'Verdin — NAD+ metabolism in health and disease',                   url: 'https://pubmed.ncbi.nlm.nih.gov/?term=NAD+verdin' },
+    ],
+    relatedIds: ['ghk-cu', 'tesamorelin', 'sermorelin'],
   },
   {
     id: 'retatrutide-6mg',
     name: 'Retatrutide',
-    category: 'GLP-1 / GIP / Glucagon',
+    category: 'GLP-1 / GIP / Glucagon Triple Agonist',
     dosage: '6 mg',
     priceCents: 19900,
     image: 'assets/img/vial-retatrutide-6mg.png',
     badge: 'PEPTIDE',
+    description: 'Investigational once-weekly triple agonist of GLP-1, GIP, and glucagon receptors. Developed for metabolic and body-composition research.',
+    mechanism: 'Activates three incretin/glucagon receptor pathways simultaneously. Studied for metabolic regulation, body-composition, and glycemic endpoints in published Phase 1/2 clinical research.',
+    halfLife: '~6 days in published research (supports once-weekly research protocols).',
+    doseRange: 'Phase 2 research protocols: titrated 0.5 → 12 mg weekly across studied arms.',
+    storage: 'Store lyophilized at -20°C. After reconstitution, refrigerate at 2–8°C and use within 30 days.',
+    reconstitution: 'Typical: 1.5 mL bacteriostatic water.',
+    references: [
+      { title: 'Jastreboff et al. — Retatrutide Phase 2 obesity research (NEJM)', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=retatrutide+jastreboff' },
+      { title: 'Rosenstock et al. — Retatrutide in type 2 diabetes research',     url: 'https://pubmed.ncbi.nlm.nih.gov/?term=retatrutide+rosenstock' },
+    ],
+    relatedIds: ['retatrutide-8mg', 'tesamorelin'],
   },
   {
     id: 'retatrutide-8mg',
     name: 'Retatrutide',
-    category: 'GLP-1 / GIP / Glucagon',
+    category: 'GLP-1 / GIP / Glucagon Triple Agonist',
     dosage: '8 mg',
     priceCents: 24900,
     image: 'assets/img/vial-retatrutide-8mg.png',
     badge: 'PEPTIDE',
+    description: 'Investigational once-weekly triple agonist of GLP-1, GIP, and glucagon receptors. Developed for metabolic and body-composition research.',
+    mechanism: 'Activates three incretin/glucagon receptor pathways simultaneously. Studied for metabolic regulation, body-composition, and glycemic endpoints in published Phase 1/2 clinical research.',
+    halfLife: '~6 days in published research (supports once-weekly research protocols).',
+    doseRange: 'Phase 2 research protocols: titrated 0.5 → 12 mg weekly across studied arms.',
+    storage: 'Store lyophilized at -20°C. After reconstitution, refrigerate at 2–8°C and use within 30 days.',
+    reconstitution: 'Typical: 2 mL bacteriostatic water for the 8 mg vial.',
+    references: [
+      { title: 'Jastreboff et al. — Retatrutide Phase 2 obesity research (NEJM)', url: 'https://pubmed.ncbi.nlm.nih.gov/?term=retatrutide+jastreboff' },
+      { title: 'Rosenstock et al. — Retatrutide in type 2 diabetes research',     url: 'https://pubmed.ncbi.nlm.nih.gov/?term=retatrutide+rosenstock' },
+    ],
+    relatedIds: ['retatrutide-6mg', 'tesamorelin'],
   },
 ];
 

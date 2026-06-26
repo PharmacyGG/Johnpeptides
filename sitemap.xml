@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://pepguidance.com/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://pepguidance.com/privacy.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.3</priority>
-  </url>
-  <url>
-    <loc>https://pepguidance.com/terms.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.3</priority>
-  </url>
+  <url><loc>https://pepguidance.com/</loc>            <changefreq>weekly</changefreq>  <priority>1.0</priority></url>
+
+  <url><loc>https://pepguidance.com/products/bpc-tb500</loc>       <changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://pepguidance.com/products/tb-500</loc>          <changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://pepguidance.com/products/tesamorelin</loc>     <changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://pepguidance.com/products/sermorelin</loc>      <changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://pepguidance.com/products/selank</loc>          <changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://pepguidance.com/products/semax</loc>           <changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://pepguidance.com/products/ghk-cu</loc>          <changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://pepguidance.com/products/melanotan-1</loc>     <changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://pepguidance.com/products/nad</loc>             <changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://pepguidance.com/products/retatrutide-6mg</loc> <changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://pepguidance.com/products/retatrutide-8mg</loc> <changefreq>weekly</changefreq><priority>0.9</priority></url>
+
+  <url><loc>https://pepguidance.com/privacy.html</loc> <changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://pepguidance.com/terms.html</loc>   <changefreq>monthly</changefreq><priority>0.3</priority></url>
 </urlset>
