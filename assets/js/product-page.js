@@ -123,8 +123,8 @@
   const addBtn = document.getElementById('pdp-add');
   if (addBtn) addBtn.dataset.addToCart = product.id;
 
-  const coa = document.getElementById('pdp-coa');
-  if (coa) coa.href = `/coa/${product.id}.html`;
+  // (COA download link removed from the template for now — file
+  // at /coa/<id>.html remains in the repo as a design reference.)
 
   // References
   const refsEl = document.getElementById('pdp-references');
