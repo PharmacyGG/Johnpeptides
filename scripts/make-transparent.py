@@ -18,8 +18,10 @@ PARTS = [
 ]
 IMG_DIR = Path(__file__).resolve().parent.parent / "assets" / "img"
 
-# Cream target color
-TR, TG, TB = 0xF5, 0xED, 0xE3
+# Background target color (was cream #F5EDE3, now off-white #F2F4F7 per brand v2).
+# Try both — whichever a given image was generated against.
+BG_TARGETS = [(0xF5, 0xED, 0xE3), (0xF2, 0xF4, 0xF7)]
+TR, TG, TB = BG_TARGETS[1]   # default for new generations
 # Chebyshev-distance thresholds:
 HARD_CUT = 14   # <= this distance from cream → fully transparent
 SOFT_END = 36   # >= this distance from cream → fully opaque
@@ -27,7 +29,11 @@ SOFT_END = 36   # >= this distance from cream → fully opaque
 
 
 def keyed_alpha(r: int, g: int, b: int) -> int:
-    d = max(abs(r - TR), abs(g - TG), abs(b - TB))
+    # Distance to the NEAREST of the candidate backgrounds
+    d = min(
+        max(abs(r - tr), abs(g - tg), abs(b - tb))
+        for (tr, tg, tb) in BG_TARGETS
+    )
     if d <= HARD_CUT:
         return 0
     if d >= SOFT_END:
