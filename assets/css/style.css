@@ -760,6 +760,150 @@ body { font-family: var(--font-sans); color: var(--ink); background: var(--offwh
 }
 
 /* ============================================
+   CART (drawer + buttons + badge)
+   ============================================ */
+.cart-drawer {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  background: rgba(15, 27, 45, 0.5);
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.cart-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: min(420px, 92%);
+  height: 100%;
+  background: var(--offwhite);
+  padding: 1.5rem 1.5rem 1.5rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  box-shadow: -10px 0 40px rgba(15, 27, 45, 0.15);
+}
+.cart-items { flex: 1; min-height: 0; overflow-y: auto; }
+.cart-line {
+  display: grid;
+  grid-template-columns: 64px 1fr auto;
+  gap: 0.85rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(15, 27, 45, 0.06);
+}
+.cart-line-img {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  background: var(--offwhite-2);
+  border-radius: 10px;
+}
+.cart-line-info { min-width: 0; }
+.cart-line-name {
+  font-weight: 600;
+  color: var(--ink);
+  font-size: 0.95rem;
+  margin-bottom: 0.15rem;
+}
+.cart-line-meta {
+  font-size: 0.75rem;
+  color: var(--ink-2);
+  opacity: 0.7;
+  margin-bottom: 0.5rem;
+}
+.cart-line-qty { display: flex; align-items: center; gap: 0.5rem; }
+.qty-btn {
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  border: 1px solid rgba(15, 27, 45, 0.15);
+  background: white;
+  color: var(--ink);
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+.qty-btn:hover { background: var(--orange-soft); border-color: var(--orange); }
+.qty-num {
+  min-width: 22px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+.qty-remove {
+  margin-left: 0.5rem;
+  background: none;
+  border: none;
+  font-size: 0.72rem;
+  color: var(--ink-2);
+  opacity: 0.6;
+  cursor: pointer;
+  text-decoration: underline;
+}
+.qty-remove:hover { color: var(--orange); opacity: 1; }
+.cart-line-price {
+  font-weight: 600;
+  color: var(--ink);
+  white-space: nowrap;
+}
+.cart-empty {
+  flex: 1;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 3rem 1rem;
+}
+#cart-empty { display: flex; }   /* initial state until JS runs */
+.cart-footer {
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(15, 27, 45, 0.08);
+}
+.cta-primary:disabled,
+.cta-primary[disabled] { opacity: 0.45; cursor: not-allowed; filter: saturate(0.6); }
+
+/* Cart count badge on the nav cart icon */
+.cart-badge {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  min-width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  background: var(--orange);
+  color: white;
+  font-size: 0.65rem;
+  font-weight: 700;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 0 5px;
+  line-height: 1;
+  pointer-events: none;
+}
+
+/* Add-to-cart button on each compound card */
+.compound-add {
+  align-self: flex-start;
+  background: none;
+  border: none;
+  color: var(--orange);
+  font-weight: 600;
+  font-size: 0.85rem;
+  padding: 0;
+  cursor: pointer;
+  transition: padding-left 0.2s ease, color 0.15s ease;
+}
+.compound-add:hover {
+  color: var(--orange-glow);
+  padding-left: 4px;
+}
+
+/* ============================================
    MOBILE MENU (overlay)
    ============================================ */
 /* Menu is driven entirely by inline styles set by JS — no CSS transitions

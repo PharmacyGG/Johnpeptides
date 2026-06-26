@@ -113,8 +113,9 @@
           <span class="hex-dot"></span>
           Research Club
         </button>
-        <button class="w-10 h-10 rounded-full hover:bg-ink/5 flex items-center justify-center transition">
+        <button class="relative w-10 h-10 rounded-full hover:bg-ink/5 flex items-center justify-center transition" data-cart-open aria-label="Open cart">
           <svg class="w-5 h-5 text-ink" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+          <span class="cart-badge" data-cart-badge style="display:none">0</span>
         </button>
         <button class="hidden md:flex items-center gap-2 px-3 py-2 rounded-full border border-ink/10 text-sm hover:bg-ink/5 transition">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-7 8-7s8 3 8 7"/></svg>
@@ -127,6 +128,39 @@
       </div>
     </div>
   </nav>
+
+  <!-- Cart drawer -->
+  <div id="cart-drawer" class="cart-drawer" aria-hidden="true">
+    <div class="cart-panel">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-xl font-semibold tracking-tight"><span class="text-navy">Your</span> <span class="text-blue">cart</span></h2>
+        <button id="cart-close" class="w-10 h-10 rounded-full hover:bg-ink/5 flex items-center justify-center" aria-label="Close cart">
+          <svg class="w-6 h-6 text-ink" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 6l12 12M6 18L18 6"/></svg>
+        </button>
+      </div>
+
+      <div id="cart-items" class="cart-items"></div>
+
+      <div id="cart-empty" class="cart-empty">
+        <p class="text-ink/60">Your cart is empty.</p>
+        <p class="text-ink/40 text-sm mt-2">Browse the compounds below and tap <span class="text-orange font-medium">Add to cart</span>.</p>
+      </div>
+
+      <div class="cart-footer">
+        <div class="flex items-center justify-between mb-4 text-sm">
+          <span class="text-ink/60">Subtotal</span>
+          <span id="cart-subtotal" class="text-ink font-semibold text-base">$0.00</span>
+        </div>
+        <p class="text-[11px] text-ink/45 mb-4 leading-relaxed">
+          Shipping &amp; taxes calculated at checkout. By checking out you agree these compounds will be used <strong>exclusively for laboratory research</strong>.
+        </p>
+        <button id="cart-checkout" class="cta-primary w-full justify-center" disabled>
+          Checkout
+          <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
 
   <!-- Mobile menu overlay -->
   <div id="mobile-menu" class="mobile-menu" aria-hidden="true">
@@ -399,86 +433,86 @@
       </div>
 
       <div class="compound-grid grid grid-cols-2 lg:grid-cols-4 gap-5">
-        <a href="#" class="compound-card">
+        <div class="compound-card">
           <div class="compound-badge">PEPTIDE</div>
           <div class="compound-stock">In stock</div>
           <div class="compound-img" style="background-image:url('assets/img/vial-ghk-cu.png');"></div>
           <div class="compound-info">
             <div class="compound-name">GHK-Cu</div>
             <div class="compound-tag">100 mg · $70</div>
-            <div class="compound-learn">Learn more →</div>
+            <button class="compound-add" data-add-to-cart="ghk-cu">Add to cart →</button>
           </div>
-        </a>
-        <a href="#" class="compound-card">
+        </div>
+        <div class="compound-card">
           <div class="compound-badge">PEPTIDE</div>
           <div class="compound-stock">In stock</div>
           <div class="compound-img" style="background-image:url('assets/img/vial-bpc-157.png');"></div>
           <div class="compound-info">
             <div class="compound-name">BPC-157</div>
             <div class="compound-tag">10 mg · $55</div>
-            <div class="compound-learn">Learn more →</div>
+            <button class="compound-add" data-add-to-cart="bpc-157">Add to cart →</button>
           </div>
-        </a>
-        <a href="#" class="compound-card">
+        </div>
+        <div class="compound-card">
           <div class="compound-badge compound-badge-blend">BLEND</div>
           <div class="compound-stock">In stock</div>
           <div class="compound-img" style="background-image:url('assets/img/vial-bpc-tb500.png');"></div>
           <div class="compound-info">
             <div class="compound-name">BPC-157 + TB-500</div>
             <div class="compound-tag">10/10 mg · $115</div>
-            <div class="compound-learn">Learn more →</div>
+            <button class="compound-add" data-add-to-cart="bpc-tb500">Add to cart →</button>
           </div>
-        </a>
-        <a href="#" class="compound-card">
+        </div>
+        <div class="compound-card">
           <div class="compound-badge compound-badge-blend">BLEND</div>
           <div class="compound-stock">In stock</div>
           <div class="compound-img" style="background-image:url('assets/img/vial-cjc-ipamorelin.png');"></div>
           <div class="compound-info">
             <div class="compound-name">CJC-1295 + Ipamorelin</div>
             <div class="compound-tag">5/5 mg · $85</div>
-            <div class="compound-learn">Learn more →</div>
+            <button class="compound-add" data-add-to-cart="cjc-ipamorelin">Add to cart →</button>
           </div>
-        </a>
-        <a href="#" class="compound-card">
+        </div>
+        <div class="compound-card">
           <div class="compound-badge">PEPTIDE</div>
           <div class="compound-stock">In stock</div>
           <div class="compound-img" style="background-image:url('assets/img/vial-tesamorelin.png');"></div>
           <div class="compound-info">
             <div class="compound-name">Tesamorelin</div>
             <div class="compound-tag">10 mg · $130</div>
-            <div class="compound-learn">Learn more →</div>
+            <button class="compound-add" data-add-to-cart="tesamorelin">Add to cart →</button>
           </div>
-        </a>
-        <a href="#" class="compound-card">
+        </div>
+        <div class="compound-card">
           <div class="compound-badge">PEPTIDE</div>
           <div class="compound-stock">In stock</div>
           <div class="compound-img" style="background-image:url('assets/img/vial-nad.png');"></div>
           <div class="compound-info">
             <div class="compound-name">NAD+</div>
             <div class="compound-tag">500 mg · $65</div>
-            <div class="compound-learn">Learn more →</div>
+            <button class="compound-add" data-add-to-cart="nad">Add to cart →</button>
           </div>
-        </a>
-        <a href="#" class="compound-card">
+        </div>
+        <div class="compound-card">
           <div class="compound-badge">PEPTIDE</div>
           <div class="compound-stock">In stock</div>
           <div class="compound-img" style="background-image:url('assets/img/vial-epithalon.png');"></div>
           <div class="compound-info">
             <div class="compound-name">Epithalon</div>
             <div class="compound-tag">50 mg · $125</div>
-            <div class="compound-learn">Learn more →</div>
+            <button class="compound-add" data-add-to-cart="epithalon">Add to cart →</button>
           </div>
-        </a>
-        <a href="#" class="compound-card">
+        </div>
+        <div class="compound-card">
           <div class="compound-badge compound-badge-blend">BLEND</div>
           <div class="compound-stock">In stock</div>
           <div class="compound-img" style="background-image:url('assets/img/vial-glow.png');"></div>
           <div class="compound-info">
             <div class="compound-name">GLOW</div>
             <div class="compound-tag">GHK-Cu+BPC+TB · $150</div>
-            <div class="compound-learn">Learn more →</div>
+            <button class="compound-add" data-add-to-cart="glow">Add to cart →</button>
           </div>
-        </a>
+        </div>
       </div>
     </div>
   </section>
@@ -604,6 +638,8 @@
 
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="assets/js/products.js?v=20260626"></script>
+  <script src="assets/js/cart.js?v=20260626"></script>
   <script src="assets/js/main.js?v=20260626"></script>
 </body>
 </html>

@@ -1,0 +1,9 @@
+{
+  "name": "pepguide",
+  "version": "0.1.0",
+  "private": true,
+  "description": "PepGuide static site + Stripe Checkout serverless function for Vercel",
+  "dependencies": {
+    "stripe": "^16.0.0"
+  }
+}
