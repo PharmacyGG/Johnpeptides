@@ -4,7 +4,9 @@
 .DS_Store
 Thumbs.db
 
-# Local working files that don't belong in the website repo
+# Local working files / source material that don't belong in the website repo
 *.prproj
 Adobe Premiere Pro Auto-Save/
 Sequence*.mp4
+list and strength.png
+list price final.*
