@@ -102,6 +102,8 @@
     if (!drawerEl) return;
     drawerEl.style.cssText = 'opacity:1;visibility:visible;pointer-events:auto;';
     document.body.classList.add('menu-open');
+    // Lazy-load PayPal once we actually need the buttons
+    if (Object.keys(cart).length > 0) mountPayPalButtons();
   }
   function closeDrawer() {
     if (!drawerEl) return;
@@ -140,40 +142,98 @@
     }
   });
 
-  // ---- checkout ----
-  checkoutBtn?.addEventListener('click', async () => {
-    const items = Object.values(cart).map(line => {
-      const p = products[line.id];
-      return p ? { id: p.id, name: p.name, priceCents: p.priceCents,
-                   stripePriceId: p.stripePriceId, qty: line.qty } : null;
-    }).filter(Boolean);
-    if (!items.length) return;
+  // ---- PayPal Smart Buttons ----
+  // Lazy-load the SDK on first cart open (avoids a payments-script call
+  // on every page view), then render PayPal Buttons that talk to our
+  // /api/paypal-* endpoints for server-validated order create + capture.
+  let paypalLoaded = false;
+  let paypalSdkPromise = null;
+  const paypalContainer = document.getElementById('paypal-button-container');
+  const paypalNotice    = document.getElementById('paypal-notice');
 
-    checkoutBtn.disabled = true;
-    checkoutBtn.textContent = 'Redirecting…';
-    try {
-      const resp = await fetch('/api/create-checkout-session', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ items }),
+  async function loadPayPalSdk() {
+    if (paypalSdkPromise) return paypalSdkPromise;
+    paypalSdkPromise = (async () => {
+      const cfgResp = await fetch('/api/paypal-config');
+      if (!cfgResp.ok) throw new Error('Could not reach /api/paypal-config');
+      const cfg = await cfgResp.json();
+      if (!cfg.clientId) {
+        throw new Error('PAYPAL_CLIENT_ID is not set on the server');
+      }
+      await new Promise((resolve, reject) => {
+        const s = document.createElement('script');
+        s.src =
+          'https://www.paypal.com/sdk/js?client-id=' +
+          encodeURIComponent(cfg.clientId) +
+          '&currency=' + encodeURIComponent(cfg.currency || 'USD') +
+          '&intent=capture' +
+          '&enable-funding=venmo,paylater';
+        s.onload = resolve;
+        s.onerror = () => reject(new Error('PayPal SDK failed to load'));
+        document.head.appendChild(s);
       });
-      const data = await resp.json();
-      if (data.url) { window.location.href = data.url; return; }
-      if (data.error) throw new Error(data.error);
-      throw new Error('Unexpected response from checkout endpoint');
+      paypalLoaded = true;
+    })();
+    return paypalSdkPromise;
+  }
+
+  async function mountPayPalButtons() {
+    if (!paypalContainer) return;
+    if (paypalContainer.dataset.mounted === '1') return;
+    try {
+      paypalNotice && (paypalNotice.textContent = 'Loading PayPal…');
+      await loadPayPalSdk();
+      paypalNotice && (paypalNotice.textContent = '');
+      paypalContainer.dataset.mounted = '1';
+
+      window.paypal.Buttons({
+        style: { color: 'gold', shape: 'pill', label: 'paypal', height: 48 },
+        createOrder: async () => {
+          const items = Object.values(cart).map(line => {
+            const p = products[line.id];
+            return p ? { id: p.id, name: p.name, priceCents: p.priceCents, qty: line.qty } : null;
+          }).filter(Boolean);
+          if (!items.length) throw new Error('Cart is empty');
+          const resp = await fetch('/api/paypal-create-order', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ items }),
+          });
+          const data = await resp.json();
+          if (!resp.ok || !data.id) throw new Error(data.error || 'Could not create order');
+          return data.id;
+        },
+        onApprove: async (data) => {
+          const resp = await fetch('/api/paypal-capture-order', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ orderId: data.orderID }),
+          });
+          const result = await resp.json();
+          if (resp.ok && (result.status === 'COMPLETED' || result.captureId)) {
+            window.location.href = '/success.html?order=' + encodeURIComponent(data.orderID);
+          } else {
+            alert('Payment did not complete: ' + (result.error || 'unknown error'));
+          }
+        },
+        onCancel: () => { /* user dismissed PayPal — keep cart as-is */ },
+        onError: (err) => {
+          console.error('PayPal error:', err);
+          alert('PayPal encountered an error. Please try again or contact support.');
+        },
+      }).render('#paypal-button-container');
     } catch (err) {
-      checkoutBtn.disabled = false;
-      checkoutBtn.textContent = 'Checkout';
-      alert(
-        'Checkout is not configured yet.\n\n' +
-        'Once Stripe is set up:\n' +
-        '  1. Add STRIPE_SECRET_KEY to Vercel env vars\n' +
-        '  2. Create Stripe Products + Prices and paste the\n' +
-        '     `price_…` IDs into assets/js/products.js\n\n' +
-        'Error: ' + err.message
-      );
+      paypalContainer.innerHTML = '';
+      paypalContainer.dataset.mounted = '';
+      if (paypalNotice) {
+        paypalNotice.innerHTML =
+          '<strong>PayPal is not configured yet.</strong> ' +
+          'Add <code>PAYPAL_CLIENT_ID</code> and <code>PAYPAL_CLIENT_SECRET</code> ' +
+          'to your Vercel env vars (see PAYPAL_SETUP.md). ' +
+          '<br><span style="opacity:.6">' + err.message + '</span>';
+      }
     }
-  });
+  }
 
   // ---- initial paint ----
   render();
