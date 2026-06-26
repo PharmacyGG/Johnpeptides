@@ -28,7 +28,7 @@ Follow the DNS instructions (add 3 records — SPF, DKIM, MX). Wait
 may land in spam. Domain verification is worth the 5 minutes.
 
 Once verified, use a sender like `noreply@pepguidance.com` or
-`hello@pepguidance.com`.
+`support@pepguidance.com`.
 
 ## 4. Add env vars in Vercel
 
