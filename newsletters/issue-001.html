@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PepGuide Research Briefing · Issue 001 — The Incretin Pipeline</title>
+<meta name="description" content="A research-context briefing on Retatrutide (LY3437943) and Survodutide (BI 456906), two multi-agonist peptides in late-stage clinical trials." />
+<link rel="icon" type="image/png" href="/assets/img/logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  /* ---- PepGuide brand colors ---- */
+  :root {
+    --orange:#FF7A1A; --orange-soft:#FFE0CC; --blue:#6FB6E6; --blue-soft:#D8E9F6;
+    --navy:#0F1B2D; --navy-2:#1A2940; --navy-3:#243759;
+    --ink:#0F1B2D; --ink-2:#3A4763; --ink-3:#6B7790;
+    --offwhite:#F2F4F7; --offwhite-2:#E6E9EE; --rule:rgba(15,27,45,0.10);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--offwhite); color: var(--ink); font-family: 'Poppins', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  body { padding: 32px 16px 64px; }
+
+  .page {
+    max-width: 760px; margin: 0 auto; background: #fff; padding: 48px 56px 56px;
+    box-shadow: 0 24px 60px -28px rgba(15,27,45,0.18); border: 1px solid var(--rule);
+  }
+
+  /* ---- masthead ---- */
+  .masthead { display: flex; align-items: center; justify-content: space-between; padding-bottom: 18px; border-bottom: 2px solid var(--navy); margin-bottom: 32px; }
+  .brand { display: flex; align-items: center; gap: 12px; }
+  .brand img { width: 38px; height: auto; }
+  .brand-name { font-weight: 600; font-size: 18px; letter-spacing: -0.01em; line-height: 1; }
+  .brand-name .pep  { color: var(--navy); }
+  .brand-name .gd   { color: var(--blue-deep, #3E7AAD); }
+  .brand-tag { font-size: 8px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(15,27,45,0.55); margin-top: 4px; font-weight: 500; }
+  .issue-badge { text-align: right; }
+  .issue-badge .label { display: inline-block; background: var(--orange); color: #fff; font-size: 9px; font-weight: 600; letter-spacing: 0.18em; padding: 4px 10px; border-radius: 999px; text-transform: uppercase; }
+  .issue-badge .date  { font-size: 11px; color: var(--ink-3); margin-top: 6px; }
+
+  /* ---- title block ---- */
+  .eyebrow { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--orange); font-weight: 600; margin-bottom: 10px; }
+  h1.title { font-size: 36px; font-weight: 600; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 12px; color: var(--navy); }
+  h1.title .accent { color: var(--orange); font-style: italic; font-weight: 600; }
+  .lede { font-size: 15px; line-height: 1.6; color: var(--ink-2); margin-bottom: 36px; max-width: 620px; }
+
+  /* ---- peptide spotlight ---- */
+  .spotlight { padding: 28px 0; border-top: 1px solid var(--rule); }
+  .spotlight:last-of-type { border-bottom: 1px solid var(--rule); }
+  .spotlight-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 14px; gap: 16px; }
+  .spotlight-head h2 { font-size: 26px; font-weight: 600; color: var(--navy); letter-spacing: -0.01em; line-height: 1.15; }
+  .alt-names { font-size: 11px; color: var(--ink-3); letter-spacing: 0.05em; }
+  .alt-names code { font-family: ui-monospace, 'SF Mono', Menlo, monospace; background: var(--offwhite-2); padding: 1px 6px; border-radius: 4px; font-size: 10px; }
+  .pill-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+  .pill { display: inline-block; background: var(--orange-soft); color: var(--orange); font-size: 10px; font-weight: 600; letter-spacing: 0.06em; padding: 3px 9px; border-radius: 999px; text-transform: uppercase; }
+  .pill.cool { background: var(--blue-soft); color: var(--blue-deep, #3E7AAD); }
+
+  .row { display: grid; grid-template-columns: 130px 1fr; gap: 14px; padding: 10px 0; border-bottom: 1px dashed var(--rule); align-items: start; }
+  .row:last-of-type { border-bottom: 0; }
+  .row .label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3); font-weight: 600; padding-top: 2px; }
+  .row .body { font-size: 13.5px; line-height: 1.55; color: var(--ink); }
+  .row .body strong { color: var(--navy); }
+
+  .finding { margin: 14px 0; padding: 12px 14px; background: var(--offwhite); border-left: 3px solid var(--orange); border-radius: 0 8px 8px 0; }
+  .finding-title { font-size: 11px; font-weight: 600; color: var(--orange); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; }
+  .finding-body { font-size: 13px; line-height: 1.55; color: var(--ink-2); margin-bottom: 6px; }
+  .finding-cite { font-size: 11px; color: var(--ink-3); font-style: italic; }
+  .finding-cite a { color: var(--blue-deep, #3E7AAD); text-decoration: none; word-break: break-all; }
+  .finding-cite a:hover { text-decoration: underline; }
+
+  .why { margin-top: 16px; padding: 14px 16px; background: var(--navy); color: var(--offwhite); border-radius: 8px; font-size: 12.5px; line-height: 1.6; }
+  .why-label { display: block; font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--orange); font-weight: 600; margin-bottom: 5px; }
+
+  /* ---- footer ---- */
+  .footer { margin-top: 36px; padding-top: 22px; border-top: 2px solid var(--navy); }
+  .disclaimer { font-size: 10.5px; line-height: 1.55; color: var(--ink-3); padding: 12px 14px; border: 1px solid var(--rule); border-radius: 8px; background: var(--offwhite); margin-bottom: 16px; }
+  .disclaimer strong { color: var(--ink); }
+  .footer-meta { display: flex; align-items: center; justify-content: space-between; font-size: 10px; color: var(--ink-3); }
+  .footer-meta a { color: var(--blue-deep, #3E7AAD); text-decoration: none; }
+
+  /* ---- print ---- */
+  @media print {
+    body { background: #fff; padding: 0; }
+    .page { box-shadow: none; border: none; max-width: none; padding: 32px 40px; }
+    .why { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .pill, .issue-badge .label, .finding { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    h2, h1.title, .spotlight { page-break-inside: avoid; }
+  }
+
+  @page { size: Letter; margin: 0.5in; }
+</style>
+</head>
+<body>
+
+<main class="page">
+
+  <header class="masthead">
+    <div class="brand">
+      <img src="/assets/img/logo.png" alt="PepGuide" />
+      <div>
+        <div class="brand-name"><span class="pep">Pep</span><span class="gd">Guide</span></div>
+        <div class="brand-tag">Research Briefing</div>
+      </div>
+    </div>
+    <div class="issue-badge">
+      <span class="label">Issue 001</span>
+      <div class="date">June 2026 &middot; The Incretin Pipeline</div>
+    </div>
+  </header>
+
+  <div class="eyebrow">Monthly Research Briefing</div>
+  <h1 class="title">The next generation of <span class="accent">incretin agonists</span>.</h1>
+  <p class="lede">
+    The first GLP-1 receptor agonists redefined what was possible in metabolic research. The next wave goes further &mdash; combining GLP-1 activity with GIP, glucagon, or amylin signaling to test whether multi-receptor engagement can deliver larger, more durable effects on body weight, hepatic fat, and cardiometabolic endpoints. This briefing covers two of the most-watched candidates currently in Phase 3 trials.
+  </p>
+
+  <!-- ====== Peptide 1: Retatrutide ====== -->
+  <section class="spotlight">
+    <div class="spotlight-head">
+      <h2>Retatrutide</h2>
+      <div class="alt-names"><code>LY3437943</code> &middot; Lilly</div>
+    </div>
+    <div class="pill-row">
+      <span class="pill">Triple Agonist</span>
+      <span class="pill cool">GLP-1 &middot; GIP &middot; Glucagon</span>
+      <span class="pill cool">Phase 3</span>
+    </div>
+
+    <div class="row">
+      <div class="label">Mechanism</div>
+      <div class="body">Once-weekly subcutaneous peptide engineered as a triagonist at GLP-1, GIP, and glucagon receptors. GLP-1R and GIPR activation drive appetite suppression and insulinotropic effects; <strong>glucagon-receptor agonism is hypothesized to increase energy expenditure and hepatic lipid oxidation</strong>, distinguishing it mechanistically from dual GIP/GLP-1 agonists.</div>
+    </div>
+    <div class="row">
+      <div class="label">Trial Status</div>
+      <div class="body">Eli Lilly's <strong>TRIUMPH program</strong> &mdash; &gt;5,800 participants across TRIUMPH-1 (NCT05929066, obesity), TRIUMPH-3 (obesity + CVD), TRIUMPH-4 (obesity + CKD), and the cardiovascular outcomes trial TRIUMPH-Outcomes (NCT06383390). TRIUMPH-1 topline has been released; broader readouts ongoing through 2026.</div>
+    </div>
+
+    <div class="finding">
+      <div class="finding-title">Key Finding · Phase 2 Obesity</div>
+      <div class="finding-body">In a 48-week trial of 338 adults with obesity, retatrutide produced <strong>dose-dependent placebo-subtracted weight reduction of ~22 percentage points</strong> at the 12-mg dose. Adverse-event profile was gastrointestinal-dominant, consistent with prior incretin agonists. Established proof-of-concept for triple-receptor agonism.</div>
+      <div class="finding-cite">Jastreboff AM, et al. <em>N Engl J Med</em> 2023;389(6):514&ndash;526. PMID: 37366315. <br /><a href="https://pubmed.ncbi.nlm.nih.gov/37366315/">pubmed.ncbi.nlm.nih.gov/37366315</a></div>
+    </div>
+    <div class="finding">
+      <div class="finding-title">Key Finding · Hepatic Steatosis</div>
+      <div class="finding-body">48-week Phase 2a substudy in 98 participants with MASLD showed <strong>large relative reductions in MRI-PDFF liver fat at the 8-mg and 12-mg doses</strong>, with a high proportion achieving resolution of hepatic steatosis. No histological/biopsy endpoints assessed in this readout.</div>
+      <div class="finding-cite">Sanyal AJ, et al. <em>Nat Med</em> 2024;30(7):2037&ndash;2048. PMID: 38858523. <br /><a href="https://pubmed.ncbi.nlm.nih.gov/38858523/">pubmed.ncbi.nlm.nih.gov/38858523</a></div>
+    </div>
+
+    <div class="why">
+      <span class="why-label">Why it matters for researchers</span>
+      First triagonist to reach Phase 3 obesity and cardiovascular outcomes trials. The glucagon-receptor arm is the key mechanistic variable distinguishing retatrutide from tirzepatide &mdash; making it a natural research-context comparator for understanding incretin pharmacology.
+    </div>
+  </section>
+
+  <!-- ====== Peptide 2: Survodutide ====== -->
+  <section class="spotlight">
+    <div class="spotlight-head">
+      <h2>Survodutide</h2>
+      <div class="alt-names"><code>BI 456906</code> &middot; Boehringer Ingelheim / Zealand</div>
+    </div>
+    <div class="pill-row">
+      <span class="pill">Dual Agonist</span>
+      <span class="pill cool">GLP-1 &middot; Glucagon</span>
+      <span class="pill cool">Phase 3</span>
+      <span class="pill cool">MASH Breakthrough</span>
+    </div>
+
+    <div class="row">
+      <div class="label">Mechanism</div>
+      <div class="body">Once-weekly subcutaneous glucagon-derived peptide engineered as a dual agonist of GLP-1 and glucagon receptors, with a C18 fatty diacid for extended half-life. Pharmacology data indicate <strong>full GLP-1R and partial GCGR agonism</strong> &mdash; thought to combine appetite suppression with elevated energy expenditure and hepatic lipid oxidation.</div>
+    </div>
+    <div class="row">
+      <div class="label">Trial Status</div>
+      <div class="body">Phase 3 <strong>SYNCHRONIZE</strong> obesity program: SYNCHRONIZE-1 (NCT06066515, completed), SYNCHRONIZE-2 (T2D, NCT06066528, completed), SYNCHRONIZE-CVOT (~5,500 participants, active). Separate Phase 3 MASH program launched following FDA Breakthrough Therapy designation.</div>
+    </div>
+
+    <div class="finding">
+      <div class="finding-title">Key Finding · Phase 2 Dose Finding</div>
+      <div class="finding-body">46-week dose-finding trial in adults with overweight/obesity without T2D showed <strong>dose-dependent placebo-adjusted weight reductions, with the 4.8 mg arm reaching the largest mean reduction</strong>. Gastrointestinal adverse events were dose-related and most common during dose escalation.</div>
+      <div class="finding-cite">Le Roux CW, et al. <em>Lancet Diabetes Endocrinol</em> 2024;12(3):162&ndash;173. PMID: 38330987. <br /><a href="https://pubmed.ncbi.nlm.nih.gov/38330987/">pubmed.ncbi.nlm.nih.gov/38330987</a></div>
+    </div>
+    <div class="finding">
+      <div class="finding-title">Key Finding · Phase 2 MASH</div>
+      <div class="finding-body">48-week trial in 293 adults with biopsy-confirmed MASH (F1&ndash;F3 fibrosis): <strong>62% of participants on 4.8 mg achieved histologic MASH improvement without worsening fibrosis vs 14% on placebo</strong>. Fibrosis improvement signals were also observed.</div>
+      <div class="finding-cite">Sanyal AJ, et al. <em>N Engl J Med</em> 2024;391(4):311&ndash;319. PMID: 38847460. <br /><a href="https://pubmed.ncbi.nlm.nih.gov/38847460/">pubmed.ncbi.nlm.nih.gov/38847460</a></div>
+    </div>
+
+    <div class="why">
+      <span class="why-label">Why it matters for researchers</span>
+      Provides a parallel data point to retatrutide for understanding the contribution of glucagon-receptor agonism to weight loss and hepatic outcomes. The MASH Phase 2 readout is among the largest peptide-based fibrosis studies to date and a key reference for any GCGR-related research design.
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="disclaimer">
+      <strong>Research Use Only.</strong> This briefing summarizes published peer-reviewed research and registered clinical trials for educational purposes within a research context. It is not medical advice and makes no therapeutic claims. Any compounds referenced are discussed in the context of laboratory and clinical research only &mdash; not for human or veterinary consumption, and not for diagnostic, therapeutic, or clinical use outside of properly authorized investigation.
+    </div>
+    <div class="footer-meta">
+      <span>&copy; 2026 PepGuide &middot; <a href="https://pepguidance.com">pepguidance.com</a></span>
+      <span>Issue 001 &middot; June 2026</span>
+    </div>
+  </footer>
+</main>
+
+</body>
+</html>

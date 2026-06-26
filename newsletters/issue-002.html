@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PepGuide Research Briefing · Issue 002 — Beyond GLP-1</title>
+<meta name="description" content="A research-context briefing on CagriSema (cagrilintide + semaglutide) and Elamipretide (SS-31), two peptides expanding the toolbox beyond GLP-1 monotherapy." />
+<link rel="icon" type="image/png" href="/assets/img/logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --orange:#FF7A1A; --orange-soft:#FFE0CC; --blue:#6FB6E6; --blue-soft:#D8E9F6;
+    --navy:#0F1B2D; --navy-2:#1A2940; --navy-3:#243759;
+    --ink:#0F1B2D; --ink-2:#3A4763; --ink-3:#6B7790;
+    --offwhite:#F2F4F7; --offwhite-2:#E6E9EE; --rule:rgba(15,27,45,0.10);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--offwhite); color: var(--ink); font-family: 'Poppins', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  body { padding: 32px 16px 64px; }
+  .page { max-width: 760px; margin: 0 auto; background: #fff; padding: 48px 56px 56px; box-shadow: 0 24px 60px -28px rgba(15,27,45,0.18); border: 1px solid var(--rule); }
+  .masthead { display: flex; align-items: center; justify-content: space-between; padding-bottom: 18px; border-bottom: 2px solid var(--navy); margin-bottom: 32px; }
+  .brand { display: flex; align-items: center; gap: 12px; }
+  .brand img { width: 38px; height: auto; }
+  .brand-name { font-weight: 600; font-size: 18px; letter-spacing: -0.01em; line-height: 1; }
+  .brand-name .pep  { color: var(--navy); }
+  .brand-name .gd   { color: var(--blue-deep, #3E7AAD); }
+  .brand-tag { font-size: 8px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(15,27,45,0.55); margin-top: 4px; font-weight: 500; }
+  .issue-badge { text-align: right; }
+  .issue-badge .label { display: inline-block; background: var(--orange); color: #fff; font-size: 9px; font-weight: 600; letter-spacing: 0.18em; padding: 4px 10px; border-radius: 999px; text-transform: uppercase; }
+  .issue-badge .date  { font-size: 11px; color: var(--ink-3); margin-top: 6px; }
+  .eyebrow { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--orange); font-weight: 600; margin-bottom: 10px; }
+  h1.title { font-size: 36px; font-weight: 600; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 12px; color: var(--navy); }
+  h1.title .accent { color: var(--orange); font-style: italic; font-weight: 600; }
+  .lede { font-size: 15px; line-height: 1.6; color: var(--ink-2); margin-bottom: 36px; max-width: 620px; }
+  .spotlight { padding: 28px 0; border-top: 1px solid var(--rule); }
+  .spotlight:last-of-type { border-bottom: 1px solid var(--rule); }
+  .spotlight-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 14px; gap: 16px; }
+  .spotlight-head h2 { font-size: 26px; font-weight: 600; color: var(--navy); letter-spacing: -0.01em; line-height: 1.15; }
+  .alt-names { font-size: 11px; color: var(--ink-3); letter-spacing: 0.05em; }
+  .alt-names code { font-family: ui-monospace, 'SF Mono', Menlo, monospace; background: var(--offwhite-2); padding: 1px 6px; border-radius: 4px; font-size: 10px; }
+  .pill-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+  .pill { display: inline-block; background: var(--orange-soft); color: var(--orange); font-size: 10px; font-weight: 600; letter-spacing: 0.06em; padding: 3px 9px; border-radius: 999px; text-transform: uppercase; }
+  .pill.cool { background: var(--blue-soft); color: var(--blue-deep, #3E7AAD); }
+  .row { display: grid; grid-template-columns: 130px 1fr; gap: 14px; padding: 10px 0; border-bottom: 1px dashed var(--rule); align-items: start; }
+  .row:last-of-type { border-bottom: 0; }
+  .row .label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3); font-weight: 600; padding-top: 2px; }
+  .row .body { font-size: 13.5px; line-height: 1.55; color: var(--ink); }
+  .row .body strong { color: var(--navy); }
+  .finding { margin: 14px 0; padding: 12px 14px; background: var(--offwhite); border-left: 3px solid var(--orange); border-radius: 0 8px 8px 0; }
+  .finding-title { font-size: 11px; font-weight: 600; color: var(--orange); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; }
+  .finding-body { font-size: 13px; line-height: 1.55; color: var(--ink-2); margin-bottom: 6px; }
+  .finding-cite { font-size: 11px; color: var(--ink-3); font-style: italic; }
+  .finding-cite a { color: var(--blue-deep, #3E7AAD); text-decoration: none; word-break: break-all; }
+  .finding-cite a:hover { text-decoration: underline; }
+  .why { margin-top: 16px; padding: 14px 16px; background: var(--navy); color: var(--offwhite); border-radius: 8px; font-size: 12.5px; line-height: 1.6; }
+  .why-label { display: block; font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--orange); font-weight: 600; margin-bottom: 5px; }
+  .footer { margin-top: 36px; padding-top: 22px; border-top: 2px solid var(--navy); }
+  .disclaimer { font-size: 10.5px; line-height: 1.55; color: var(--ink-3); padding: 12px 14px; border: 1px solid var(--rule); border-radius: 8px; background: var(--offwhite); margin-bottom: 16px; }
+  .disclaimer strong { color: var(--ink); }
+  .footer-meta { display: flex; align-items: center; justify-content: space-between; font-size: 10px; color: var(--ink-3); }
+  .footer-meta a { color: var(--blue-deep, #3E7AAD); text-decoration: none; }
+  @media print {
+    body { background: #fff; padding: 0; }
+    .page { box-shadow: none; border: none; max-width: none; padding: 32px 40px; }
+    .why { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .pill, .issue-badge .label, .finding { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    h2, h1.title, .spotlight { page-break-inside: avoid; }
+  }
+  @page { size: Letter; margin: 0.5in; }
+</style>
+</head>
+<body>
+
+<main class="page">
+
+  <header class="masthead">
+    <div class="brand">
+      <img src="/assets/img/logo.png" alt="PepGuide" />
+      <div>
+        <div class="brand-name"><span class="pep">Pep</span><span class="gd">Guide</span></div>
+        <div class="brand-tag">Research Briefing</div>
+      </div>
+    </div>
+    <div class="issue-badge">
+      <span class="label">Issue 002</span>
+      <div class="date">July 2026 &middot; Beyond GLP-1</div>
+    </div>
+  </header>
+
+  <div class="eyebrow">Monthly Research Briefing</div>
+  <h1 class="title">Two peptides expanding the <span class="accent">research toolbox</span>.</h1>
+  <p class="lede">
+    Last month we surveyed the multi-agonist incretin pipeline. This issue widens the lens: a fixed-dose combination that pairs an amylin analog with semaglutide, and the first FDA-approved cardiolipin-binding mitochondrial peptide. Different mechanisms, different therapeutic spaces, both with fresh 2024&ndash;2025 readouts worth tracking.
+  </p>
+
+  <!-- ====== Peptide 1: CagriSema ====== -->
+  <section class="spotlight">
+    <div class="spotlight-head">
+      <h2>CagriSema</h2>
+      <div class="alt-names"><code>cagrilintide 2.4 mg + semaglutide 2.4 mg</code> &middot; Novo Nordisk</div>
+    </div>
+    <div class="pill-row">
+      <span class="pill">Fixed-Dose Combination</span>
+      <span class="pill cool">Amylin &middot; GLP-1</span>
+      <span class="pill cool">Phase 3</span>
+    </div>
+
+    <div class="row">
+      <div class="label">Mechanism</div>
+      <div class="body">Once-weekly subcutaneous fixed-dose combination of <strong>cagrilintide (a long-acting amylin analog)</strong> and <strong>semaglutide (a GLP-1 receptor agonist)</strong>. Amylin signaling slows gastric emptying and reinforces meal-ending satiety in brainstem and hypothalamus; GLP-1R agonism suppresses appetite and improves glycemic regulation. Investigated for additive effects on weight and cardiometabolic endpoints versus either monotherapy.</div>
+    </div>
+    <div class="row">
+      <div class="label">Trial Status</div>
+      <div class="body">Phase 3 <strong>REDEFINE</strong> program: REDEFINE 1 (NCT05567796, obesity without T2D, n=3,417, peer-reviewed June 2025), REDEFINE 2 (NCT05394519, obesity + T2D, peer-reviewed June 2025), REDEFINE 3 (cardiovascular outcomes, ongoing). Separate REIMAGINE Phase 3 program covers T2D indications.</div>
+    </div>
+
+    <div class="finding">
+      <div class="finding-title">Key Finding · REDEFINE 1 (Obesity)</div>
+      <div class="finding-body">Phase 3 in adults with overweight/obesity without T2D: mean body-weight change at 68 weeks was <strong>&minus;20.4% vs &minus;3.0% placebo</strong> (treatment-policy estimand). Trial-product estimand: &minus;22.7% (CagriSema) vs &minus;11.8% (cagrilintide alone), &minus;16.1% (semaglutide alone), &minus;2.3% (placebo). AEs predominantly mild-moderate GI.</div>
+      <div class="finding-cite">Garvey WT, et al.; REDEFINE 1 Study Group. <em>N Engl J Med</em> 2025;393(7):635&ndash;647. PMID: 40544433. NCT05567796. <br /><a href="https://pubmed.ncbi.nlm.nih.gov/40544433/">pubmed.ncbi.nlm.nih.gov/40544433</a></div>
+    </div>
+    <div class="finding">
+      <div class="finding-title">Key Finding · REDEFINE 2 (Obesity + T2D)</div>
+      <div class="finding-body">In adults with overweight/obesity and T2D: mean weight change of <strong>&minus;15.7% vs &minus;3.1% placebo</strong> at 68 weeks (trial-product estimand). <strong>73.5% reached HbA1c &le;6.5% on CagriSema vs 15.9% on placebo.</strong> First Phase 3 evidence for an amylin + GLP-1 combination in T2D.</div>
+      <div class="finding-cite">Davies MJ, et al.; REDEFINE 2 Study Group. <em>N Engl J Med</em> 2025;393(7):648&ndash;659. PMID: 40544432. NCT05394519. <br /><a href="https://pubmed.ncbi.nlm.nih.gov/40544432/">pubmed.ncbi.nlm.nih.gov/40544432</a></div>
+    </div>
+
+    <div class="why">
+      <span class="why-label">Why it matters for researchers</span>
+      First Phase 3 readout for an amylin + GLP-1 combination peptide therapy. REDEFINE 1's direct head-to-head against each monotherapy is the cleanest available reference for understanding amylin's incremental contribution to weight regulation in a research context.
+    </div>
+  </section>
+
+  <!-- ====== Peptide 2: Elamipretide ====== -->
+  <section class="spotlight">
+    <div class="spotlight-head">
+      <h2>Elamipretide</h2>
+      <div class="alt-names"><code>SS-31</code> &middot; <code>MTP-131</code> &middot; Stealth BioTherapeutics</div>
+    </div>
+    <div class="pill-row">
+      <span class="pill">Mitochondrial</span>
+      <span class="pill cool">Cardiolipin Binder</span>
+      <span class="pill cool">FDA Approved (2025)</span>
+    </div>
+
+    <div class="row">
+      <div class="label">Mechanism</div>
+      <div class="body">Water-soluble, cell-penetrating aromatic-cationic tetrapeptide (D-Arg-2',6'-Dmt-Lys-Phe-NH&#8322;) that selectively concentrates in the inner mitochondrial membrane and <strong>binds cardiolipin</strong>. The interaction is reported to stabilize cristae architecture, preserve electron-transport-chain supercomplex assembly, and reduce mitochondrial ROS through electrostatic / hydrophobic (non-enzymatic) interactions.</div>
+    </div>
+    <div class="row">
+      <div class="label">Trial Status</div>
+      <div class="body"><strong>FDA accelerated approval September 19, 2025</strong> as FORZINITY for Barth syndrome &mdash; first FDA-approved mitochondria-targeted peptide drug. Confirmatory <strong>4TAZPower Phase 3b/4 trial</strong> (NCT07531251) ongoing. Separate geographic atrophy program continues following ReCLAIM-2 (NCT03891875).</div>
+    </div>
+
+    <div class="finding">
+      <div class="finding-title">Key Finding · Barth Syndrome OLE</div>
+      <div class="finding-body">168-week open-label extension of TAZPOWER in genetically confirmed Barth syndrome: <strong>~96 m cumulative gain on 6-minute walk test</strong> vs OLE baseline, plus signals of improved cardiac function. Sustained tolerability over &gt;3 years. These data underpinned the eventual FDA accelerated approval.</div>
+      <div class="finding-cite">Thompson WR, et al. <em>Genet Med</em> 2024;26(7):101138. PMID: 38602181. NCT03098797. <br /><a href="https://pubmed.ncbi.nlm.nih.gov/38602181/">pubmed.ncbi.nlm.nih.gov/38602181</a></div>
+    </div>
+    <div class="finding">
+      <div class="finding-title">Key Finding · Geographic Atrophy (Mixed)</div>
+      <div class="finding-body">ReCLAIM-2 Phase 2 RCT in dry AMD with non-central GA: 48-week subcutaneous elamipretide 40 mg daily missed primary endpoints (LL-BCVA, sqrt-GA area), but showed <strong>~43% less progression of macular ellipsoid-zone attenuation</strong> and higher proportion of &ge;10-letter visual-acuity gainers (14.6% vs 2.1%).</div>
+      <div class="finding-cite">Ehlers JP, et al. <em>Ophthalmol Sci</em> 2024;5(1):100628. PMID: 39605874. NCT03891875. <br /><a href="https://pubmed.ncbi.nlm.nih.gov/39605874/">pubmed.ncbi.nlm.nih.gov/39605874</a></div>
+    </div>
+
+    <div class="why">
+      <span class="why-label">Why it matters for researchers</span>
+      First FDA-approved cardiolipin-binding mitochondrial peptide and a foundational research tool for mitochondrial-membrane pharmacology. The contrast between positive Barth-syndrome and mixed GA outcomes is instructive for tissue-specific mitochondrial-targeting research design.
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="disclaimer">
+      <strong>Research Use Only.</strong> This briefing summarizes published peer-reviewed research and registered clinical trials for educational purposes within a research context. It is not medical advice and makes no therapeutic claims. Any compounds referenced are discussed in the context of laboratory and clinical research only &mdash; not for human or veterinary consumption, and not for diagnostic, therapeutic, or clinical use outside of properly authorized investigation.
+    </div>
+    <div class="footer-meta">
+      <span>&copy; 2026 PepGuide &middot; <a href="https://pepguidance.com">pepguidance.com</a></span>
+      <span>Issue 002 &middot; July 2026</span>
+    </div>
+  </footer>
+</main>
+
+</body>
+</html>
