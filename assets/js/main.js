@@ -206,17 +206,20 @@
   if (processSection && assembly && partCap && partRing && partStopper && partBody) {
     // EXPLODED → ASSEMBLED y-offsets in px. Body stays put; parts above lift up.
     // Larger negative number = higher (more exploded).
+    // Cap's max travel is capped at ~-90px so it doesn't clip above the
+    // pinned section's top edge (the pin has overflow:hidden so anything
+    // above pin top gets cut off — see screenshot from 2026-06-26).
     const STATES = [
-      // step 0: fully exploded
-      { cap: -260, ring: -180, stopper: -90,  body: 0 },
+      // step 0: fully exploded — cap stops shy of the section's top edge
+      { cap: -90, ring: -60, stopper: -30, body: 0 },
       // step 1
-      { cap: -200, ring: -140, stopper: -70,  body: 0 },
+      { cap: -70, ring: -46, stopper: -24, body: 0 },
       // step 2
-      { cap: -140, ring: -100, stopper: -50,  body: 0 },
+      { cap: -48, ring: -32, stopper: -16, body: 0 },
       // step 3: parts close together (cross-fade starts at 75%)
-      { cap: -70,  ring: -50,  stopper: -25,  body: 0 },
+      { cap: -25, ring: -16, stopper:  -8, body: 0 },
       // step 4: tightly converged just before assembled vial takes over
-      { cap: -20,  ring: -15,  stopper: -8,   body: 0 },
+      { cap:  -8, ring:  -5, stopper:  -3, body: 0 },
     ];
 
     const lerp = (a, b, t) => a + (b - a) * t;
