@@ -49,7 +49,7 @@
       }
     };
   </script>
-  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/style.css?v=20260626" />
 </head>
 <body class="bg-cream text-ink font-sans antialiased">
 
@@ -120,9 +120,49 @@
           <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-7 8-7s8 3 8 7"/></svg>
           Account
         </button>
+        <!-- Hamburger (mobile only) -->
+        <button id="mobile-menu-toggle" class="md:hidden w-10 h-10 rounded-full hover:bg-ink/5 flex items-center justify-center transition" aria-label="Open menu">
+          <svg class="w-6 h-6 text-ink" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
       </div>
     </div>
   </nav>
+
+  <!-- Mobile menu overlay -->
+  <div id="mobile-menu" class="mobile-menu" aria-hidden="true">
+    <div class="mobile-menu-panel">
+      <div class="flex items-center justify-between mb-8">
+        <div class="flex items-center gap-3">
+          <img src="assets/img/logo.png" alt="PepGuide" class="w-10 h-auto" />
+          <div class="text-lg font-semibold tracking-tight"><span class="text-navy">Pep</span><span class="text-blue">Guide</span></div>
+        </div>
+        <button id="mobile-menu-close" class="w-10 h-10 rounded-full hover:bg-ink/5 flex items-center justify-center" aria-label="Close menu">
+          <svg class="w-6 h-6 text-ink" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 6l12 12M6 18L18 6"/></svg>
+        </button>
+      </div>
+
+      <div class="flex items-center bg-white/80 rounded-full px-4 py-3 border border-ink/10 mb-6">
+        <svg class="w-4 h-4 text-ink/40 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" placeholder="Search compounds…" class="bg-transparent flex-1 text-sm placeholder:text-ink/40 focus:outline-none" />
+      </div>
+
+      <ul class="space-y-1 text-base font-medium mb-8">
+        <li><a href="#" class="mobile-menu-link text-orange">Home</a></li>
+        <li><a href="#compounds" class="mobile-menu-link">Compounds</a></li>
+        <li><a href="#research" class="mobile-menu-link">Research</a></li>
+        <li><a href="#quality" class="mobile-menu-link">Quality</a></li>
+        <li><a href="#about" class="mobile-menu-link">About</a></li>
+      </ul>
+
+      <div class="space-y-3">
+        <button class="pill-cta w-full justify-center"><span class="hex-dot"></span>Research Club</button>
+        <button class="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-full border border-ink/10 text-sm hover:bg-ink/5 transition">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-7 8-7s8 3 8 7"/></svg>
+          Account
+        </button>
+      </div>
+    </div>
+  </div>
 
   <!-- ============ HERO (full-screen, text left, video right) ============ -->
   <section class="hero-section">
@@ -564,6 +604,6 @@
 
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-  <script src="assets/js/main.js"></script>
+  <script src="assets/js/main.js?v=20260626"></script>
 </body>
 </html>

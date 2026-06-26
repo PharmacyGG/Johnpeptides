@@ -5,6 +5,34 @@
 (function () {
   'use strict';
 
+  // ----- MOBILE MENU -----
+  // Drive open/close via inline styles (CSS transitions on toggled classes
+  // were getting stuck at time 0 in this environment — same bug we hit on
+  // the process section). Inline styles bypass that.
+  const menuToggle = document.getElementById('mobile-menu-toggle');
+  const menuClose  = document.getElementById('mobile-menu-close');
+  const menuEl     = document.getElementById('mobile-menu');
+  const menuPanel  = menuEl?.querySelector('.mobile-menu-panel');
+
+  const openMenu = () => {
+    if (!menuEl) return;
+    menuEl.style.cssText = 'opacity: 1; visibility: visible; pointer-events: auto;';
+    document.body.classList.add('menu-open');
+    menuEl.setAttribute('aria-hidden', 'false');
+  };
+  const closeMenu = () => {
+    if (!menuEl) return;
+    menuEl.style.cssText = '';   // back to CSS defaults (opacity 0, hidden, no events)
+    document.body.classList.remove('menu-open');
+    menuEl.setAttribute('aria-hidden', 'true');
+  };
+
+  menuToggle?.addEventListener('click', openMenu);
+  menuClose?.addEventListener('click', closeMenu);
+  menuEl?.addEventListener('click', (e) => { if (e.target === menuEl) closeMenu(); });
+  menuEl?.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+
   // ----- AGE GATE -----
   const gate = document.getElementById('age-gate');
   const confirmBox = document.getElementById('age-confirm');
