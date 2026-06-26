@@ -33,48 +33,52 @@
   menuEl?.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
 
-  // ----- NEWSLETTER FORM -----
-  const newsForm   = document.getElementById('newsletter-form');
-  const newsEmail  = document.getElementById('newsletter-email');
-  const newsBtn    = document.getElementById('newsletter-submit');
-  const newsStatus = document.getElementById('newsletter-status');
-  if (newsForm) {
-    const EMAIL_RX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    newsForm.addEventListener('submit', async (e) => {
+  // ----- NEWSLETTER FORMS -----
+  // Any <form data-newsletter-form> with the matching data-newsletter-{email,submit,status}
+  // children inside it auto-wires to /api/newsletter. Lets the same handler power both the
+  // dedicated #newsletter section and the compact form in the footer.
+  const EMAIL_RX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  document.querySelectorAll('[data-newsletter-form]').forEach((form) => {
+    const email  = form.querySelector('[data-newsletter-email]');
+    const btn    = form.querySelector('[data-newsletter-submit]');
+    // Status node lives as a SIBLING of the form, not inside it (so the form
+    // can be hidden on success without hiding the thank-you message).
+    const status = form.querySelector('[data-newsletter-status]') ||
+                   form.parentElement?.querySelector('[data-newsletter-status]');
+    if (!email || !btn || !status) return;
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const email = (newsEmail.value || '').trim();
-      if (!EMAIL_RX.test(email)) {
-        newsStatus.textContent = 'Please enter a valid email address.';
-        newsStatus.style.color = '';
+      const value = (email.value || '').trim();
+      if (!EMAIL_RX.test(value)) {
+        status.textContent = 'Please enter a valid email address.';
         return;
       }
-      newsBtn.disabled = true;
-      const origLabel = newsBtn.textContent;
-      newsBtn.textContent = 'Subscribing…';
-      newsStatus.textContent = '';
+      btn.disabled = true;
+      const origLabel = btn.textContent;
+      btn.textContent = 'Subscribing…';
+      status.textContent = '';
       try {
         const resp = await fetch('/api/newsletter', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email }),
+          body: JSON.stringify({ email: value }),
         });
         const data = await resp.json().catch(() => ({}));
         if (resp.ok) {
-          // Replace the form with a thank-you message
-          newsForm.style.display = 'none';
-          newsStatus.textContent = "Thanks — you're on the list. We'll be in touch.";
+          form.style.display = 'none';
+          status.textContent = "Thanks — you're on the list. We'll be in touch.";
         } else {
-          newsStatus.textContent = data.error || 'Something went wrong. Please try again.';
-          newsBtn.disabled = false;
-          newsBtn.textContent = origLabel;
+          status.textContent = data.error || 'Something went wrong. Please try again.';
+          btn.disabled = false;
+          btn.textContent = origLabel;
         }
       } catch (err) {
-        newsStatus.textContent = 'Network error. Please try again.';
-        newsBtn.disabled = false;
-        newsBtn.textContent = origLabel;
+        status.textContent = 'Network error. Please try again.';
+        btn.disabled = false;
+        btn.textContent = origLabel;
       }
     });
-  }
+  });
 
   // ----- Research Club / nav links smooth scroll past the fixed nav -----
   document.querySelectorAll('a[href^="#"]').forEach(a => {

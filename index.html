@@ -626,11 +626,11 @@
             <p class="text-cream/60 max-w-md">New protocols, compound updates, and quality reports — delivered monthly. No spam, ever.</p>
           </div>
           <div>
-            <form id="newsletter-form" class="flex flex-col sm:flex-row gap-3" novalidate>
-              <input id="newsletter-email" name="email" type="email" required placeholder="researcher@lab.edu" class="flex-1 px-5 py-4 bg-cream/10 border border-cream/15 rounded-full text-cream placeholder:text-cream/40 focus:outline-none focus:border-teal transition" />
-              <button id="newsletter-submit" type="submit" class="px-7 py-4 bg-teal hover:bg-teal-glow text-white font-medium rounded-full transition whitespace-nowrap">Subscribe</button>
+            <form id="newsletter-form" data-newsletter-form class="flex flex-col sm:flex-row gap-3" novalidate>
+              <input id="newsletter-email" data-newsletter-email name="email" type="email" required placeholder="researcher@lab.edu" class="flex-1 px-5 py-4 bg-cream/10 border border-cream/15 rounded-full text-cream placeholder:text-cream/40 focus:outline-none focus:border-teal transition" />
+              <button id="newsletter-submit" data-newsletter-submit type="submit" class="px-7 py-4 bg-teal hover:bg-teal-glow text-white font-medium rounded-full transition whitespace-nowrap">Subscribe</button>
             </form>
-            <p id="newsletter-status" class="text-sm text-cream/60 mt-3 min-h-[1.25rem]" role="status" aria-live="polite"></p>
+            <p id="newsletter-status" data-newsletter-status class="text-sm text-cream/60 mt-3 min-h-[1.25rem]" role="status" aria-live="polite"></p>
           </div>
         </div>
       </div>
@@ -638,9 +638,51 @@
   </section>
 
   <!-- ============ FOOTER ============ -->
-  <footer id="about" class="bg-charcoal text-cream/60 pt-20 pb-10">
+  <footer id="about" class="bg-charcoal text-cream/60 pt-16 pb-10">
     <div class="max-w-[1400px] mx-auto px-6 lg:px-10">
-      <div class="grid lg:grid-cols-5 gap-10 mb-16">
+
+      <!-- Trust strip -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 pb-12 mb-12 border-b border-cream/10">
+        <div class="flex items-start gap-3">
+          <div class="w-10 h-10 rounded-full bg-teal/15 flex items-center justify-center shrink-0">
+            <svg class="w-5 h-5 text-teal" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4M12 21a9 9 0 100-18 9 9 0 000 18z"/></svg>
+          </div>
+          <div>
+            <div class="text-cream text-sm font-semibold">Third-party tested</div>
+            <div class="text-xs text-cream/50 mt-0.5">≥99% verified purity, every batch</div>
+          </div>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-10 h-10 rounded-full bg-teal/15 flex items-center justify-center shrink-0">
+            <svg class="w-5 h-5 text-teal" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 21l1.5-9L12 4l7.5 8 1.5 9M9 21V12h6v9"/></svg>
+          </div>
+          <div>
+            <div class="text-cream text-sm font-semibold">Made &amp; shipped in USA</div>
+            <div class="text-xs text-cream/50 mt-0.5">Lyophilized in domestic cGMP facilities</div>
+          </div>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-10 h-10 rounded-full bg-teal/15 flex items-center justify-center shrink-0">
+            <svg class="w-5 h-5 text-teal" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 7h13v10H3zM16 10h4l3 3v4h-7M5.5 19a1.5 1.5 0 100-3 1.5 1.5 0 000 3zM18.5 19a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"/></svg>
+          </div>
+          <div>
+            <div class="text-cream text-sm font-semibold">Free 2-day shipping</div>
+            <div class="text-xs text-cream/50 mt-0.5">USPS Priority on every order</div>
+          </div>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-10 h-10 rounded-full bg-teal/15 flex items-center justify-center shrink-0">
+            <svg class="w-5 h-5 text-teal" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></svg>
+          </div>
+          <div>
+            <div class="text-cream text-sm font-semibold">Secure checkout</div>
+            <div class="text-xs text-cream/50 mt-0.5">PayPal-protected, no cards stored</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main footer grid -->
+      <div class="grid lg:grid-cols-5 gap-10 lg:gap-12 mb-14">
         <div class="lg:col-span-2">
           <a href="/" class="flex items-center gap-3 mb-5" aria-label="PepGuide home">
             <img src="assets/img/logo-white.png" alt="PepGuide" class="w-12 h-auto shrink-0" />
@@ -649,46 +691,78 @@
               <div class="text-[9px] tracking-[0.18em] text-offwhite/45 font-medium">NAVIGATE PEPTIDES · UNLOCK KNOWLEDGE</div>
             </div>
           </a>
-          <p class="text-sm leading-relaxed max-w-sm">An evidence-based platform for serious peptide research. Third-party tested compounds, mechanism-anchored protocols, and a curated reference library.</p>
+          <p class="text-sm leading-relaxed max-w-sm mb-6">An evidence-based platform for serious peptide research. Third-party tested compounds, mechanism-anchored protocols, and a curated reference library.</p>
+
+          <!-- Compact newsletter signup -->
+          <div class="max-w-sm">
+            <div class="text-cream text-sm font-medium mb-2">Monthly research briefing</div>
+            <p class="text-xs text-cream/50 mb-3">New protocols, third-party COAs, and what we're shipping next. One email a month.</p>
+            <form data-newsletter-form class="flex gap-2" novalidate>
+              <input data-newsletter-email name="email" type="email" required placeholder="researcher@lab.edu" class="flex-1 min-w-0 px-4 py-2.5 bg-cream/5 border border-cream/15 rounded-full text-cream text-sm placeholder:text-cream/35 focus:outline-none focus:border-teal transition" />
+              <button data-newsletter-submit type="submit" class="px-5 py-2.5 bg-teal hover:bg-teal-glow text-white text-sm font-medium rounded-full transition whitespace-nowrap">Subscribe</button>
+            </form>
+            <p data-newsletter-status class="text-xs text-cream/55 mt-2 min-h-[1rem]" role="status" aria-live="polite"></p>
+          </div>
         </div>
 
         <div>
-          <div class="text-cream font-medium mb-4 text-sm">Compounds</div>
-          <ul class="space-y-2 text-sm">
-            <li><a href="#compounds" class="hover:text-cream transition">Growth Hormone</a></li>
-            <li><a href="#compounds" class="hover:text-cream transition">GLP-1 Research</a></li>
-            <li><a href="#compounds" class="hover:text-cream transition">Recovery</a></li>
-            <li><a href="#compounds" class="hover:text-cream transition">Longevity</a></li>
+          <div class="text-cream font-semibold mb-4 text-sm uppercase tracking-wider">Shop</div>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="#compounds" class="hover:text-cream transition">All compounds</a></li>
+            <li><a href="/products/bpc-tb500" class="hover:text-cream transition">BPC-157 / TB-500</a></li>
+            <li><a href="/products/retatrutide-6mg" class="hover:text-cream transition">Retatrutide</a></li>
+            <li><a href="/products/tesamorelin" class="hover:text-cream transition">Tesamorelin</a></li>
+            <li><a href="/products/ghk-cu" class="hover:text-cream transition">GHK-Cu</a></li>
           </ul>
         </div>
 
         <div>
-          <div class="text-cream font-medium mb-4 text-sm">Knowledge</div>
-          <ul class="space-y-2 text-sm">
-            <li><a href="#newsletter" class="hover:text-cream transition">Research Library</a></li>
-            <li><a href="#newsletter" class="hover:text-cream transition">Protocols</a></li>
-            <li><a href="#newsletter" class="hover:text-cream transition">Conditions</a></li>
-            <li><a href="#newsletter" class="hover:text-cream transition">Monthly Briefing</a></li>
+          <div class="text-cream font-semibold mb-4 text-sm uppercase tracking-wider">Resources</div>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="#process" class="hover:text-cream transition">How we test</a></li>
+            <li><a href="#quality" class="hover:text-cream transition">Quality &amp; sourcing</a></li>
+            <li><a href="#newsletter" class="hover:text-cream transition">Research briefing</a></li>
+            <li><a href="#newsletter" class="hover:text-cream transition">Request a compound</a></li>
           </ul>
         </div>
 
         <div>
-          <div class="text-cream font-medium mb-4 text-sm">Company</div>
-          <ul class="space-y-2 text-sm">
-            <li><a href="#about" class="hover:text-cream transition">About</a></li>
-            <li><a href="#quality" class="hover:text-cream transition">Quality</a></li>
-            <li><a href="mailto:hello@pepguidance.com" class="hover:text-cream transition">Contact</a></li>
-            <li><a href="/terms.html" class="hover:text-cream transition">Research Use Disclaimer</a></li>
+          <div class="text-cream font-semibold mb-4 text-sm uppercase tracking-wider">Support</div>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="mailto:hello@pepguidance.com" class="hover:text-cream transition">hello@pepguidance.com</a></li>
+            <li><span class="text-cream/45">Mon&ndash;Fri reply within 24h</span></li>
+            <li class="pt-2"><a href="/privacy.html" class="hover:text-cream transition">Privacy policy</a></li>
+            <li><a href="/terms.html" class="hover:text-cream transition">Terms of sale</a></li>
           </ul>
         </div>
       </div>
 
-      <div class="border-t border-cream/10 pt-8 flex flex-col md:flex-row justify-between items-start gap-4 text-xs text-cream/40">
-        <div>© 2026 PepGuide. All compounds sold for laboratory research use only. Not for human or veterinary consumption.</div>
-        <div class="flex gap-5">
+      <!-- Research-use disclaimer (prominent) -->
+      <div class="border border-cream/10 rounded-2xl p-5 lg:p-6 mb-8 bg-cream/[0.02]">
+        <div class="flex items-start gap-3">
+          <svg class="w-5 h-5 text-orange shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 9v4M12 17h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg>
+          <div>
+            <div class="text-cream text-sm font-semibold mb-2">Research Use Only</div>
+            <p class="text-xs leading-relaxed text-cream/55">
+              All compounds sold by PepGuide are intended exclusively for laboratory and <em>in&nbsp;vitro</em> research applications by qualified investigators. They are <strong>not</strong> for human or veterinary consumption, <strong>not</strong> for diagnostic, therapeutic, or clinical use, and <strong>not</strong> for sale to or use by the general public. By purchasing, the handler accepts full responsibility for compliance with all applicable federal, state, and local laws.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom bar -->
+      <div class="border-t border-cream/10 pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-cream/40">
+        <div>© 2026 PepGuide. All rights reserved.</div>
+        <div class="flex items-center gap-5">
+          <span class="flex items-center gap-2">
+            <span>Checkout via</span>
+            <svg class="h-4 w-auto" viewBox="0 0 90 24" xmlns="http://www.w3.org/2000/svg" aria-label="PayPal" role="img">
+              <text x="0" y="18" font-family="Helvetica, Arial, sans-serif" font-size="18" font-weight="700" fill="#6FB6E6">Pay</text>
+              <text x="36" y="18" font-family="Helvetica, Arial, sans-serif" font-size="18" font-weight="700" font-style="italic" fill="#FF7A1A">Pal</text>
+            </svg>
+          </span>
           <a href="/privacy.html" class="hover:text-cream transition">Privacy</a>
           <a href="/terms.html" class="hover:text-cream transition">Terms</a>
-          <a href="/terms.html" class="hover:text-cream transition">Disclaimer</a>
         </div>
       </div>
     </div>
