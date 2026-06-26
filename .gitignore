@@ -10,3 +10,6 @@ Adobe Premiere Pro Auto-Save/
 Sequence*.mp4
 list and strength.png
 list price final.*
+
+# PIL-edit backups (rollback safety nets, kept local only)
+assets/img/*.shadow-backup.png
