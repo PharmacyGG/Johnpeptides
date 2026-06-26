@@ -33,6 +33,63 @@
   menuEl?.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
 
+  // ----- NEWSLETTER FORM -----
+  const newsForm   = document.getElementById('newsletter-form');
+  const newsEmail  = document.getElementById('newsletter-email');
+  const newsBtn    = document.getElementById('newsletter-submit');
+  const newsStatus = document.getElementById('newsletter-status');
+  if (newsForm) {
+    const EMAIL_RX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    newsForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = (newsEmail.value || '').trim();
+      if (!EMAIL_RX.test(email)) {
+        newsStatus.textContent = 'Please enter a valid email address.';
+        newsStatus.style.color = '';
+        return;
+      }
+      newsBtn.disabled = true;
+      const origLabel = newsBtn.textContent;
+      newsBtn.textContent = 'Subscribing…';
+      newsStatus.textContent = '';
+      try {
+        const resp = await fetch('/api/newsletter', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email }),
+        });
+        const data = await resp.json().catch(() => ({}));
+        if (resp.ok) {
+          // Replace the form with a thank-you message
+          newsForm.style.display = 'none';
+          newsStatus.textContent = "Thanks — you're on the list. We'll be in touch.";
+        } else {
+          newsStatus.textContent = data.error || 'Something went wrong. Please try again.';
+          newsBtn.disabled = false;
+          newsBtn.textContent = origLabel;
+        }
+      } catch (err) {
+        newsStatus.textContent = 'Network error. Please try again.';
+        newsBtn.disabled = false;
+        newsBtn.textContent = origLabel;
+      }
+    });
+  }
+
+  // ----- Research Club / nav links smooth scroll past the fixed nav -----
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', (e) => {
+      const href = a.getAttribute('href');
+      if (!href || href === '#' || href.length < 2) return;
+      const target = document.querySelector(href);
+      if (!target) return;
+      e.preventDefault();
+      const navH = document.querySelector('nav')?.offsetHeight || 0;
+      const y = target.getBoundingClientRect().top + window.scrollY - navH - 12;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    });
+  });
+
   // ----- AGE GATE -----
   const gate = document.getElementById('age-gate');
   const confirmBox = document.getElementById('age-confirm');

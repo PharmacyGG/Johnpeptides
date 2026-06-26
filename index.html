@@ -3,8 +3,40 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="PepGuide — Evidence-based peptide research. Third-party tested research compounds, protocols, and educational guides." />
+  <meta name="theme-color" content="#0F1B2D" />
+  <meta name="description" content="PepGuide — Evidence-based peptide research. Third-party tested research compounds for qualified researchers. Same-day US dispatch." />
   <title>PepGuide — Evidence-Based Peptide Research</title>
+  <link rel="canonical" href="https://pepguidance.com/" />
+  <link rel="icon" type="image/png" href="/assets/img/logo.png" />
+
+  <!-- Open Graph / Facebook / iMessage / Slack link previews -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:site_name"   content="PepGuide" />
+  <meta property="og:url"         content="https://pepguidance.com/" />
+  <meta property="og:title"       content="PepGuide — Evidence-Based Peptide Research" />
+  <meta property="og:description" content="Research-grade peptides for qualified researchers. Third-party tested, USA-sourced, same-day dispatch." />
+  <meta property="og:image"       content="https://pepguidance.com/assets/img/hero-v1-clean-blue.png" />
+  <meta property="og:image:width" content="2048" />
+  <meta property="og:image:height" content="2048" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="PepGuide — Evidence-Based Peptide Research" />
+  <meta name="twitter:description" content="Research-grade peptides for qualified researchers. Third-party tested, USA-sourced, same-day dispatch." />
+  <meta name="twitter:image"       content="https://pepguidance.com/assets/img/hero-v1-clean-blue.png" />
+
+  <!-- Structured data: Organization (sitewide) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "PepGuide",
+    "url": "https://pepguidance.com",
+    "logo": "https://pepguidance.com/assets/img/logo.png",
+    "description": "Evidence-based peptide research platform. Third-party tested research compounds for qualified researchers.",
+    "slogan": "Navigate Peptides. Unlock Knowledge."
+  }
+  </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -109,10 +141,10 @@
       </ul>
 
       <div class="flex items-center gap-3 shrink-0">
-        <button class="pill-cta hidden sm:flex">
+        <a href="#newsletter" class="pill-cta hidden sm:flex">
           <span class="hex-dot"></span>
           Research Club
-        </button>
+        </a>
         <button class="relative w-10 h-10 rounded-full hover:bg-ink/5 flex items-center justify-center transition" data-cart-open aria-label="Open cart">
           <svg class="w-5 h-5 text-ink" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
           <span class="cart-badge" data-cart-badge style="display:none">0</span>
@@ -187,7 +219,7 @@
       </ul>
 
       <div class="space-y-3">
-        <button class="pill-cta w-full justify-center"><span class="hex-dot"></span>Research Club</button>
+        <a href="#newsletter" class="pill-cta w-full justify-center"><span class="hex-dot"></span>Research Club</a>
         <button class="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-full border border-ink/10 text-sm hover:bg-ink/5 transition">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-7 8-7s8 3 8 7"/></svg>
           Account
@@ -587,21 +619,24 @@
     </div>
   </section>
 
-  <!-- ============ MONTHLY BRIEFING ============ -->
-  <section class="bg-cream pb-24 lg:pb-32">
+  <!-- ============ RESEARCH CLUB / NEWSLETTER ============ -->
+  <section id="newsletter" class="bg-cream pb-24 lg:pb-32">
     <div class="max-w-[1400px] mx-auto px-6 lg:px-10">
       <div class="briefing-card">
         <div class="briefing-glow"></div>
         <div class="relative z-10 grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           <div>
-            <div class="inline-block text-[11px] tracking-[0.22em] text-teal font-semibold bg-teal/15 px-3 py-1.5 rounded-full mb-4">MONTHLY BRIEFING</div>
+            <div class="inline-block text-[11px] tracking-[0.22em] text-teal font-semibold bg-teal/15 px-3 py-1.5 rounded-full mb-4">JOIN THE RESEARCH CLUB</div>
             <h3 class="font-serif text-3xl lg:text-4xl text-cream mb-3">Stay current with <span class="italic text-teal">peptide research</span></h3>
-            <p class="text-cream/60 max-w-md">New protocols, compound updates, and quality reports — delivered monthly.</p>
+            <p class="text-cream/60 max-w-md">New protocols, compound updates, and quality reports — delivered monthly. No spam, ever.</p>
           </div>
-          <form class="flex flex-col sm:flex-row gap-3">
-            <input type="email" placeholder="researcher@lab.edu" class="flex-1 px-5 py-4 bg-cream/10 border border-cream/15 rounded-full text-cream placeholder:text-cream/40 focus:outline-none focus:border-teal transition" />
-            <button type="submit" class="px-7 py-4 bg-teal hover:bg-teal-glow text-white font-medium rounded-full transition whitespace-nowrap">Subscribe</button>
-          </form>
+          <div>
+            <form id="newsletter-form" class="flex flex-col sm:flex-row gap-3" novalidate>
+              <input id="newsletter-email" name="email" type="email" required placeholder="researcher@lab.edu" class="flex-1 px-5 py-4 bg-cream/10 border border-cream/15 rounded-full text-cream placeholder:text-cream/40 focus:outline-none focus:border-teal transition" />
+              <button id="newsletter-submit" type="submit" class="px-7 py-4 bg-teal hover:bg-teal-glow text-white font-medium rounded-full transition whitespace-nowrap">Subscribe</button>
+            </form>
+            <p id="newsletter-status" class="text-sm text-cream/60 mt-3 min-h-[1.25rem]" role="status" aria-live="polite"></p>
+          </div>
         </div>
       </div>
     </div>
@@ -666,6 +701,9 @@
 
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <!-- Vercel Web Analytics — privacy-friendly, no cookies, free on Hobby -->
+  <script defer src="/_vercel/insights/script.js"></script>
+
   <script src="assets/js/products.js?v=20260626"></script>
   <script src="assets/js/cart.js?v=20260626"></script>
   <script src="assets/js/main.js?v=20260626"></script>
