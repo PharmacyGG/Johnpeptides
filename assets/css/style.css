@@ -2,28 +2,41 @@
    PEPGUIDE — Design Tokens
    ============================================ */
 :root {
-  --teal:        #4FB8C9;
-  --teal-glow:   #6FD4E5;
-  --teal-warm:   #5BC0DE;
-  --teal-soft:   #D4ECF1;
-  --teal-deep:   #1F4D5A;
+  /* PepGuide v2 brand */
+  --orange:        #FF7A1A;
+  --orange-glow:   #FF9E55;
+  --orange-soft:   #FFE0CC;
+  --orange-deep:   #CC5C0F;
 
-  --navy:        #1A2940;
-  --navy-2:      #2A3958;
+  --blue:          #6FB6E6;
+  --blue-soft:     #D8E9F6;
+  --blue-deep:     #3E7AAD;
 
-  --charcoal:      #0F1B23;
-  --charcoal-2:    #162834;
-  --charcoal-3:    #1F3744;
+  --navy:          #0F1B2D;
+  --navy-2:        #1A2940;
+  --navy-3:        #243759;
 
-  --cream:         #F5EDE3;
-  --cream-warm:    #F7E8D5;
-  --cream-deep:    #EDDFCE;
+  --offwhite:      #F2F4F7;
+  --offwhite-2:    #E6E9EE;
 
-  --ink:           #1F1A16;
-  --ink-2:         #3A322B;
+  --ink:           #0F1B2D;
+  --ink-2:         #3A4763;
 
-  --font-serif: 'Playfair Display', Georgia, serif;
-  --font-sans:  'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  /* Legacy aliases — keep existing utility classes working during incremental rollout */
+  --teal:          var(--orange);
+  --teal-glow:     var(--orange-glow);
+  --teal-warm:     var(--orange-glow);
+  --teal-soft:     var(--orange-soft);
+  --teal-deep:     var(--orange-deep);
+  --charcoal:      var(--navy);
+  --charcoal-2:    var(--navy-2);
+  --charcoal-3:    var(--navy-3);
+  --cream:         var(--offwhite);
+  --cream-warm:    var(--offwhite);
+  --cream-deep:    var(--offwhite-2);
+
+  --font-serif: 'Poppins', system-ui, sans-serif;   /* alias — was Playfair */
+  --font-sans:  'Poppins', system-ui, sans-serif;
 }
 
 /* Tailwind color extension via @apply equivalents */
@@ -39,11 +52,36 @@
 .text-ink        { color: var(--ink); }
 .border-teal   { border-color: var(--teal); }
 
-.font-serif { font-family: var(--font-serif); font-weight: 500; }
+.font-serif { font-family: var(--font-sans); font-weight: 600; letter-spacing: -0.015em; }
 .font-sans  { font-family: var(--font-sans); }
+/* Headlines: bump from Tailwind default 400 → Poppins SemiBold per brand guide */
+.hero-headline,
+.cat-name,
+.process-title,
+.quality-title,
+.compound-name,
+.briefing-card h3,
+.promo-card h3 {
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+/* In Poppins, the "italic accent" style is just an orange color shift (no slanted glyphs).
+   !important wins against Tailwind's .italic utility. */
+.font-serif .italic,
+.hero-headline .italic,
+.process-title .italic,
+.cat-name .italic,
+section h2 .italic,
+section h3 .italic,
+.promo-card .italic,
+.briefing-card .italic {
+  font-style: normal !important;
+  color: var(--orange) !important;
+  font-weight: 600;
+}
 
 html { scroll-behavior: smooth; }
-body { font-family: var(--font-sans); color: var(--ink); }
+body { font-family: var(--font-sans); color: var(--ink); background: var(--offwhite); }
 
 /* Hex logo mark */
 .hex-mark { display: inline-flex; }
@@ -129,13 +167,7 @@ body { font-family: var(--font-sans); color: var(--ink); }
   max-width: 620px;
 }
 .hero-headline {
-  font-weight: 500;
-  letter-spacing: -0.02em;
   text-shadow: 0 2px 30px rgba(0,0,0,0.5);
-}
-.hero-headline .italic {
-  font-style: italic;
-  font-weight: 400;
 }
 
 /* Fallback placeholder (no longer used as background but keeps the JS hook happy) */
@@ -310,15 +342,13 @@ body { font-family: var(--font-sans); color: var(--ink); }
 }
 
 .process-title {
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   font-size: 1.9rem;
   line-height: 1.15;
   color: var(--ink);
   margin-bottom: 0.85rem;
-  font-weight: 500;
   margin-top: -3px;
 }
-.process-title .italic { font-style: italic; font-weight: 400; }
 .process-body {
   color: var(--ink-2);
   opacity: 0.7;
@@ -536,12 +566,11 @@ body { font-family: var(--font-sans); color: var(--ink); }
   margin-bottom: 0.65rem;
 }
 .cat-name {
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   font-size: 1.5rem;
   line-height: 1.15;
-  color: var(--cream);
+  color: var(--offwhite);
   margin-bottom: 0.9rem;
-  font-weight: 500;
 }
 .cat-foot {
   font-size: 0.78rem;
@@ -647,7 +676,7 @@ body { font-family: var(--font-sans); color: var(--ink); }
 }
 .compound-info { text-align: left; }
 .compound-name {
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   font-size: 1.3rem;
   color: var(--cream);
   margin-bottom: 0.5rem;
@@ -696,11 +725,10 @@ body { font-family: var(--font-sans); color: var(--ink); }
   margin-bottom: 1.25rem;
 }
 .quality-title {
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   font-size: 1.15rem;
   color: var(--ink);
   margin-bottom: 0.5rem;
-  font-weight: 500;
 }
 .quality-body {
   font-size: 0.88rem;
