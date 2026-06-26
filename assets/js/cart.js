@@ -18,8 +18,17 @@
   const save = (cart) => localStorage.setItem(STORAGE_KEY, JSON.stringify(cart));
   let cart = load();
 
-  // ---- math ----
+  // ---- math + html safety ----
   const fmt = (cents) => '$' + (cents / 100).toFixed(2);
+  // Escape strings before splicing into innerHTML. Products are static today,
+  // but if product data ever comes from a CMS / supplier feed / user review,
+  // unescaped interpolation would be XSS-able.
+  const esc = (s) => String(s)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
   const itemCount = () =>
     Object.values(cart).reduce((sum, line) => sum + line.qty, 0);
   const subtotalCents = () =>
@@ -58,15 +67,17 @@
         const p = products[id];
         const line = cart[id];
         if (!p) return '';
+        // All product fields escaped; image path is a same-origin asset
+        // path from our own catalog so safe to keep as-is.
         return `
-          <div class="cart-line" data-id="${p.id}">
-            <img src="${p.image}" alt="" class="cart-line-img" />
+          <div class="cart-line" data-id="${esc(p.id)}">
+            <img src="${esc(p.image)}" alt="" class="cart-line-img" />
             <div class="cart-line-info">
-              <div class="cart-line-name">${p.name}</div>
-              <div class="cart-line-meta">${p.dosage}</div>
+              <div class="cart-line-name">${esc(p.name)}</div>
+              <div class="cart-line-meta">${esc(p.dosage)}</div>
               <div class="cart-line-qty">
                 <button class="qty-btn" data-action="dec" aria-label="Decrease">−</button>
-                <span class="qty-num">${line.qty}</span>
+                <span class="qty-num">${esc(line.qty)}</span>
                 <button class="qty-btn" data-action="inc" aria-label="Increase">+</button>
                 <button class="qty-remove" data-action="remove" aria-label="Remove">Remove</button>
               </div>

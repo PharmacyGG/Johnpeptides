@@ -1,13 +1,17 @@
 /* POST /api/paypal-create-order
-   Body: { items: [{ id, name, priceCents, qty }] }
+   Body: { items: [{ id, qty }] }     ← priceCents is IGNORED
    Returns: { id: "<paypal-order-id>" }
    ----------------------------------------------------------------
-   Server-side price authority: the prices we send to PayPal come from
-   the canonical product table the client also has, NOT from request
-   trust. (For absolute safety, load prices from a server-side source
-   of truth here — for v1 we accept the client-sent priceCents.)
+   Server-side price authority: all prices are looked up from
+   api/_catalog.js by product ID. Any priceCents the client sends
+   is discarded — prevents a buyer from tampering with the cart in
+   DevTools and checking out for $0.01.
 */
 const { paypalFetch } = require('./_paypal');
+const CATALOG = require('./_catalog');
+
+const MAX_ITEMS = 20;     // refuse comically large carts
+const MAX_QTY   = 99;     // per-line cap
 
 module.exports = async (req, res) => {
   if (req.method !== 'POST') {
@@ -18,14 +22,28 @@ module.exports = async (req, res) => {
   if (!Array.isArray(items) || items.length === 0) {
     return res.status(400).json({ error: 'No items in cart' });
   }
-  const valid = items.every(
-    (i) => i && typeof i.priceCents === 'number' && i.priceCents > 0 && i.qty > 0
-  );
-  if (!valid) return res.status(400).json({ error: 'Invalid item payload' });
+  if (items.length > MAX_ITEMS) {
+    return res.status(400).json({ error: 'Too many items in cart' });
+  }
 
-  const lineItems = items.map((i) => ({
-    name: String(i.name || i.id).slice(0, 127),
-    sku: String(i.id || '').slice(0, 127),
+  // Resolve every line item against the SERVER catalog. Unknown SKU = reject.
+  const resolved = [];
+  for (const raw of items) {
+    if (!raw || typeof raw.id !== 'string') {
+      return res.status(400).json({ error: 'Invalid item payload' });
+    }
+    const product = CATALOG[raw.id];
+    if (!product) {
+      return res.status(400).json({ error: `Unknown product: ${raw.id}` });
+    }
+    const qty = Math.max(1, Math.min(MAX_QTY, parseInt(raw.qty, 10) || 0));
+    if (qty < 1) return res.status(400).json({ error: 'Invalid quantity' });
+    resolved.push({ id: raw.id, name: product.name, priceCents: product.priceCents, qty });
+  }
+
+  const lineItems = resolved.map((i) => ({
+    name: i.name.slice(0, 127),
+    sku: i.id.slice(0, 127),
     quantity: String(i.qty),
     unit_amount: {
       currency_code: 'USD',
@@ -33,7 +51,7 @@ module.exports = async (req, res) => {
     },
     category: 'PHYSICAL_GOODS',
   }));
-  const itemTotal = items
+  const itemTotal = resolved
     .reduce((sum, i) => sum + (i.priceCents * i.qty) / 100, 0)
     .toFixed(2);
 
