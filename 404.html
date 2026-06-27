@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0F1B2D" />
+  <meta name="description" content="Page not found — PepGuide" />
+  <meta name="robots" content="noindex,follow" />
+  <title>Not found — PepGuide</title>
+  <link rel="icon" type="image/png" href="/assets/img/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: { colors: {
+      orange:'#FF7A1A', blue:'#6FB6E6', navy:'#0F1B2D',
+      offwhite:'#F2F4F7', ink:'#0F1B2D', cream:'#F2F4F7',
+    }, fontFamily: { sans: ['Poppins','system-ui','sans-serif'], serif: ['Poppins','system-ui','sans-serif'] } } } };
+  </script>
+  <link rel="stylesheet" href="/assets/css/style.css?v=20260701" />
+  <style>
+    body { font-family: 'Poppins', system-ui, sans-serif; }
+    .glow { background: radial-gradient(ellipse 70% 80% at 50% 30%, rgba(255,122,26,0.10), transparent 70%); }
+  </style>
+</head>
+<body class="bg-offwhite text-ink antialiased">
+  <main class="relative min-h-screen flex items-center justify-center px-6 overflow-hidden">
+    <div class="glow absolute inset-0 pointer-events-none"></div>
+    <div class="relative max-w-md text-center">
+      <img src="/assets/img/logo.png" alt="PepGuide" class="w-14 h-auto mx-auto mb-8" />
+      <div class="text-[10px] tracking-[0.22em] uppercase text-orange font-semibold mb-3">Error 404</div>
+      <h1 class="text-5xl lg:text-6xl font-semibold text-navy mb-4 leading-tight tracking-tight">
+        We couldn't find <span class="text-orange italic">that page</span>.
+      </h1>
+      <p class="text-ink/60 leading-relaxed mb-8">
+        The compound, page, or protocol you were looking for may have been moved, renamed, or discontinued.
+        Try the catalog or search for what you need.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-3 justify-center">
+        <a href="/" class="px-6 py-3 bg-orange hover:bg-orange-glow text-white font-medium rounded-full transition inline-flex items-center justify-center gap-2">
+          Back to home
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+        <a href="/#compounds" class="px-6 py-3 bg-white border border-ink/10 hover:border-ink/30 text-ink font-medium rounded-full transition inline-flex items-center justify-center">
+          Browse compounds
+        </a>
+      </div>
+      <p class="text-xs text-ink/40 mt-12">
+        Still stuck? <a href="mailto:support@pepguidance.com" class="text-orange hover:underline">support@pepguidance.com</a>
+      </p>
+    </div>
+  </main>
+</body>
+</html>

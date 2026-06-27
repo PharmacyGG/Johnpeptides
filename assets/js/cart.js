@@ -221,8 +221,10 @@
             body: JSON.stringify({ orderId: data.orderID }),
           });
           const result = await resp.json();
-          if (resp.ok && (result.status === 'COMPLETED' || result.captureId)) {
+          if (resp.ok && result.status === 'COMPLETED') {
             window.location.href = '/success.html?order=' + encodeURIComponent(data.orderID);
+          } else if (resp.ok && result.status === 'PENDING') {
+            alert("We're verifying your payment with PayPal. You'll get a confirmation email once it clears.");
           } else {
             alert('Payment did not complete: ' + (result.error || 'unknown error'));
           }

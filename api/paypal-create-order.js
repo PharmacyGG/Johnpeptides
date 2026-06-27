@@ -8,6 +8,7 @@
    DevTools and checking out for $0.01.
 */
 const { paypalFetch } = require('./_paypal');
+const { rateLimit }   = require('./_ratelimit');
 const CATALOG = require('./_catalog');
 
 const MAX_ITEMS = 20;     // refuse comically large carts
@@ -18,6 +19,10 @@ module.exports = async (req, res) => {
     res.setHeader('Allow', 'POST');
     return res.status(405).json({ error: 'Method not allowed' });
   }
+  // 20/min/IP — generous for legitimate cart adjustments + retries, but
+  // closes the abuse vector of spamming PayPal order-creation calls.
+  if (rateLimit(req, res, { tokens: 20, windowSec: 60 })) return;
+
   const { items } = req.body || {};
   if (!Array.isArray(items) || items.length === 0) {
     return res.status(400).json({ error: 'No items in cart' });
@@ -86,8 +91,8 @@ module.exports = async (req, res) => {
     });
     return res.status(200).json({ id: order.id });
   } catch (err) {
-    return res
-      .status(err.status || 500)
-      .json({ error: err.message, details: err.details });
+    // Don't leak PayPal internals (debug_id, error code names) to the client.
+    console.error('[paypal-create] error:', err.status, err.message, err.details);
+    return res.status(err.status || 500).json({ error: err.message });
   }
 };

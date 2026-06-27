@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Contact PepGuide — support email, response times, and what to include in your message." />
+  <title>Contact — PepGuide</title>
+  <link rel="icon" type="image/png" href="/assets/img/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: { colors: {
+      orange:'#FF7A1A', blue:'#6FB6E6', navy:'#0F1B2D',
+      offwhite:'#F2F4F7', ink:'#0F1B2D', cream:'#F2F4F7',
+    }, fontFamily: { sans: ['Poppins','system-ui','sans-serif'], serif: ['Poppins','system-ui','sans-serif'] } } } };
+  </script>
+  <link rel="stylesheet" href="/assets/css/style.css?v=20260701" />
+</head>
+<body class="bg-offwhite text-ink antialiased" style="font-family:'Poppins',system-ui,sans-serif">
+  <main class="max-w-3xl mx-auto px-6 py-16 lg:py-24">
+    <a href="/" class="inline-flex items-center gap-2 text-sm text-ink/55 hover:text-orange mb-8">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7"/></svg>
+      Back to PepGuide
+    </a>
+    <img src="/assets/img/logo.png" alt="PepGuide" class="w-12 mb-8" />
+    <h1 class="text-4xl font-semibold mb-3">Get in touch</h1>
+    <p class="text-ink/65 leading-relaxed mb-10 max-w-xl">
+      We're a small team — every message reaches a person, usually the same day.
+    </p>
+
+    <div class="bg-white border border-ink/10 rounded-2xl p-6 lg:p-8 mb-8">
+      <div class="text-[10px] tracking-[0.22em] uppercase text-orange font-semibold mb-3">Email</div>
+      <a href="mailto:support@pepguidance.com" class="text-2xl font-semibold text-navy hover:text-orange transition">support@pepguidance.com</a>
+      <p class="text-sm text-ink/60 mt-3">Monday–Friday, 9 AM to 5 PM ET. We respond within one business day.</p>
+    </div>
+
+    <div class="space-y-8 text-ink/80 leading-relaxed">
+      <section>
+        <h2 class="font-semibold text-xl text-ink mb-2">What to include</h2>
+        <ul class="list-disc pl-5 mt-3 space-y-2">
+          <li><strong>For order help:</strong> your order number (in your confirmation email) and what you need.</li>
+          <li><strong>For product questions:</strong> the compound name and what you're trying to evaluate — we can point you to relevant literature or COAs.</li>
+          <li><strong>For damaged shipments:</strong> photos of the package and the product, plus the order number.</li>
+          <li><strong>For compound requests:</strong> name, dosage, and any reference protocol you're working from. We add to the catalog based on what researchers ask for.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="font-semibold text-xl text-ink mb-2">What we cannot help with</h2>
+        <p>We do not provide medical advice, dosing recommendations for humans, or guidance on uses outside of a laboratory research context. Per <a href="/terms.html" class="text-orange hover:underline">our terms</a>, all compounds are sold for research use only.</p>
+      </section>
+
+      <section>
+        <h2 class="font-semibold text-xl text-ink mb-2">Quick links</h2>
+        <ul class="list-disc pl-5 mt-3 space-y-2">
+          <li><a href="/shipping.html" class="text-orange hover:underline">Shipping policy</a> — dispatch times, delivery windows, lost packages</li>
+          <li><a href="/refund.html" class="text-orange hover:underline">Refund policy</a> — when refunds apply and how to request one</li>
+          <li><a href="/terms.html" class="text-orange hover:underline">Terms of service</a> — research-use-only acknowledgement</li>
+          <li><a href="/privacy.html" class="text-orange hover:underline">Privacy policy</a> — what data we collect and what we don't</li>
+        </ul>
+      </section>
+    </div>
+  </main>
+</body>
+</html>

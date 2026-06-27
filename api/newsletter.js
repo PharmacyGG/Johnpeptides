@@ -10,66 +10,58 @@
      FROM_EMAIL      — verified sender (e.g. noreply@pepguidance.com)
 */
 
-const EMAIL_RX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const { rateLimit } = require('./_ratelimit');
+const { sendMail }  = require('./_mail');
+
+// Tight email regex — rejects RFC-5322 group syntax, commas, semicolons,
+// and angle brackets that could enable header injection if the value
+// were ever spliced into a header field. Belt and suspenders alongside
+// the CR/LF strip in _mail.js.
+const EMAIL_RX = /^[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}$/;
+const FORBIDDEN_CHARS = /[<>,;"\r\n\t]/;
 
 module.exports = async (req, res) => {
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST');
     return res.status(405).json({ error: 'Method not allowed' });
   }
+  // 5 signups per IP per minute is plenty for legitimate browsing; blocks
+  // mass-signup spam that would burn the Resend free tier.
+  if (rateLimit(req, res, { tokens: 5, windowSec: 60 })) return;
+
   const email = ((req.body || {}).email || '').toString().trim().toLowerCase();
-  if (!email || !EMAIL_RX.test(email) || email.length > 254) {
+  if (!email || email.length > 254 || !EMAIL_RX.test(email) || FORBIDDEN_CHARS.test(email)) {
     return res.status(400).json({ error: 'Please enter a valid email address.' });
   }
 
-  const apiKey = process.env.RESEND_API_KEY;
-  const owner  = process.env.OWNER_EMAIL;
-  const from   = process.env.FROM_EMAIL || 'PepGuide <onboarding@resend.dev>';
-
-  if (!apiKey || !owner) {
+  const owner = process.env.OWNER_EMAIL;
+  if (!process.env.RESEND_API_KEY || !owner) {
     // Soft-fail: don't block signup if env isn't configured.
-    // Log to Vercel function logs so the owner can see attempts.
     console.warn('[newsletter] missing RESEND_API_KEY or OWNER_EMAIL — subscription not sent:', email);
     return res.status(200).json({ ok: true, queued: true });
   }
 
-  const ts  = new Date().toISOString();
-  const ip  = (req.headers['x-forwarded-for'] || '').toString().split(',')[0].trim();
-  const ua  = (req.headers['user-agent'] || '').toString().slice(0, 200);
+  const ts = new Date().toISOString();
+  const ip = (req.headers['x-forwarded-for'] || '').toString().split(',')[0].trim();
+  const ua = (req.headers['user-agent'] || '').toString().slice(0, 200);
 
-  try {
-    const resp = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        from,
-        to: [owner],
-        reply_to: email,
-        subject: `New PepGuide subscriber: ${email}`,
-        text: [
-          `A new researcher signed up for the PepGuide newsletter.`,
-          ``,
-          `Email:      ${email}`,
-          `Timestamp:  ${ts}`,
-          `IP:         ${ip || '(unknown)'}`,
-          `User agent: ${ua || '(unknown)'}`,
-          ``,
-          `Reply directly to this email to reach them.`,
-        ].join('\n'),
-      }),
-    });
-    if (!resp.ok) {
-      const text = await resp.text();
-      console.error('[newsletter] Resend error:', resp.status, text);
-      // Still return ok=true so the user-facing flow succeeds.
-      return res.status(200).json({ ok: true, queued: true });
-    }
-    return res.status(200).json({ ok: true });
-  } catch (err) {
-    console.error('[newsletter] fetch error:', err);
-    return res.status(200).json({ ok: true, queued: true });
-  }
+  const result = await sendMail({
+    to: owner,
+    replyTo: email,
+    subject: `New PepGuide subscriber: ${email}`,
+    text: [
+      `A new researcher signed up for the PepGuide newsletter.`,
+      ``,
+      `Email:      ${email}`,
+      `Timestamp:  ${ts}`,
+      `IP:         ${ip || '(unknown)'}`,
+      `User agent: ${ua || '(unknown)'}`,
+      ``,
+      `Reply directly to this email to reach them.`,
+    ].join('\n'),
+  });
+
+  // Even on Resend failure we tell the user they're subscribed — beats
+  // them retrying repeatedly and getting flagged as a duplicate later.
+  return res.status(200).json({ ok: true, queued: !result.ok });
 };
